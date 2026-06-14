@@ -1,0 +1,106 @@
+import { useState, useRef, useEffect } from 'react'
+import type { ChatMessage } from '../lib/types'
+
+const INITIAL_MESSAGES: ChatMessage[] = [
+  { role: 'assistant', content: 'Hi! I\'m the BYTE assistant. Ask me anything about the club — how to join, what we build, upcoming events, and more.' },
+]
+
+export default function ChatWidget() {
+  const [open, setOpen] = useState(false)
+  const [messages] = useState<ChatMessage[]>(INITIAL_MESSAGES)
+  const [input, setInput] = useState('')
+  const bottomRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (open) {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [open, messages])
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setInput('')
+  }
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+      <div
+        className={`chat-panel flex h-[28rem] w-80 flex-col border border-[#222222] bg-black shadow-2xl ${
+          open ? 'chat-panel-open' : 'chat-panel-closed'
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="flex items-center justify-between border-b border-[#222222] px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-accent" />
+            <span className="font-mono text-xs tracking-widest text-white uppercase">BYTE Chat</span>
+          </div>
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close chat"
+            className="text-muted transition-colors hover:text-white"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-[85%] px-3 py-2 text-sm leading-relaxed ${
+                  msg.role === 'user'
+                    ? 'bg-accent text-black font-medium'
+                    : 'border border-[#222222] bg-surface text-white'
+                }`}
+              >
+                {msg.content}
+              </div>
+            </div>
+          ))}
+          <div ref={bottomRef} />
+        </div>
+        <form onSubmit={handleSubmit} className="border-t border-[#222222] p-3">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about BYTE…"
+              className="flex-1 bg-transparent font-mono text-xs text-white placeholder-[#444444] outline-none"
+            />
+            <button
+              type="submit"
+              aria-label="Send"
+              className="text-muted transition-colors hover:text-accent disabled:opacity-30"
+              disabled={!input.trim()}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-label={open ? 'Close chat' : 'Open chat'}
+        className="flex h-12 w-12 items-center justify-center border border-accent bg-accent text-black transition-all hover:bg-transparent hover:text-accent"
+      >
+        {open ? (
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        )}
+      </button>
+    </div>
+  )
+}

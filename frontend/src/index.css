@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #000000;
+    --color-surface: #111111;
+    --color-border: #222222;
+    --color-text: #ffffff;
+    --color-muted: #888888;
+    --color-accent: #4ade80;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .carousel-slide {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chat-panel {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  }
+
+  .chat-panel-closed {
+    transform: translateY(1rem);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .chat-panel-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Scroll-triggered reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animation delays for load-time keyframe animations (hero words) */
+  .anim-delay-0   { animation-delay: 0ms; }
+  .anim-delay-100 { animation-delay: 100ms; }
+  .anim-delay-200 { animation-delay: 200ms; }
+  .anim-delay-300 { animation-delay: 300ms; }
+  .anim-delay-400 { animation-delay: 400ms; }
+  .anim-delay-500 { animation-delay: 500ms; }
+  .anim-delay-600 { animation-delay: 600ms; }
+  .anim-delay-700 { animation-delay: 700ms; }
+  .anim-delay-800 { animation-delay: 800ms; }
+
+  /* Page transition overlay */
+  @keyframes pageCurtain {
+    0%   { transform: translateY(100%); }
+    30%  { transform: translateY(0%); }
+    70%  { transform: translateY(0%); }
+    100% { transform: translateY(-100%); }
+  }
+
+  @keyframes pageLabelReveal {
+    0%   { opacity: 0; transform: translateY(16px); }
+    30%  { opacity: 1; transform: translateY(0); }
+    70%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-16px); }
+  }
+
+  .page-transition-curtain {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    animation: pageCurtain 1.5s cubic-bezier(0.77, 0, 0.175, 1) both;
+  }
+
+  .page-transition-label {
+    animation: pageLabelReveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) both;
+  }
+}
