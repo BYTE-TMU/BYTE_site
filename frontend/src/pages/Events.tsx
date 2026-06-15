@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { getEvents } from '../lib/api'
+import type { Event } from '../lib/types'
 import EventCard from '../components/EventCard'
+import EventModal from '../components/EventModal'
 
 export default function Events() {
   const events = getEvents()
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
 
   return (
     <main className="mx-auto max-w-7xl px-6 pt-32 pb-24">
@@ -15,9 +19,10 @@ export default function Events() {
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <EventCard key={event.id} event={event} onClick={() => setSelectedEvent(event)} />
         ))}
       </div>
+      <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
     </main>
   )
 }

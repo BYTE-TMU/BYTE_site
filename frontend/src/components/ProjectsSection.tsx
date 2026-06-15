@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Project } from '../lib/types'
 import ProjectCard from './ProjectCard'
+import ProjectModal from './ProjectModal'
 import { useInView } from '../hooks/useInView'
 
 interface Props {
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export default function ProjectsSection({ projects }: Props) {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [headingRef, headingInView] = useInView()
   const [cardsRef, cardsInView] = useInView(0.1)
 
@@ -29,9 +32,9 @@ export default function ProjectsSection({ projects }: Props) {
         {projects.map((project, i) => (
           <div
             key={project.id}
-            className={`reveal ${i === 1 ? 'delay-150' : ''} ${cardsInView ? 'visible' : ''}`}
+            className={`reveal h-full ${i === 1 ? 'delay-150' : ''} ${cardsInView ? 'visible' : ''}`}
           >
-            <ProjectCard project={project} />
+            <ProjectCard project={project} onClick={() => setSelectedProject(project)} />
           </div>
         ))}
       </div>
@@ -43,6 +46,7 @@ export default function ProjectsSection({ projects }: Props) {
           More Projects →
         </Link>
       </div>
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   )
 }

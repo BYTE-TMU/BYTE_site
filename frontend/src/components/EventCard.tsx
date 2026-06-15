@@ -2,11 +2,15 @@ import type { Event } from '../lib/types'
 
 interface Props {
   event: Event
+  onClick?: () => void
 }
 
-export default function EventCard({ event }: Props) {
+export default function EventCard({ event, onClick }: Props) {
   return (
-    <article className="flex flex-col border border-[#222222] bg-surface p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#3a3a3a]">
+    <article
+      className={`flex flex-col h-full border border-[#222222] bg-surface p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#3a3a3a] ${onClick ? 'cursor-pointer' : ''}`}
+      onClick={onClick}
+    >
       <div className="mb-4 flex items-center gap-3">
         <span className="font-mono text-xs tracking-widest text-accent uppercase">
           {event.category}

@@ -1,4 +1,4 @@
-import type { TeamMember, Event, Project } from './types'
+import type { TeamMember, Event, Project, Announcement } from './types'
 
 function avatar(seed: string) {
   return `https://api.dicebear.com/8.x/initials/svg?seed=${seed}&backgroundColor=111111&fontColor=4ade80`
@@ -52,76 +52,105 @@ const TEAM: TeamMember[] = [
 const EVENTS: Event[] = [
   {
     id: '1',
-    title: 'Intro to LLMs Workshop',
-    category: 'AI WORKSHOP',
-    date: 'SPRING 2025',
-    description: 'A hands-on introduction to large language models — how they work, how to prompt them effectively, and how to build your first LLM-powered app.',
-    registrationUrl: '#',
+    title: 'TMU Tech Week 2026',
+    category: 'NETWORKING',
+    date: 'FEB 15, 2026',
+    description: 'BYTE is hosting TMU Tech Week 2026, bringing together students and industry leaders to explore AI, machine learning, and software development. Discover our projects, meet our team, and get involved in the Toronto AI community.',
+    imageUrl: '/images/events/Tmutechweek.png',
+    location: 'TMU SLC',
   },
   {
     id: '2',
-    title: 'BYTE × TechTMU Hackathon',
-    category: 'HACKATHON',
-    date: 'WINTER 2025',
-    description: '24 hours to build something that matters. Teams of 2–4 compete across AI, web, and open-ended tracks. Prizes, mentors, and good vibes.',
-    registrationUrl: '#',
+    title: 'BYTE Demo Day — SecureBYTE',
+    category: 'NETWORKING',
+    date: 'DEC 1, 2025',
+    description: 'BYTE hosted a Demo Day featuring a panel discussion where our team presented SecureBYTE, our flagship cybersecurity project. The event showcased our innovative approach to security solutions and fostered engaging conversations about the future of cybersecurity.',
+    imageUrl: '/images/events/Demoday.JPG',
+    location: 'Daphne Cockwell Health Sciences Complex',
   },
   {
     id: '3',
-    title: 'AI in Industry Panel',
-    category: 'PANEL',
-    date: 'FALL 2024',
-    description: 'Founders and engineers from local AI startups share what it actually takes to ship AI products — warts, pivots, and all.',
+    title: 'Google DevFest Toronto 2025',
+    category: 'NETWORKING',
+    date: 'NOV 15, 2025',
+    description: 'BYTE hosted a booth at Google DevFest Toronto 2025, one of Canada\'s largest developer conferences. We connected with thousands of developers, shared our SecureBYTE project, and networked with potential collaborators and sponsors.',
+    imageUrl: '/images/events/devfestevent.JPG',
+    location: 'Metro Toronto Convention Centre',
   },
   {
     id: '4',
-    title: 'End-of-Year Social',
+    title: 'BYTE Launch Event',
     category: 'SOCIAL',
-    date: 'SPRING 2024',
-    description: 'Celebrate the year with the BYTE crew. Food, demos, and a showcase of everything members built across our project teams.',
+    date: 'SEP 29, 2025',
+    description: 'The official launch event for BYTE! Join us to learn about our organization, meet the executive team, network with fellow AI enthusiasts, and discover how you can get involved in our projects.',
+    imageUrl: '/images/events/bytelaunch.jpeg',
+    location: 'George Vari Engineering Building',
   },
   {
     id: '5',
-    title: 'RAG Deep Dive',
-    category: 'AI WORKSHOP',
-    date: 'WINTER 2024',
-    description: 'Go beyond basic prompting — learn retrieval-augmented generation, vector databases, and chunk strategy with real code examples.',
-    registrationUrl: '#',
+    title: 'TMSU Campus Street Fair',
+    category: 'NETWORKING',
+    date: 'SEP 10, 2025',
+    description: 'Another tabling opportunity to showcase BYTE and connect with students interested in AI development and open-source projects.',
+    imageUrl: '/images/events/tmsustreetfair.jpeg',
+    location: 'Kerr Hall',
   },
 ]
 
 const PROJECTS: Project[] = [
   {
     id: '1',
-    name: 'BYTE Website',
-    description: 'The official BYTE club website — a React + Vite monorepo with a RAG-powered chatbot that answers questions about the club.',
-    techStack: ['React', 'TypeScript', 'Vite', 'Claude API', 'Tailwind'],
-    status: 'in dev',
-    githubUrl: '#',
+    name: 'SecureBYTE',
+    description: 'A Python-based AI vulnerability scanner that integrates static analysis and LLMs to identify security flaws and logical issues. Combines traditional analysis with natural language reasoning to provide insights, suggest remediations, and generate automated test cases.',
+    techStack: ['Python', 'Flask', 'React', 'JavaScript', 'TailwindCSS', 'Firebase'],
+    status: 'live',
+    githubUrl: 'https://github.com/byte-org/securebyte',
   },
   {
     id: '2',
-    name: 'CourseCompass',
-    description: 'An AI-powered TMU course recommendation tool that maps your interests and completed courses to the best next electives.',
-    techStack: ['Python', 'FastAPI', 'Claude API', 'React'],
-    status: 'live',
-    githubUrl: '#',
+    name: 'Yapp',
+    description: 'The campus social platform designed exclusively for TMU students. Connect with your community, discover amazing events across downtown Toronto, and explore your urban campus like never before.',
+    techStack: ['Python', 'Flask', 'React', 'JavaScript', 'TailwindCSS', 'MongoDB', 'AWS'],
+    status: 'in dev',
+    liveUrl: 'https://yap-mu.vercel.app',
+  },
+]
+
+const ANNOUNCEMENTS: Announcement[] = [
+  {
+    id: '1',
+    title: 'TMU Tech Week 2026 is Coming!',
+    date: 'JAN 15, 2026',
+    imageUrl: '/images/events/Tmutechweek.png',
+    body: 'Get ready for TMU Tech Week 2026 on February 15th! BYTE is hosting this exciting week of tech events, bringing together students and industry leaders to explore AI, machine learning, and software development. Mark your calendars!',
+  },
+  {
+    id: '2',
+    title: 'BYTE Demo Day — SecureBYTE Showcase',
+    date: 'DEC 1, 2025',
+    imageUrl: '/images/events/Demoday.JPG',
+    body: 'We hosted an incredible Demo Day featuring our flagship SecureBYTE cybersecurity project! Thank you to everyone who attended our panel discussion on the future of security solutions and innovation at BYTE.',
   },
   {
     id: '3',
-    name: 'StudySync',
-    description: 'Turn lecture slides and notes into practice questions and flashcards using an LLM pipeline — built during the 2025 hackathon.',
-    techStack: ['Next.js', 'OpenAI', 'PostgreSQL', 'Vercel'],
-    status: 'archived',
-    githubUrl: '#',
+    title: 'BYTE at Google DevFest Toronto 2025',
+    date: 'NOV 15, 2025',
+    imageUrl: '/images/events/devfestevent.JPG',
+    body: 'BYTE represented at Google DevFest Toronto 2025, one of Canada\'s largest developer conferences! We connected with thousands of developers, showcased our SecureBYTE project, and networked with industry professionals.',
   },
   {
     id: '4',
-    name: 'TMU Research Digest',
-    description: 'Weekly digest that scrapes TMU faculty publications and generates plain-English summaries — delivered via email and Discord bot.',
-    techStack: ['Python', 'Claude API', 'SendGrid', 'Discord.py'],
-    status: 'in dev',
-    githubUrl: '#',
+    title: 'BYTE Launch Event Success!',
+    date: 'SEP 29, 2025',
+    imageUrl: '/images/events/bytelaunch.jpeg',
+    body: 'Our official launch event was a huge success! We welcomed new members, presented our vision for the year, and introduced SecureBYTE. Thanks to everyone who joined us at the George Vari Engineering Building.',
+  },
+  {
+    id: '5',
+    title: 'Find BYTE at the TMSU Street Fair',
+    date: 'SEP 10, 2025',
+    imageUrl: '/images/events/tmsustreetfair.jpeg',
+    body: 'We had an amazing time meeting students at the TMSU Campus Street Fair! Thanks to everyone who stopped by to learn about BYTE and our hands-on approach to AI development and open-source projects.',
   },
 ]
 
@@ -132,3 +161,4 @@ export function getEvents(limit?: number): Event[] {
 export function getProjects(limit?: number): Project[] {
   return limit !== undefined ? PROJECTS.slice(0, limit) : PROJECTS
 }
+export function getAnnouncements(): Announcement[] { return ANNOUNCEMENTS }

@@ -19,7 +19,7 @@ export default function Navbar() {
           <NavLink to="/" end className={linkClass}>Home</NavLink>
           <NavLink to="/team" className={linkClass}>Team</NavLink>
           <NavLink to="/news" className={linkClass}>News</NavLink>
-          <NavLink to="/support" className={linkClass}>Support</NavLink>
+          <NavLink to="/contact" className={linkClass}>Contact</NavLink>
           <NavLink to="/cybersecurity" className={linkClass}>Cyber Summit</NavLink>
         </div>
       </div>

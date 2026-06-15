@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { getProjects } from '../lib/api'
+import type { Project } from '../lib/types'
 import ProjectCard from '../components/ProjectCard'
+import ProjectModal from '../components/ProjectModal'
 
 export default function Projects() {
   const projects = getProjects()
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
     <main className="mx-auto max-w-7xl px-6 pt-32 pb-24">
@@ -15,9 +19,10 @@ export default function Projects() {
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <ProjectCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
         ))}
       </div>
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </main>
   )
 }

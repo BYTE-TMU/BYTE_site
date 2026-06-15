@@ -15,6 +15,9 @@ export interface Event {
   description: string
   imageUrl?: string
   registrationUrl?: string
+  location?: string
+  coHosts?: string[]
+  timing?: string
 }
 
 export interface Project {
@@ -24,9 +27,18 @@ export interface Project {
   techStack: string[]
   status: 'in dev' | 'live' | 'archived'
   githubUrl?: string
+  liveUrl?: string
 }
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
   content: string
+}
+
+export interface Announcement {
+  id: string
+  title: string
+  date: string
+  imageUrl?: string
+  body: string
 }

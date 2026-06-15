@@ -9,7 +9,7 @@ import Events from './pages/Events'
 import Projects from './pages/Projects'
 import Team from './pages/Team.tsx'
 import News from './pages/News.tsx'
-import Support from './pages/Support.tsx'
+import Contact from './pages/Support.tsx'
 import CyberSummit from './pages/CyberSummit'
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/team" element={<Team />} />
         <Route path="/news" element={<News />} />
-        <Route path="/support" element={<Support />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/cybersecurity" element={<CyberSummit />} />
       </Routes>
       <Footer />

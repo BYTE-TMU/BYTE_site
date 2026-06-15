@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Event } from '../lib/types'
 import EventCard from './EventCard'
+import EventModal from './EventModal'
 import { useInView } from '../hooks/useInView'
 
 interface Props {
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export default function EventsSection({ events }: Props) {
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [headingRef, headingInView] = useInView()
   const [cardsRef, cardsInView] = useInView(0.1)
 
@@ -29,9 +32,9 @@ export default function EventsSection({ events }: Props) {
         {events.map((event, i) => (
           <div
             key={event.id}
-            className={`reveal ${i === 1 ? 'delay-150' : i === 2 ? 'delay-300' : ''} ${cardsInView ? 'visible' : ''}`}
+            className={`reveal h-full ${i === 1 ? 'delay-150' : i === 2 ? 'delay-300' : ''} ${cardsInView ? 'visible' : ''}`}
           >
-            <EventCard event={event} />
+            <EventCard event={event} onClick={() => setSelectedEvent(event)} />
           </div>
         ))}
       </div>
@@ -43,6 +46,7 @@ export default function EventsSection({ events }: Props) {
           All Events →
         </Link>
       </div>
+      <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
     </section>
   )
 }
