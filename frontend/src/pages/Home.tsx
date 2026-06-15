@@ -1,14 +1,12 @@
-import { getTeam, getEvents, getProjects } from '../lib/api'
+import { getEvents, getProjects } from '../lib/api'
 import HeroSection from '../components/HeroSection'
 import StatsTicker from '../components/StatsTicker'
-import TeamSection from '../components/TeamSection'
+import AboutSection from '../components/AboutSection.tsx'
 import EventsSection from '../components/EventsSection'
-import ImageCarousel from '../components/ImageCarousel'
 import ProjectsSection from '../components/ProjectsSection'
 import CTASection from '../components/CTASection'
 
 export default function Home() {
-  const team = getTeam()
   const events = getEvents(3)
   const projects = getProjects(2)
 
@@ -16,9 +14,8 @@ export default function Home() {
     <>
       <HeroSection />
       <StatsTicker />
-      <TeamSection members={team} />
+      <AboutSection />
       <EventsSection events={events} />
-      <ImageCarousel />
       <ProjectsSection projects={projects} />
       <CTASection />
     </>

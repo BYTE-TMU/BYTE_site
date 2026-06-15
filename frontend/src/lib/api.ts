@@ -1,16 +1,52 @@
 import type { TeamMember, Event, Project } from './types'
 
+function avatar(seed: string) {
+  return `https://api.dicebear.com/8.x/initials/svg?seed=${seed}&backgroundColor=111111&fontColor=4ade80`
+}
+
 const TEAM: TeamMember[] = [
-  { id: '1', name: 'Aisha Patel', role: 'President', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=AP&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '2', name: 'Marcus Chen', role: 'VP Engineering', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=MC&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '3', name: 'Priya Singh', role: 'VP Events', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=PS&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '4', name: 'Jordan Kim', role: 'VP Marketing', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=JK&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '5', name: 'Sofia Nguyen', role: 'ML Lead', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=SN&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '6', name: 'Ravi Sharma', role: 'Full-Stack Lead', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=RS&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '7', name: 'Chloe Park', role: 'Design Lead', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=CP&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '8', name: 'Tariq Hassan', role: 'Research Lead', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=TH&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '9', name: 'Emma Liu', role: 'Community Manager', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=EL&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
-  { id: '10', name: 'Devan Mills', role: 'Data Engineer', imageUrl: 'https://api.dicebear.com/8.x/initials/svg?seed=DM&backgroundColor=4ade80&fontColor=000000', linkedinUrl: '#' },
+  // President
+  { id: '1', name: 'Meet Patadia', role: 'President', group: 'president', imageUrl: avatar('MP'), linkedinUrl: '#' },
+
+  // Vice Presidents
+  { id: '2', name: 'Arshiya Das', role: 'VP of Events', group: 'vp', imageUrl: avatar('AD'), linkedinUrl: '#' },
+  { id: '3', name: 'Vashisht Pawa', role: 'VP of Finance', group: 'vp', imageUrl: avatar('VP'), linkedinUrl: '#' },
+  { id: '4', name: 'Areej Ubaid', role: 'VP of Growth', group: 'vp', imageUrl: avatar('AU'), linkedinUrl: '#' },
+  { id: '5', name: 'Naetri Niranjan', role: 'VP of Marketing', group: 'vp', imageUrl: avatar('NN'), linkedinUrl: '#' },
+  { id: '6', name: 'Jacob Mobin', role: 'VP of Technology', group: 'vp', imageUrl: avatar('JM'), linkedinUrl: '#' },
+
+  // Leadership
+  { id: '7', name: 'Pearl Ved', role: 'Chief of Staff', group: 'leadership', imageUrl: avatar('PV'), linkedinUrl: '#' },
+  { id: '8', name: 'Yeji Lee', role: 'Head of Strategic Operations', group: 'leadership', imageUrl: avatar('YL'), linkedinUrl: '#' },
+  { id: '9', name: 'Hetvi Modi', role: 'Head of Technical Operations', group: 'leadership', imageUrl: avatar('HM'), linkedinUrl: '#' },
+  { id: '10', name: 'Rayan Roshan', role: 'Project Experience Lead', group: 'leadership', imageUrl: avatar('RR'), linkedinUrl: '#' },
+
+  // Directors
+  { id: '11', name: 'Prisha Thakkar', role: 'Director of AI/ML Engineering', group: 'directors', imageUrl: avatar('PT'), linkedinUrl: '#' },
+  { id: '12', name: 'Johan Philip', role: 'Director of Frontend Engineering', group: 'directors', imageUrl: avatar('JP'), linkedinUrl: '#' },
+
+  // Technical
+  { id: '13', name: 'Nancy Maliackel', role: 'AI/ML Engineer', group: 'technical', imageUrl: avatar('NM'), linkedinUrl: '#' },
+  { id: '14', name: 'Gajanan Vigneswaran', role: 'AI/ML Engineer', group: 'technical', imageUrl: avatar('GV'), linkedinUrl: '#' },
+  { id: '15', name: 'Sanjana Urba', role: 'AI/ML Engineer', group: 'technical', imageUrl: avatar('SU'), linkedinUrl: '#' },
+  { id: '16', name: 'Maha Baig', role: 'Backend Engineer', group: 'technical', imageUrl: avatar('MB'), linkedinUrl: '#' },
+  { id: '17', name: 'Elena Kim', role: 'Backend Engineer', group: 'technical', imageUrl: avatar('EK'), linkedinUrl: '#' },
+  { id: '18', name: 'Kashmala Fareed', role: 'Backend Engineer', group: 'technical', imageUrl: avatar('KF'), linkedinUrl: '#' },
+  { id: '19', name: 'Ethan Cha', role: 'Frontend Engineer', group: 'technical', imageUrl: avatar('EC'), linkedinUrl: '#' },
+  { id: '20', name: 'Stephen Nguyen', role: 'Frontend Engineer', group: 'technical', imageUrl: avatar('SN'), linkedinUrl: '#' },
+  { id: '21', name: 'Anthony Ma', role: 'Frontend Engineer', group: 'technical', imageUrl: avatar('AM'), linkedinUrl: '#' },
+
+  // Strategic
+  { id: '22', name: 'Nyra Thakur', role: 'Community Associate', group: 'strategic', imageUrl: avatar('NT'), linkedinUrl: '#' },
+  { id: '23', name: 'Abanshaji Lukose', role: 'Community Associate', group: 'strategic', imageUrl: avatar('AL'), linkedinUrl: '#' },
+  { id: '24', name: 'Nidhi Biswas', role: 'Events Associate', group: 'strategic', imageUrl: avatar('NB'), linkedinUrl: '#' },
+  { id: '25', name: 'Michael Aya-ay', role: 'Events Associate', group: 'strategic', imageUrl: avatar('MA'), linkedinUrl: '#' },
+  { id: '26', name: 'Areej Tariq', role: 'Events Associate', group: 'strategic', imageUrl: avatar('AT'), linkedinUrl: '#' },
+  { id: '27', name: 'Umar Muhammad', role: 'Finance Associate', group: 'strategic', imageUrl: avatar('UM'), linkedinUrl: '#' },
+  { id: '28', name: 'Rishita Patel', role: 'Finance Associate', group: 'strategic', imageUrl: avatar('RP'), linkedinUrl: '#' },
+  { id: '29', name: 'Angelina Tibayan', role: 'Finance Associate', group: 'strategic', imageUrl: avatar('ATi'), linkedinUrl: '#' },
+  { id: '30', name: 'Sabesen Pathmanathan', role: 'Operations Associate', group: 'strategic', imageUrl: avatar('SP'), linkedinUrl: '#' },
+  { id: '31', name: 'Affan Siddiqui', role: 'Operations Associate', group: 'strategic', imageUrl: avatar('AS'), linkedinUrl: '#' },
 ]
 
 const EVENTS: Event[] = [
@@ -58,10 +94,10 @@ const PROJECTS: Project[] = [
   {
     id: '1',
     name: 'BYTE Website',
-    description: 'The official BYTE club website — a React + Next.js monorepo with a RAG-powered chatbot that answers questions about the club.',
-    techStack: ['React', 'TypeScript', 'Next.js', 'Claude API', 'Tailwind'],
+    description: 'The official BYTE club website — a React + Vite monorepo with a RAG-powered chatbot that answers questions about the club.',
+    techStack: ['React', 'TypeScript', 'Vite', 'Claude API', 'Tailwind'],
     status: 'in dev',
-    githubUrl: 'https://github.com/byte-tmu/byte-site',
+    githubUrl: '#',
   },
   {
     id: '2',
@@ -89,14 +125,10 @@ const PROJECTS: Project[] = [
   },
 ]
 
-export function getTeam(): TeamMember[] {
-  return TEAM
-}
-
+export function getTeam(): TeamMember[] { return TEAM }
 export function getEvents(limit?: number): Event[] {
   return limit !== undefined ? EVENTS.slice(0, limit) : EVENTS
 }
-
 export function getProjects(limit?: number): Project[] {
   return limit !== undefined ? PROJECTS.slice(0, limit) : PROJECTS
 }

@@ -2,6 +2,7 @@ export interface TeamMember {
   id: string
   name: string
   role: string
+  group: 'president' | 'vp' | 'leadership' | 'directors' | 'technical' | 'strategic'
   imageUrl: string
   linkedinUrl?: string
 }

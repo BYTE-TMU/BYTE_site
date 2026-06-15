@@ -1,5 +1,10 @@
 import { NavLink } from 'react-router-dom'
 
+const linkClass = ({ isActive }: { isActive: boolean }) =>
+  `font-mono text-xs tracking-widest uppercase transition-colors ${
+    isActive ? 'text-accent' : 'text-muted hover:text-white'
+  }`
+
 export default function Navbar() {
   return (
     <nav className="animate-slide-down fixed top-0 left-0 right-0 z-50 border-b border-[#222222] bg-black/90 backdrop-blur-sm">
@@ -11,37 +16,10 @@ export default function Navbar() {
           <span className="text-accent">E</span>
         </NavLink>
         <div className="flex items-center gap-8">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `font-mono text-xs tracking-widest uppercase transition-colors ${
-                isActive ? 'text-accent' : 'text-muted hover:text-white'
-              }`
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/events"
-            className={({ isActive }) =>
-              `font-mono text-xs tracking-widest uppercase transition-colors ${
-                isActive ? 'text-accent' : 'text-muted hover:text-white'
-              }`
-            }
-          >
-            Events
-          </NavLink>
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              `font-mono text-xs tracking-widest uppercase transition-colors ${
-                isActive ? 'text-accent' : 'text-muted hover:text-white'
-              }`
-            }
-          >
-            Projects
-          </NavLink>
+          <NavLink to="/" end className={linkClass}>Home</NavLink>
+          <NavLink to="/team" className={linkClass}>Team</NavLink>
+          <NavLink to="/news" className={linkClass}>News</NavLink>
+          <NavLink to="/support" className={linkClass}>Support</NavLink>
         </div>
       </div>
     </nav>

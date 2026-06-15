@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
         <div className="flex items-center gap-6">
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/tmu.byte/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -33,7 +33,7 @@ export default function Footer() {
             </svg>
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/buildyourtechnicalexperience/posts/?feedView=all"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -44,7 +44,7 @@ export default function Footer() {
             </svg>
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/BYTE-TMU"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -55,7 +55,7 @@ export default function Footer() {
             </svg>
           </a>
           <a
-            href="https://discord.com"
+            href="https://discord.com/invite/6Xxyk9u4uU"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Discord"
@@ -67,7 +67,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="font-mono text-xs tracking-widest text-[#333333] uppercase">
-          © 2025 BYTE · TMU
+          © 2026 BYTE · TMU
         </p>
       </div>
     </footer>
