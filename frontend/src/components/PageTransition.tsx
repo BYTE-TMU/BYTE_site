@@ -5,6 +5,9 @@ const PAGE_NAMES: Record<string, string> = {
   '/': 'Home',
   '/events': 'Events',
   '/projects': 'Projects',
+  '/team': 'Team',
+  '/news': 'News',
+  '/support': 'Support',
 }
 
 export default function PageTransition() {
