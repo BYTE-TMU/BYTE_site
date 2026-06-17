@@ -42,30 +42,33 @@ export default function ImageCarousel() {
             Club Life
           </h2>
         </div>
-        <div
-          className={`reveal delay-200 ${inView ? 'visible' : ''} relative overflow-hidden`}
+                <div
+          className={`reveal delay-200 ${inView ? 'visible' : ''} relative`}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div
-            className="flex carousel-slide"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {SLIDES.map((slide) => (
-              <div key={slide.id} className="min-w-full h-80 md:h-[28rem] relative">
-                <img
-                  src={slide.src}
-                  alt={slide.label}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-8">
-                  <p className="font-mono text-sm tracking-widest text-white/80 uppercase">
-                    {slide.label}
-                  </p>
+          {/* overflow-hidden only on the slides, not the buttons */}
+          <div className="overflow-hidden">
+            <div
+              className="flex carousel-slide"
+              style={{ transform: `translateX(-${current * 100}%)` }}
+            >
+              {SLIDES.map((slide) => (
+                <div key={slide.id} className="min-w-full h-80 md:h-[28rem] relative">
+                  <img
+                    src={slide.src}
+                    alt={slide.label}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-8">
+                    <p className="font-mono text-sm tracking-widest text-white/80 uppercase">
+                      {slide.label}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <button

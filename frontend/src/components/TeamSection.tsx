@@ -1,42 +1,14 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { meetTheTeamData, type Member } from '../lib/teamData'
 import { useInView } from '../hooks/useInView'
 import MemberModal from './MemberModal'
 
-const VISIBLE = 5
-
-// Derive the 5 tiers from the flat category data
-const allMembers = meetTheTeamData.flatMap(c => c.members)
-const seen = new Set<string>()
-function unique(members: Member[]) {
-  return members.filter(m => {
-    if (seen.has(m.id)) return false
-    seen.add(m.id)
-    return true
-  })
-}
-
-const president   = unique(allMembers.filter(m => m.position === 'President'))
-const vps         = unique(allMembers.filter(m => m.position.startsWith('VP of')))
-const leadership  = unique(allMembers.filter(m =>
-  m.categories.includes('Leadership') &&
-  m.position !== 'President' &&
-  !m.position.startsWith('VP of')
-))
-const strategic   = unique(allMembers.filter(m =>
-  m.categories.includes('Strategic Team') &&
-  !m.position.startsWith('VP of')
-))
-const technical   = unique(allMembers.filter(m =>
-  m.categories.includes('Technical Team') &&
-  !m.position.startsWith('VP of')
-))
 
 const SECTIONS = [
-  { label: 'Vice Presidents', members: vps,       arrows: false },
-  { label: 'Leadership',      members: leadership, arrows: false },
-  { label: 'Strategic Team',  members: strategic,  arrows: true  },
-  { label: 'Technical Team',  members: technical,  arrows: true  },
+  { label: 'Vice Presidents', key: 'vp',        arrows: false },
+  { label: 'Leadership',      key: 'leadership', arrows: false },
+  { label: 'Strategic Team',  key: 'strategic',  arrows: true  },
+  { label: 'Technical Team',  key: 'technical',  arrows: true  },
 ]
 
 function MemberCard({ member, onClick }: { member: Member; onClick: () => void }) {
@@ -62,45 +34,51 @@ function MemberCard({ member, onClick }: { member: Member; onClick: () => void }
   )
 }
 
-function ArrowCarousel({ members, onSelect }: { members: Member[]; onSelect: (m: Member) => void }) {
-  const [index, setIndex] = useState(0)
-  const canPrev = index > 0
-  const canNext = index + VISIBLE < members.length
-
-  return (
-    <div className="flex items-center gap-4">
-      <button
-        onClick={() => setIndex(i => Math.max(0, i - 1))}
-        disabled={!canPrev}
-        className="shrink-0 border border-[#222222] p-3 text-white transition-all duration-200 hover:border-accent hover:text-accent disabled:opacity-20 disabled:cursor-not-allowed"
-      >
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      <div className="flex flex-1 justify-around">
-        {members.slice(index, index + VISIBLE).map(m => (
-          <MemberCard key={m.id} member={m} onClick={() => onSelect(m)} />
-        ))}
-      </div>
-
-      <button
-        onClick={() => setIndex(i => Math.min(members.length - VISIBLE, i + 1))}
-        disabled={!canNext}
-        className="shrink-0 border border-[#222222] p-3 text-white transition-all duration-200 hover:border-accent hover:text-accent disabled:opacity-20 disabled:cursor-not-allowed"
-      >
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-  )
-}
 
 export default function TeamSection() {
   const [ref, inView] = useInView(0.1)
   const [selected, setSelected] = useState<Member | null>(null)
+
+  const { president, groups } = useMemo(() => {
+    const all = meetTheTeamData.flatMap(c => c.members)
+    const seen = new Set<string>()
+    const unique = (members: Member[]) => members.filter(m => {
+      if (seen.has(m.id)) return false
+      seen.add(m.id)
+      return true
+    })
+
+    const president = unique(all.filter(m => m.position === 'President'))
+
+    const vp = unique(all.filter(m => m.position.startsWith('VP of')))
+
+    const leadership = unique(all.filter(m =>
+      (m.categories.includes('Leadership') ||
+       m.position === 'Project Experience Lead' ||
+       m.position === 'Director of Frontend Engineering' ||
+       m.position === 'Director of AI/ML Engineering') &&
+      m.position !== 'President' &&
+      !m.position.startsWith('VP of')
+    ))
+
+    const strategic = unique(all.filter(m =>
+      m.categories.includes('Strategic Team') &&
+      !m.position.startsWith('VP of')
+    ))
+
+    const technical = unique(all.filter(m =>
+      m.categories.includes('Technical Team') &&
+      !m.position.startsWith('VP of') &&
+      m.position !== 'Project Experience Lead' &&
+      m.position !== 'Director of Frontend Engineering' &&
+      m.position !== 'Director of AI/ML Engineering'
+    ))
+
+    return {
+      president,
+      groups: { vp, leadership, strategic, technical }
+    }
+  }, [])
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">
@@ -110,7 +88,6 @@ export default function TeamSection() {
       </div>
 
       <div className="space-y-14">
-        {/* President — centered, no arrows */}
         <div>
           <p className="mb-5 font-mono text-xs tracking-widest text-muted uppercase border-b border-[#222222] pb-3">
             President
@@ -122,23 +99,19 @@ export default function TeamSection() {
           </div>
         </div>
 
-        {/* VP, Leadership — flat rows. Strategic, Technical — arrow carousels */}
-        {SECTIONS.map(({ label, members, arrows }) => {
+        {SECTIONS.map(({ label, key }) => {
+          const members = groups[key as keyof typeof groups]
           if (!members.length) return null
           return (
-            <div key={label}>
+            <div key={key}>
               <p className="mb-5 font-mono text-xs tracking-widest text-muted uppercase border-b border-[#222222] pb-3">
                 {label}
               </p>
-              {arrows ? (
-                <ArrowCarousel members={members} onSelect={setSelected} />
-              ) : (
-                <div className="flex justify-around">
-                  {members.map(m => (
-                    <MemberCard key={m.id} member={m} onClick={() => setSelected(m)} />
-                  ))}
-                </div>
-              )}
+              <div className="flex flex-wrap gap-8 justify-center">
+                {members.map(m => (
+                  <MemberCard key={m.id} member={m} onClick={() => setSelected(m)} />
+                ))}
+              </div>
             </div>
           )
         })}
