@@ -5,10 +5,10 @@ import MemberModal from './MemberModal'
 
 
 const SECTIONS = [
-  { label: 'Vice Presidents', key: 'vp',        arrows: false },
   { label: 'Leadership',      key: 'leadership', arrows: false },
-  { label: 'Strategic Team',  key: 'strategic',  arrows: true  },
+  { label: 'Vice Presidents', key: 'vp',        arrows: false },
   { label: 'Technical Team',  key: 'technical',  arrows: true  },
+  { label: 'Strategic Team',  key: 'strategic',  arrows: true  },
 ]
 
 function MemberCard({ member, onClick }: { member: Member; onClick: () => void }) {
@@ -50,15 +50,15 @@ export default function TeamSection() {
 
     const president = unique(all.filter(m => m.position === 'President'))
 
-    const vp = unique(all.filter(m => m.position.startsWith('VP of')))
+    const vp = unique(all.filter(m =>
+      m.position.startsWith('VP of') || m.id === 'cos-001' || m.id === 'vp-tech-001'
+    ))
 
     const leadership = unique(all.filter(m =>
-      (m.categories.includes('Leadership') ||
-       m.position === 'Project Experience Lead' ||
-       m.position === 'Director of Frontend Engineering' ||
-       m.position === 'Director of AI/ML Engineering') &&
+      m.categories.includes('Leadership') &&
       m.position !== 'President' &&
-      !m.position.startsWith('VP of')
+      !m.position.startsWith('VP of') &&
+      m.id !== 'cos-001'
     ))
 
     const strategic = unique(all.filter(m =>
@@ -69,9 +69,7 @@ export default function TeamSection() {
     const technical = unique(all.filter(m =>
       m.categories.includes('Technical Team') &&
       !m.position.startsWith('VP of') &&
-      m.position !== 'Project Experience Lead' &&
-      m.position !== 'Director of Frontend Engineering' &&
-      m.position !== 'Director of AI/ML Engineering'
+      m.id !== 'vp-tech-001'
     ))
 
     return {
@@ -90,7 +88,7 @@ export default function TeamSection() {
       <div className="space-y-14">
         <div>
           <p className="mb-5 font-mono text-xs tracking-widest text-muted uppercase border-b border-[#222222] pb-3">
-            President
+            {president.length > 1 ? 'Presidents' : 'President'}
           </p>
           <div className="flex justify-center">
             {president.map(m => (

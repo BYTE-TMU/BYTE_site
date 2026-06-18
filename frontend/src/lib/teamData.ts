@@ -51,8 +51,8 @@ const allTeamMembers: Member[] = [
   {
     id: 'head-strat-001',
     name: 'Yeji Lee',
-    position: 'Head of Strategic Operations',
-    roleDescription: 'Oversees BYTE\'s strategic initiatives including events, marketing, growth, and operations—ensuring our non-technical teams work in harmony to amplify our impact.',
+    position: 'President',
+    roleDescription: 'Co-leads BYTE\'s vision and overall direction alongside Meet, fostering a thriving tech community at TMU while ensuring our organization delivers impactful experiences for all members.',
     profilePicUrl: '/images/BYTE Website - Member Photos/Yeji_Lee.jpeg',
     rank: 85,
     categories: ['Leadership', 'Strategic Team'],
@@ -82,7 +82,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Arshiya_Das.jpeg',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'events-assoc-001', 'events-assoc-002', 'events-assoc-003'],
+    connections: ['pres-001', 'head-strat-001', 'events-assoc-002', 'events-assoc-004'],
     email: 'arshiya.das@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/arshiya-das-b97209331/'
   },
@@ -94,7 +94,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/vashisht_pawa.png',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'finance-assoc-001', 'finance-assoc-002', 'corp-rel-assoc-001'],
+    connections: ['pres-001', 'head-strat-001', 'finance-assoc-001', 'finance-assoc-002'],
     email: 'vpawa@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/vpawa/'
   },
@@ -106,18 +106,18 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Parth Pawa_7.JPG',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'operations-assoc-001', 'operations-assoc-002', 'operations-assoc-003'],
+    connections: ['pres-001', 'head-strat-001', 'operations-assoc-002', 'operations-assoc-003'],
     email: 'parth.pawa@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/parth-pawa-7ab14a222/'
   },
   {
     id: 'vp-growth-001',
     name: 'Areej Ubaid',
-    position: 'VP of Growth',
-    roleDescription: 'Expands BYTE\'s reach and membership, developing strategies to attract new members and partners while strengthening our presence in the TMU tech ecosystem.',
+    position: 'Head of Strategy',
+    roleDescription: 'Oversees BYTE\'s strategic initiatives including events, marketing, growth, and operations—ensuring our non-technical teams work in harmony to amplify our impact.',
     profilePicUrl: '/images/BYTE Website - Member Photos/areej_ubaid.png',
-    rank: 80,
-    categories: ['Strategic Team'],
+    rank: 85,
+    categories: ['Leadership', 'Strategic Team'],
     connections: ['pres-001', 'head-strat-001', 'growth-assoc-001', 'growth-assoc-002'],
     email: 'areej.ubaid@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/areej-ubaid/'
@@ -130,15 +130,15 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Naetri_Niranjan.png',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'marketing-assoc-001', 'marketing-assoc-002', 'marketing-assoc-003', 'marketing-assoc-004'],
+    connections: ['pres-001', 'head-strat-001', 'marketing-assoc-001', 'marketing-assoc-005', 'social-media-mgr-001'],
     email: 'naetri.niranjan@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/naetri-niranjan/'
   },
   {
     id: 'vp-tech-001',
     name: 'Jacob Mobin',
-    position: 'VP of Technology',
-    roleDescription: 'Leads BYTE\'s engineering efforts, guiding technical teams to build cutting-edge projects while fostering a culture of innovation and continuous learning.',
+    position: 'Principal Engineer',
+    roleDescription: 'Provides senior technical leadership across BYTE\'s engineering teams, guiding architecture decisions and mentoring engineers on cutting-edge projects.',
     profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
     rank: 80,
     categories: ['Technical Team'],
@@ -161,74 +161,16 @@ const allTeamMembers: Member[] = [
     linkedInUrl: 'https://www.linkedin.com/in/shahd-alkadi/'
   },
   {
-    id: 'marketing-assoc-002',
-    name: 'Areej Shariq',
-    position: 'Marketing Associate',
-    roleDescription: 'Creates engaging content and graphics that communicate BYTE\'s message, helping spread the word about our events and initiatives to the TMU community.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/Areej_s.jpeg',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-marketing-001'],
-    email: 'areej.shariq@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/areejs/'
-  },
-  {
-    id: 'marketing-assoc-003',
-    name: 'Cerine Djerouni',
-    position: 'Marketing Associate',
-    roleDescription: 'Creates engaging content and graphics that communicate BYTE\'s message, helping spread the word about our events and initiatives to the TMU community.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/Cérine_Djerouni.JPG',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-marketing-001'],
-    email: 'cerine.djerouni@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/c%C3%A9rine-djerouni-785803334/'
-  },
-  {
-    id: 'marketing-assoc-004',
-    name: 'Yuvin Cho',
-    position: 'Marketing Associate',
-    roleDescription: 'Creates engaging content and graphics that communicate BYTE\'s message, helping spread the word about our events and initiatives to the TMU community.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/Yuvin_Cho.jpg',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-marketing-001'],
-    email: 'yuvin.cho@torontomu.ca'
-  },
-  {
-    id: 'events-assoc-001',
-    name: 'Nidhi Biswas',
-    position: 'Events Associate',
-    roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/Nidhi_Biswas.JPG',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-events-001'],
-    email: 'nidhi.biswas@torontomu.ca'
-  },
-  {
     id: 'events-assoc-002',
     name: 'Areej Tariq',
-    position: 'Events Associate',
-    roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
+    position: 'VP of Events',
+    roleDescription: 'Co-leads BYTE\'s signature events alongside Arshiya, from workshops to networking nights, creating memorable experiences that bring the TMU tech community together.',
     profilePicUrl: '/images/BYTE Website - Member Photos/Areej_Tariq.jpg',
-    rank: 60,
+    rank: 80,
     categories: ['Strategic Team'],
     connections: ['vp-events-001'],
     email: 'areej1.tariq@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/-areejtariq-/'
-  },
-  {
-    id: 'events-assoc-003',
-    name: 'Michael Aya-ay',
-    position: 'Events Associate',
-    roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/Michael_Aya-ay.PNG',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-events-001'],
-    email: 'michael.aya@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/michael-aya-ay-397634246/'
   },
   {
     id: 'growth-assoc-001',
@@ -278,18 +220,6 @@ const allTeamMembers: Member[] = [
     linkedInUrl: 'https://www.linkedin.com/in/angelina-tibayan/'
   },
   {
-    id: 'operations-assoc-001',
-    name: 'Ronald Bessada',
-    position: 'Operations Associate',
-    roleDescription: 'Keeps BYTE\'s internal operations running smoothly, managing logistics and administrative tasks that power our day-to-day activities.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-operations-001'],
-    email: 'ronald.bessada@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/ronald-bessada-3b176a34a/'
-  },
-  {
     id: 'operations-assoc-002',
     name: 'Sabesen Pathmanathan',
     position: 'Operations Associate',
@@ -300,18 +230,6 @@ const allTeamMembers: Member[] = [
     connections: ['vp-operations-001'],
     email: 'sabesen.pathmanathan@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/sabesen-pathmanathan/'
-  },
-  {
-    id: 'corp-rel-assoc-001',
-    name: 'Jacky Jiang',
-    position: 'Corporate Relations Associate',
-    roleDescription: 'Builds partnerships with industry sponsors and companies, securing opportunities and resources that benefit BYTE members and our tech community.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-finance-001'],
-    email: 'jacky.jiang@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/jacky-wx-jiang/'
   },
   {
     id: 'corp-rel-assoc-002',
@@ -354,10 +272,10 @@ const allTeamMembers: Member[] = [
   {
     id: 'proj-exp-lead-001',
     name: 'Rayan Roshan',
-    position: 'Project Experience Lead',
-    roleDescription: 'Curates the technical project experience at BYTE, ensuring members have meaningful opportunities to build real-world skills through hands-on development.',
+    position: 'VP of Technology',
+    roleDescription: 'Leads BYTE\'s engineering efforts, guiding technical teams to build cutting-edge projects while fostering a culture of innovation and continuous learning.',
     profilePicUrl: '/images/BYTE Website - Member Photos/Rayan_Roshan.jpg',
-    rank: 75,
+    rank: 80,
     categories: ['Technical Team'],
     connections: ['head-tech-001', 'vp-tech-001'],
     email: 'rayan.roshan@torontomu.ca'
@@ -434,18 +352,6 @@ const allTeamMembers: Member[] = [
     linkedInUrl: 'https://www.linkedin.com/in/akbar-ali06/'
   },
   {
-    id: 'aiml-eng-002',
-    name: 'Sanjana Urba',
-    position: 'AI/ML Engineer',
-    roleDescription: 'Develops machine learning models and AI solutions for BYTE\'s projects, applying data science techniques to solve real-world problems.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/sanjana_urba.JPG',
-    rank: 50,
-    categories: ['Technical Team'],
-    connections: ['dir-ai-001'],
-    email: 'surba@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/sanjanaurba/'
-  },
-  {
     id: 'backend-eng-001',
     name: 'Maha Baig',
     position: 'Backend Engineer',
@@ -460,10 +366,10 @@ const allTeamMembers: Member[] = [
   {
     id: 'backend-eng-002',
     name: 'Elena Kim',
-    position: 'Backend Engineer',
-    roleDescription: 'Builds robust server-side systems and APIs for BYTE\'s projects, ensuring our applications are fast, secure, and scalable.',
+    position: 'Director of Backend Engineering',
+    roleDescription: 'Leads BYTE\'s backend development, building robust server-side systems and APIs while mentoring engineers to ensure our applications are fast, secure, and scalable.',
     profilePicUrl: '/images/BYTE Website - Member Photos/elena_kim.JPG',
-    rank: 50,
+    rank: 70,
     categories: ['Technical Team'],
     connections: ['dir-backend-001'],
     email: 'e15kim@torontomu.ca',
@@ -480,6 +386,58 @@ const allTeamMembers: Member[] = [
     connections: ['dir-backend-001'],
     email: 'kfareed@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/kashmala-fareed2900/'
+  },
+
+  // New hires
+  {
+    id: 'marketing-assoc-005',
+    name: 'Bianca Tetcu',
+    position: 'Marketing Associate',
+    roleDescription: 'Creates engaging content and graphics that communicate BYTE\'s message, helping spread the word about our events and initiatives to the TMU community.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-marketing-001']
+  },
+  {
+    id: 'social-media-mgr-001',
+    name: 'Laboni Saha',
+    position: 'Social Media Manager',
+    roleDescription: 'Manages BYTE\'s social media presence, growing our online community and keeping members engaged with timely, on-brand content.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 80,
+    categories: ['Strategic Team'],
+    connections: ['vp-marketing-001']
+  },
+  {
+    id: 'operations-assoc-003',
+    name: 'Sarah Khan',
+    position: 'Operations Associate',
+    roleDescription: 'Keeps BYTE\'s internal operations running smoothly, managing logistics and administrative tasks that power our day-to-day activities.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-operations-001']
+  },
+  {
+    id: 'events-assoc-004',
+    name: 'Ronyth Buenaventura',
+    position: 'Events Associate',
+    roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-events-001']
+  },
+  {
+    id: 'exec-admin-001',
+    name: 'Minnah Hussain',
+    position: 'Executive Administrator',
+    roleDescription: 'Supports BYTE\'s leadership team with administrative coordination, keeping executive operations organized and running smoothly.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 85,
+    categories: ['Leadership'],
+    connections: ['pres-001', 'cos-001']
   }
 ]
 
