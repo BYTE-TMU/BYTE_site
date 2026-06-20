@@ -29,6 +29,13 @@
     margin: 0;
     padding: 0;
   }
+
+  a,
+  button,
+  [role='button'] {
+    touch-action: manipulation;
+    cursor: pointer;
+  }
 }
 
 @layer utilities {
