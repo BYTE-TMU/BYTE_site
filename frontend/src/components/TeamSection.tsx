@@ -15,12 +15,12 @@ function MemberCard({ member, onClick }: { member: Member; onClick: () => void }
   return (
     <button
       onClick={onClick}
-      className="flex flex-col items-center gap-3 group w-32 shrink-0 cursor-pointer"
+      className="flex flex-col items-center gap-3 group w-28 sm:w-32 shrink-0 cursor-pointer"
     >
       <img
         src={member.profilePicUrl}
         alt={member.name}
-        className="h-24 w-24 rounded-full border-2 border-[#222222] object-cover transition-all duration-200 group-hover:border-accent group-hover:scale-105"
+        className="h-20 w-20 sm:h-24 sm:w-24 rounded-full border-2 border-[#222222] object-cover transition-all duration-200 group-hover:border-accent group-hover:scale-105"
       />
       <div className="text-center w-full">
         <p className="text-sm font-semibold text-white group-hover:text-accent transition-colors leading-tight break-words">
@@ -105,7 +105,7 @@ export default function TeamSection() {
               <p className="mb-5 font-mono text-xs tracking-widest text-muted uppercase border-b border-[#222222] pb-3">
                 {label}
               </p>
-              <div className="flex flex-wrap gap-8 justify-center">
+              <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 justify-center">
                 {members.map(m => (
                   <MemberCard key={m.id} member={m} onClick={() => setSelected(m)} />
                 ))}

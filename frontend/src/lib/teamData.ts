@@ -49,7 +49,7 @@ const allTeamMembers: Member[] = [
 
   // Heads - In both Leadership and their respective teams
   {
-    id: 'head-strat-001',
+    id: 'pres-002',
     name: 'Yeji Lee',
     position: 'President',
     roleDescription: 'Co-leads BYTE\'s vision and overall direction alongside Meet, fostering a thriving tech community at TMU while ensuring our organization delivers impactful experiences for all members.',

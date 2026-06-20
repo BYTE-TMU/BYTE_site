@@ -178,7 +178,7 @@ export default function CyberSummit() {
           <p className={`reveal ${heroInView ? 'visible' : ''} mb-6 font-mono text-xs tracking-widest text-accent uppercase`}>
             TMU × BYTE Presents
           </p>
-          <h1 className={`reveal delay-100 ${heroInView ? 'visible' : ''} mb-4 text-6xl font-black tracking-tight leading-none md:text-[9rem]`}>
+          <h1 className={`reveal delay-100 ${heroInView ? 'visible' : ''} mb-4 text-5xl font-black tracking-tight leading-none sm:text-6xl md:text-7xl lg:text-[9rem]`}>
             TMU CYBER<br />SUMMIT
           </h1>
           <p className={`reveal delay-200 ${heroInView ? 'visible' : ''} mb-6 max-w-lg text-lg text-muted`}>

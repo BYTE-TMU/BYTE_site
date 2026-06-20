@@ -61,7 +61,7 @@ export default function ImageCarousel() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-8">
+                  <div className="absolute bottom-0 left-0 p-4 sm:p-8">
                     <p className="font-mono text-sm tracking-widest text-white/80 uppercase">
                       {slide.label}
                     </p>
@@ -74,7 +74,7 @@ export default function ImageCarousel() {
           <button
             onClick={prev}
             aria-label="Previous"
-            className="absolute left-4 top-1/2 -translate-y-1/2 border border-[#222222] bg-black/80 p-3 text-white transition-all duration-200 hover:border-accent hover:text-accent hover:scale-110"
+            className="absolute left-2 top-1/2 -translate-y-1/2 border border-[#222222] bg-black/80 p-2 text-white transition-all duration-200 hover:border-accent hover:text-accent hover:scale-110 sm:left-4 sm:p-3"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -83,7 +83,7 @@ export default function ImageCarousel() {
           <button
             onClick={next}
             aria-label="Next"
-            className="absolute right-4 top-1/2 -translate-y-1/2 border border-[#222222] bg-black/80 p-3 text-white transition-all duration-200 hover:border-accent hover:text-accent hover:scale-110"
+            className="absolute right-2 top-1/2 -translate-y-1/2 border border-[#222222] bg-black/80 p-2 text-white transition-all duration-200 hover:border-accent hover:text-accent hover:scale-110 sm:right-4 sm:p-3"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
