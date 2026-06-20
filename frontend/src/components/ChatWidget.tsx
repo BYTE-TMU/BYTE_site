@@ -7,7 +7,8 @@ const INITIAL_MESSAGES: ChatMessage[] = [
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
-  const [messages] = useState<ChatMessage[]>(INITIAL_MESSAGES)
+  const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES)
+  const [loading, setLoading] = useState(false)
   const [input, setInput] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
 
@@ -17,9 +18,29 @@ export default function ChatWidget() {
     }
   }, [open, messages])
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
+    //Grab the input, clear the box immediately so it feels responsive
+    //Add the user's message to the chat right away
+    //Call /api/chat with the message
+    //When Gemini replies, append it to the chat
+
     e.preventDefault()
+    if (!input.trim()) return
+
+    const userMessage = input.trim()
     setInput('')
+    setMessages(prev => [...prev, { role: 'user', content: userMessage }])
+    setLoading(true)
+
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userMessage }),
+    })
+
+    const { reply } = await res.json()
+    setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+    setLoading(false)
   }
 
   return (
@@ -62,6 +83,13 @@ export default function ChatWidget() {
               </div>
             </div>
           ))}
+          {loading && (
+            <div className="flex justify-start">
+              <div className="border border-[#222222] bg-surface px-3 py-2 text-sm text-muted">
+                thinking...
+              </div>
+            </div>
+          )}
           <div ref={bottomRef} />
         </div>
         <form onSubmit={handleSubmit} className="border-t border-[#222222] p-3">
