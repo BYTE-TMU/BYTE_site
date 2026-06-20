@@ -7,7 +7,7 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
   }`
 
 const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `font-mono text-sm tracking-widest uppercase transition-colors ${
+  `block py-3 font-mono text-sm tracking-widest uppercase transition-colors ${
     isActive ? 'text-accent' : 'text-muted hover:text-white'
   }`
 
@@ -39,7 +39,7 @@ export default function Navbar() {
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
-          className="flex h-9 w-9 items-center justify-center border border-[#222222] text-white transition-colors hover:border-accent hover:text-accent md:hidden"
+          className="flex h-11 w-11 items-center justify-center border border-[#222222] text-white transition-colors hover:border-accent hover:text-accent md:hidden"
         >
           {open ? (
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,21 +53,21 @@ export default function Navbar() {
         </button>
       </div>
       {open && (
-        <div className="flex flex-col gap-1 border-t border-[#222222] px-6 py-4 md:hidden">
+        <div className="flex flex-col divide-y divide-[#222222] border-t border-[#222222] px-6 md:hidden">
           <NavLink to="/" end className={mobileLinkClass} onClick={() => setOpen(false)}>
-            <span className="block py-2">Home</span>
+            Home
           </NavLink>
           <NavLink to="/team" className={mobileLinkClass} onClick={() => setOpen(false)}>
-            <span className="block py-2">Team</span>
+            Team
           </NavLink>
           <NavLink to="/news" className={mobileLinkClass} onClick={() => setOpen(false)}>
-            <span className="block py-2">News</span>
+            News
           </NavLink>
           <NavLink to="/contact" className={mobileLinkClass} onClick={() => setOpen(false)}>
-            <span className="block py-2">Contact</span>
+            Contact
           </NavLink>
           <NavLink to="/cybersecurity" className={mobileLinkClass} onClick={() => setOpen(false)}>
-            <span className="block py-2">Cyber Summit</span>
+            Cyber Summit
           </NavLink>
         </div>
       )}
