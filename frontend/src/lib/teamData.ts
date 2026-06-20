@@ -394,10 +394,12 @@ const allTeamMembers: Member[] = [
     name: 'Bianca Tetcu',
     position: 'Marketing Associate',
     roleDescription: 'Creates engaging content and graphics that communicate BYTE\'s message, helping spread the word about our events and initiatives to the TMU community.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    profilePicUrl: '/images/BYTE Website - Member Photos/bianca.jpg',
     rank: 60,
     categories: ['Strategic Team'],
-    connections: ['vp-marketing-001']
+    connections: ['vp-marketing-001'],
+    email: 'btetcu@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/biancatetcu/'
   },
   {
     id: 'social-media-mgr-001',
