@@ -417,17 +417,21 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
     rank: 60,
     categories: ['Strategic Team'],
-    connections: ['vp-operations-001']
+    connections: ['vp-operations-001'],
+    email: 's71khan@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/sarah-khan-896a3b38a'
   },
   {
     id: 'events-assoc-004',
     name: 'Ronyth Buenaventura',
     position: 'Events Associate',
     roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    profilePicUrl: '/images/BYTE Website - Member Photos/ronyth.jpg',
     rank: 60,
     categories: ['Strategic Team'],
-    connections: ['vp-events-001']
+    connections: ['vp-events-001'],
+    email: 'ronyth.buenaventura@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/ronythbuenaventura'
   },
   {
     id: 'exec-admin-001',
@@ -437,7 +441,21 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
     rank: 85,
     categories: ['Leadership'],
-    connections: ['pres-001', 'cos-001']
+    connections: ['pres-001', 'cos-001'],
+    email: 'minnah.hussain@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/minnah-hussain/'
+  },
+  {
+    id: 'corp-rel-assoc-003',
+    name: 'Yerin Kim',
+    position: 'Corporate Relations Associate',
+    roleDescription: 'Builds partnerships with industry sponsors and companies, securing opportunities and resources that benefit BYTE members and our tech community.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/yerin.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-finance-001'],
+    email: 'yerin.kim@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/yerin-kim24/'
   }
 ]
 
