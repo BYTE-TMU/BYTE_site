@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import type { ChatMessage } from '../lib/types'
+import type { ChatMessage } from './types'
+import { linkify } from './linkify'
 
 const INITIAL_MESSAGES: ChatMessage[] = [
   { role: 'assistant', content: 'Hi! I\'m the BYTE assistant. Ask me anything about the club — how to join, what we build, upcoming events, and more.' },
@@ -73,13 +74,13 @@ export default function ChatWidget() {
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-[85%] px-3 py-2 text-sm leading-relaxed ${
+                className={`max-w-[85%] break-words px-3 py-2 text-sm leading-relaxed ${
                   msg.role === 'user'
                     ? 'bg-accent text-black font-medium'
                     : 'border border-[#222222] bg-surface text-white'
                 }`}
               >
-                {msg.content}
+                {linkify(msg.content)}
               </div>
             </div>
           ))}

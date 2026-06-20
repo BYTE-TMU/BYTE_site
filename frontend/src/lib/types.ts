@@ -30,11 +30,6 @@ export interface Project {
   liveUrl?: string
 }
 
-export interface ChatMessage {
-  role: 'user' | 'assistant'
-  content: string
-}
-
 export interface Announcement {
   id: string
   title: string

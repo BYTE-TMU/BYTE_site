@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createServer } from "http";
 import { config } from "dotenv";
-import { BYTE_KB } from "./src/lib/knowledgeBase.js";
+import { BYTE_KB } from "./knowledgeBase.js";
 
 config();
 
@@ -12,6 +12,7 @@ const model = genAI.getGenerativeModel({
   systemInstruction: `You are the BYTE assistant for Toronto Metropolitan University's AI club.
     Answer questions using ONLY the information provided below.
     If something isn't covered, say you're not sure and suggest emailing hello@byte-tmu.ca.
+    When sharing a link, always write the full raw URL as plain text (e.g. https://example.com), never use markdown link syntax like [text](url).
 
     ${BYTE_KB}`,
 });

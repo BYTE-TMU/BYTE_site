@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import ChatWidget from './components/ChatWidget'
+import ChatWidget from '../chatbot/ChatWidget'
 import PageTransition from './components/PageTransition'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
