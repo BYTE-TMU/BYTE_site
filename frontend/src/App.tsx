@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ChatWidget from '../chatbot/ChatWidget'
@@ -29,6 +30,7 @@ export default function App() {
       </Routes>
       <Footer />
       <ChatWidget />
+      <Analytics />
     </div>
   )
 }
