@@ -45,7 +45,7 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-4 sm:bottom-6 sm:right-6">
+    <div className="pointer-events-none fixed bottom-4 right-4 z-50 flex flex-col items-end gap-4 sm:bottom-6 sm:right-6">
       <div
         className={`chat-panel flex h-[70vh] w-[calc(100vw_-_2rem)] flex-col border border-[#222222] bg-black shadow-2xl sm:h-[28rem] sm:w-80 ${
           open ? 'chat-panel-open' : 'chat-panel-closed'
@@ -118,7 +118,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close chat' : 'Open chat'}
-        className="flex h-12 w-12 items-center justify-center border border-accent bg-accent text-black transition-all hover:bg-transparent hover:text-accent"
+        className="pointer-events-auto flex h-12 w-12 items-center justify-center border border-accent bg-accent text-black transition-all hover:bg-transparent hover:text-accent"
       >
         {open ? (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
