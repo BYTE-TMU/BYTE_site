@@ -16,7 +16,7 @@ export default function Contact() {
     try {
       await new Promise<void>((_, reject) => setTimeout(reject, 800))
     } catch {
-      const mailto = `mailto:hello@byte-tmu.ca?subject=Message from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`
+      const mailto = `mailto:byte.tmu@gmail.com?subject=Message from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`
       window.location.href = mailto
       setSubmitState('sent')
       setTimeout(() => {
@@ -117,10 +117,10 @@ export default function Contact() {
           </p>
           <div className="flex flex-col gap-4">
             <a
-              href="mailto:hello@byte-tmu.ca"
+              href="mailto:byte.tmu@gmail.com"
               className="flex items-center gap-3 font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:text-white"
             >
-              <span className="text-accent">→</span> hello@byte-tmu.ca
+              <span className="text-accent">→</span> byte.tmu@gmail.com
             </a>
             <a
               href="https://discord.gg/6Xxyk9u4uU"

@@ -5,7 +5,7 @@ export const chunks = [
 Full name: BYTE — TMU's First Student-Led AI Innovation Lab.
 Mission: "Building AI that matters, one student project at a time."
 BYTE is an open-source student group focused on AI. Members gain hands-on experience in real-world AI development by collaborating on projects that make a difference.
-Contact: hello@byte-tmu.ca
+Contact: byte.tmu@gmail.com
 Discord: https://discord.gg/6Xxyk9u4uU
 Instagram: @tmu.byte
 GitHub: @byte-tmu
