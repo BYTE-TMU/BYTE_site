@@ -1,9 +1,13 @@
 import { useState } from 'react'
+import { sendEmail, sendConfirmation } from '../lib/emailjs'
+import { canSubmit, recordSubmit } from '../lib/formRateLimit'
 
-type SubmitState = 'idle' | 'sending' | 'sent' | 'error'
+type SubmitState = 'idle' | 'sending' | 'sent' | 'error' | 'rate-limited'
+
+const RATE_LIMIT_MS = 30_000
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', message: '', company: '' })
   const [submitState, setSubmitState] = useState<SubmitState>('idle')
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -12,17 +16,34 @@ export default function Contact() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    if (form.company) return // honeypot triggered, silently drop
+
+    if (!canSubmit('contact-form', RATE_LIMIT_MS)) {
+      setSubmitState('rate-limited')
+      setTimeout(() => setSubmitState('idle'), 4000)
+      return
+    }
+
     setSubmitState('sending')
     try {
-      await new Promise<void>((_, reject) => setTimeout(reject, 800))
-    } catch {
-      const mailto = `mailto:hello@byte-tmu.ca?subject=Message from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`
-      window.location.href = mailto
+      await sendEmail(import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID, {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+        role: '',
+        tier: '',
+        reply_to: form.email,
+      })
+      recordSubmit('contact-form')
+      sendConfirmation(form.name, form.email)
       setSubmitState('sent')
       setTimeout(() => {
         setSubmitState('idle')
-        setForm({ name: '', email: '', message: '' })
+        setForm({ name: '', email: '', message: '', company: '' })
       }, 4000)
+    } catch {
+      setSubmitState('error')
     }
   }
 
@@ -31,10 +52,11 @@ export default function Contact() {
     sending: 'Sending...',
     sent: 'Message Sent!',
     error: 'Try Again',
+    'rate-limited': 'Please Wait...',
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pt-32 pb-24">
+    <main className="mx-auto max-w-7xl px-6 pt-40 pb-24">
       <div className="mb-12">
         <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">Get in Touch</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">Contact</h1>
@@ -48,6 +70,16 @@ export default function Contact() {
         <div>
           <p className="mb-6 font-mono text-xs tracking-widest text-accent uppercase">Send a Message</p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              autoComplete="off"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
             <div className="flex flex-col gap-1">
               <label htmlFor="name" className="font-mono text-xs tracking-widest text-muted uppercase">
                 Your Name
@@ -95,7 +127,7 @@ export default function Contact() {
             </div>
             <button
               type="submit"
-              disabled={submitState === 'sending' || submitState === 'sent'}
+              disabled={submitState === 'sending' || submitState === 'sent' || submitState === 'rate-limited'}
               className={`self-start border px-6 py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:cursor-not-allowed ${
                 submitState === 'sent'
                   ? 'border-accent text-accent'
@@ -117,10 +149,10 @@ export default function Contact() {
           </p>
           <div className="flex flex-col gap-4">
             <a
-              href="mailto:hello@byte-tmu.ca"
+              href="mailto:byte.tmu@gmail.com"
               className="flex items-center gap-3 font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:text-white"
             >
-              <span className="text-accent">→</span> hello@byte-tmu.ca
+              <span className="text-accent">→</span> byte.tmu@gmail.com
             </a>
             <a
               href="https://discord.gg/6Xxyk9u4uU"

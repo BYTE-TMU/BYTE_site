@@ -8,7 +8,7 @@ export default function News() {
   const [selected, setSelected] = useState<Announcement | null>(null)
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pt-32 pb-24">
+    <main className="mx-auto max-w-7xl px-6 pt-40 pb-24">
       <div className="mb-12">
         <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">Latest</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">News</h1>

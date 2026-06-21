@@ -60,7 +60,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
+    <section className="flex min-h-screen flex-col items-center justify-center px-6 pt-40 text-center">
       <p className="animate-fade-up anim-delay-0 mb-6 font-mono text-xs tracking-widest text-muted uppercase">
         TMU's First Student-Led AI Innovation Lab
       </p>

@@ -24,7 +24,7 @@ export default function Navbar() {
     <nav className="animate-slide-down fixed top-0 left-0 right-0 z-50 border-b border-[#222222] bg-black/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <NavLink to="/" className="flex items-center">
-          <img src={fullLogo} alt="BYTE" className="h-32 w-auto" />
+          <img src={fullLogo} alt="BYTE" className="h-24 w-auto" />
         </NavLink>
         <div className="hidden md:flex items-center gap-8">
           <NavLink to="/" end className={linkClass}>Home</NavLink>

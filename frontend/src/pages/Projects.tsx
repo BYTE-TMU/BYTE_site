@@ -9,7 +9,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pt-32 pb-24">
+    <main className="mx-auto max-w-7xl px-6 pt-40 pb-24">
       <div className="mb-12">
         <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">What We Build</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">Projects</h1>

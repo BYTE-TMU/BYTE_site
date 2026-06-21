@@ -3,7 +3,7 @@ import ImageCarousel from '../components/ImageCarousel'
 
 export default function Team() {
   return (
-    <main className="pt-20">
+    <main className="pt-40">
       <TeamSection />
       <ImageCarousel />
     </main>

@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
+import { sendEmail, sendConfirmation } from '../lib/emailjs'
+import { canSubmit, recordSubmit } from '../lib/formRateLimit'
 
 interface ScheduleItem {
   time: string
@@ -145,6 +148,10 @@ const TIERS: SponsorTier[] = [
 
 const TIER_DELAYS = ['', 'delay-75', 'delay-150', 'delay-200', 'delay-300'] as const
 
+type SubmitState = 'idle' | 'sending' | 'sent' | 'error' | 'rate-limited'
+
+const RATE_LIMIT_MS = 30_000
+
 function FeatureValue({ value }: { value: string | boolean }) {
   if (value === true)  return <span className="text-accent">✓</span>
   if (value === false) return <span className="text-[#333333]">—</span>
@@ -161,13 +168,67 @@ export default function CyberSummit() {
   const [partnersRef, partnersInView] = useInView(0.1)
   const [tiersRef,    tiersInView]    = useInView(0.03)
   const [ctaRef,      ctaInView]      = useInView(0.1)
+  const [registerRef, registerInView] = useInView(0.1)
+
+  const [form, setForm] = useState({ name: '', email: '', role: 'Attendee', tier: '', message: '', company: '' })
+  const [submitState, setSubmitState] = useState<SubmitState>('idle')
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  function goToRegister(role: 'Attendee' | 'Sponsor', tier = '') {
+    setForm(prev => ({ ...prev, role, tier }))
+    document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
+    if (form.company) return // honeypot triggered, silently drop
+
+    if (!canSubmit('summit-form', RATE_LIMIT_MS)) {
+      setSubmitState('rate-limited')
+      setTimeout(() => setSubmitState('idle'), 4000)
+      return
+    }
+
+    setSubmitState('sending')
+    try {
+      await sendEmail(import.meta.env.VITE_EMAILJS_SUMMIT_TEMPLATE_ID, {
+        name: form.name,
+        email: form.email,
+        role: form.role,
+        tier: form.tier,
+        message: form.message,
+        reply_to: form.email,
+      })
+      recordSubmit('summit-form')
+      sendConfirmation(form.name, form.email)
+      setSubmitState('sent')
+      setTimeout(() => {
+        setSubmitState('idle')
+        setForm({ name: '', email: '', role: 'Attendee', tier: '', message: '', company: '' })
+      }, 4000)
+    } catch {
+      setSubmitState('error')
+    }
+  }
+
+  const buttonLabel: Record<SubmitState, string> = {
+    idle: 'Submit Registration',
+    sending: 'Sending...',
+    sent: 'Submitted!',
+    error: 'Try Again',
+    'rate-limited': 'Please Wait...',
+  }
 
   return (
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
       <section
-        className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20 pb-16 text-center"
+        className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-40 pb-16 text-center"
         style={{
           backgroundImage:
             'linear-gradient(rgba(74,222,128,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(74,222,128,0.025) 1px, transparent 1px)',
@@ -188,12 +249,13 @@ export default function CyberSummit() {
             ◈ &nbsp;October 3 – 4, 2026&nbsp; ◈
           </div>
           <div className={`reveal delay-[400ms] ${heroInView ? 'visible' : ''} flex flex-col items-center gap-4 sm:flex-row`}>
-            <a
-              href="mailto:byte.tmu@gmail.com?subject=Cyber Summit - Attendee Interest"
+            <button
+              type="button"
+              onClick={() => goToRegister('Attendee')}
               className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
             >
               Register as Attendee
-            </a>
+            </button>
             <a
               href="#sponsor-tiers"
               className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
@@ -483,12 +545,13 @@ export default function CyberSummit() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={`mailto:byte.tmu@gmail.com?subject=Cyber Summit Sponsorship - ${tier.name}`}
-                  className="mt-8 block border border-[#333333] py-2 text-center font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:border-accent hover:text-accent"
+                <button
+                  type="button"
+                  onClick={() => goToRegister('Sponsor', tier.name)}
+                  className="mt-8 block w-full border border-[#333333] py-2 text-center font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:border-accent hover:text-accent"
                 >
                   Inquire
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -496,6 +559,119 @@ export default function CyberSummit() {
           <p className={`reveal delay-300 ${tiersInView ? 'visible' : ''} mt-8 text-center font-mono text-xs text-muted`}>
             Custom sponsorship packages are available upon request · byte.tmu@gmail.com
           </p>
+        </div>
+      </section>
+
+      {/* ── Registration Form ── */}
+      <section id="register" className="border-t border-[#222222] py-24 px-6">
+        <div ref={registerRef} className="mx-auto max-w-2xl">
+          <p className={`reveal ${registerInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+            Join Us
+          </p>
+          <h2 className={`reveal delay-100 ${registerInView ? 'visible' : ''} mb-8 text-3xl font-black tracking-tight`}>
+            Register Your Interest
+          </h2>
+          <form onSubmit={handleSubmit} className={`reveal delay-200 ${registerInView ? 'visible' : ''} flex flex-col gap-4`}>
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              autoComplete="off"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
+            <div className="flex flex-col gap-1">
+              <label htmlFor="summit-name" className="font-mono text-xs tracking-widest text-muted uppercase">
+                Your Name
+              </label>
+              <input
+                id="summit-name"
+                name="name"
+                type="text"
+                required
+                placeholder="Enter your name"
+                value={form.name}
+                onChange={handleChange}
+                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white placeholder-[#444444] outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="summit-email" className="font-mono text-xs tracking-widest text-muted uppercase">
+                Email Address
+              </label>
+              <input
+                id="summit-email"
+                name="email"
+                type="email"
+                required
+                placeholder="Enter your email"
+                value={form.email}
+                onChange={handleChange}
+                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white placeholder-[#444444] outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="summit-role" className="font-mono text-xs tracking-widest text-muted uppercase">
+                I am a...
+              </label>
+              <select
+                id="summit-role"
+                name="role"
+                value={form.role}
+                onChange={handleChange}
+                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-accent"
+              >
+                <option value="Attendee">Attendee</option>
+                <option value="Sponsor">Sponsor</option>
+              </select>
+            </div>
+            {form.role === 'Sponsor' && (
+              <div className="flex flex-col gap-1">
+                <label htmlFor="summit-tier" className="font-mono text-xs tracking-widest text-muted uppercase">
+                  Tier Interested In
+                </label>
+                <select
+                  id="summit-tier"
+                  name="tier"
+                  value={form.tier}
+                  onChange={handleChange}
+                  className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-accent"
+                >
+                  <option value="">Not sure yet</option>
+                  {TIERS.map(tier => (
+                    <option key={tier.name} value={tier.name}>{tier.name}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+            <div className="flex flex-col gap-1">
+              <label htmlFor="summit-message" className="font-mono text-xs tracking-widest text-muted uppercase">
+                Message (Optional)
+              </label>
+              <textarea
+                id="summit-message"
+                name="message"
+                rows={4}
+                placeholder="Anything else we should know?"
+                value={form.message}
+                onChange={handleChange}
+                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white placeholder-[#444444] outline-none transition-colors focus:border-accent resize-none"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={submitState === 'sending' || submitState === 'sent' || submitState === 'rate-limited'}
+              className={`self-start border px-6 py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:cursor-not-allowed ${
+                submitState === 'sent'
+                  ? 'border-accent text-accent'
+                  : 'border-white text-white hover:border-accent hover:text-accent'
+              }`}
+            >
+              {buttonLabel[submitState]}
+            </button>
+          </form>
         </div>
       </section>
 
@@ -511,12 +687,13 @@ export default function CyberSummit() {
                   Join 1,250+ attendees at Toronto's premier cybersecurity event. Learn from industry leaders, compete in CTF challenges, and connect with your next employer.
                 </p>
               </div>
-              <a
-                href="mailto:byte.tmu@gmail.com?subject=Cyber Summit - Attendee Interest"
+              <button
+                type="button"
+                onClick={() => goToRegister('Attendee')}
                 className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
               >
                 Register Interest
-              </a>
+              </button>
             </div>
 
             <div className={`reveal delay-150 ${ctaInView ? 'visible' : ''} flex flex-col items-start justify-between gap-8 bg-black p-12`}>
@@ -527,12 +704,13 @@ export default function CyberSummit() {
                   Start a conversation about partnership. Every tier puts your brand in front of a highly engaged, technically skilled audience across two action-packed days.
                 </p>
               </div>
-              <a
-                href="mailto:byte.tmu@gmail.com?subject=Cyber Summit - Sponsorship Inquiry"
+              <button
+                type="button"
+                onClick={() => goToRegister('Sponsor')}
                 className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
               >
                 Contact Us
-              </a>
+              </button>
             </div>
           </div>
         </div>
