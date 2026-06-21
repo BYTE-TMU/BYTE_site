@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import fullLogo from '../assets/byte_full-logo-white_s26-18.png'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   `font-mono text-xs tracking-widest uppercase transition-colors ${
@@ -21,12 +22,9 @@ export default function Navbar() {
 
   return (
     <nav className="animate-slide-down fixed top-0 left-0 right-0 z-50 border-b border-[#222222] bg-black/90 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <NavLink to="/" className="text-xl font-black tracking-tight text-white">
-          <span className="text-accent">B</span>
-          <span className="text-accent">Y</span>
-          <span className="text-accent">T</span>
-          <span className="text-accent">E</span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+        <NavLink to="/" className="flex items-center">
+          <img src={fullLogo} alt="BYTE" className="h-32 w-auto" />
         </NavLink>
         <div className="hidden md:flex items-center gap-8">
           <NavLink to="/" end className={linkClass}>Home</NavLink>

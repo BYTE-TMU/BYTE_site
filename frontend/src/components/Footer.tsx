@@ -1,4 +1,5 @@
 import { useInView } from '../hooks/useInView'
+import markLogo from '../assets/byte_logo-mark-white_s26-18.png'
 
 export default function Footer() {
   const [ref, inView] = useInView(0.3)
@@ -9,13 +10,8 @@ export default function Footer() {
         ref={ref}
         className={`reveal ${inView ? 'visible' : ''} mx-auto flex max-w-7xl flex-col items-center gap-8 sm:flex-row sm:justify-between`}
       >
-        <div>
-          <p className="text-xl font-black tracking-tight">
-            <span className="text-accent">B</span>
-            <span className="text-accent">Y</span>
-            <span className="text-accent">T</span>
-            <span className="text-accent">E</span>
-          </p>
+        <div className="flex flex-col items-center sm:items-start">
+          <img src={markLogo} alt="BYTE" className="h-14 w-auto" />
           <p className="mt-1 font-mono text-xs tracking-widest text-muted uppercase">
             Build Your Tech Experience
           </p>

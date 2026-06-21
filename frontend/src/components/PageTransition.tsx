@@ -7,6 +7,8 @@ const PAGE_NAMES: Record<string, string> = {
   '/projects': 'Projects',
   '/team': 'Team',
   '/news': 'News',
+  '/contact': 'Contact',
+  '/cybersecurity': 'Cyber Summit',
   '/support': 'Support',
 }
 
