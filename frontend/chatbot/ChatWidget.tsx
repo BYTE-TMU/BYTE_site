@@ -30,22 +30,51 @@ export default function ChatWidget() {
 
     const userMessage = input.trim()
     setInput('')
+    const history = messages.slice(1)
     setMessages(prev => [...prev, { role: 'user', content: userMessage }])
     setLoading(true)
 
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userMessage }),
+      body: JSON.stringify({ message: userMessage, history }),
     })
 
-    const { reply } = await res.json()
-    setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+    if (!res.ok || !res.body) {
+      const { reply } = await res.json()
+      setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+      setLoading(false)
+      return
+    }
+
+    const reader = res.body.getReader()
+    const decoder = new TextDecoder()
+    let assistantContent = ''
+    let started = false
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      assistantContent += decoder.decode(value, { stream: true })
+
+      if (!started) {
+        started = true
+        setLoading(false)
+        setMessages(prev => [...prev, { role: 'assistant', content: assistantContent }])
+      } else {
+        setMessages(prev => {
+          const next = [...prev]
+          next[next.length - 1] = { role: 'assistant', content: assistantContent }
+          return next
+        })
+      }
+    }
+
     setLoading(false)
   }
 
   return (
-    <div className="pointer-events-none fixed bottom-4 right-4 z-50 flex flex-col items-end gap-4 sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-4 sm:bottom-6 sm:right-6">
       <div
         className={`chat-panel flex h-[70vh] w-[calc(100vw_-_2rem)] flex-col border border-[#222222] bg-black shadow-2xl sm:h-[28rem] sm:w-80 ${
           open ? 'chat-panel-open' : 'chat-panel-closed'
@@ -118,7 +147,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close chat' : 'Open chat'}
-        className="pointer-events-auto flex h-12 w-12 items-center justify-center border border-accent bg-accent text-black transition-all hover:bg-transparent hover:text-accent"
+        className="flex h-12 w-12 items-center justify-center border border-accent bg-accent text-black transition-all hover:bg-transparent hover:text-accent"
       >
         {open ? (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
