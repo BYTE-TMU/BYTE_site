@@ -3,9 +3,6 @@ import { buildIndex, retrieve } from "../chatbot/embeddings.js";
 import { isRateLimited } from "../chatbot/rateLimit.js";
 import { sanitizeHistory } from "../chatbot/sanitizeHistory.js";
 
-// Needs the Node.js runtime (not Edge) because embeddings.js/chunks.js use fs to read/cache the knowledge base.
-export const config = { runtime: "nodejs" };
-
 const MAX_BODY_BYTES = 16 * 1024;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY! });
@@ -28,7 +25,7 @@ When sharing a link, always write the full raw URL as plain text (e.g. https://e
 
 await buildIndex();
 
-export default async function handler(req: Request) {
+export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
   if (isRateLimited(ip)) {
     return new Response(
