@@ -88,8 +88,8 @@ const PROJECTS: Project[] = [
     name: 'Yapp',
     description: 'The campus social platform designed exclusively for TMU students. Connect with your community, discover amazing events across downtown Toronto, and explore your urban campus like never before.',
     techStack: ['Python', 'Flask', 'React', 'JavaScript', 'TailwindCSS', 'MongoDB', 'AWS'],
-    status: 'in dev',
-    liveUrl: 'https://yap-mu.vercel.app',
+    status: 'live',
+    liveUrl: 'https://yapp-mu.com',
   },
 ]
 

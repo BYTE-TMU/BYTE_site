@@ -146,6 +146,18 @@ const allTeamMembers: Member[] = [
     email: 'jacob.mobin@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/jacob-mobin/'
   },
+  {
+    id: 'vp-corp-rel-001',
+    name: 'Venujan Suthakaran',
+    position: 'VP of Corporate Relations',
+    roleDescription: 'Builds and manages BYTE\'s relationships with industry partners and sponsors, securing opportunities and resources that benefit our community.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/Venujan.jpg',
+    rank: 80,
+    categories: ['Strategic Team'],
+    connections: ['pres-001', 'head-strat-001', 'corp-rel-assoc-002', 'corp-rel-assoc-003'],
+    email: 'Vsuthakaran@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/venujan-s'
+  },
 
   // Strategic Team Members (not in Leadership)
   {
