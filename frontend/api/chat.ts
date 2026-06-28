@@ -49,11 +49,13 @@ export async function POST(req: Request) {
   }
 
   let openaiStream;
+  let sourcePages: string[] = [];
   try {
     const { message, history } = JSON.parse(rawBody);
 
     const relevantChunks = await retrieve(message);
-    const context = relevantChunks.join("\n\n---\n\n");
+    const context = relevantChunks.map((c) => c.text).join("\n\n---\n\n");
+    sourcePages = [...new Set(relevantChunks.map((c) => c.page).filter(Boolean))];
 
     const chatHistory = sanitizeHistory(history).map((m) => ({
       role: m.role === "assistant" ? ("assistant" as const) : ("user" as const),
@@ -93,6 +95,10 @@ export async function POST(req: Request) {
   });
 
   return new Response(stream, {
-    headers: { "Content-Type": "text/plain; charset=utf-8" },
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Access-Control-Expose-Headers": "X-Source-Pages",
+      "X-Source-Pages": sourcePages.join(","),
+    },
   });
 }

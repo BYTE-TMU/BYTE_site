@@ -1,10 +1,21 @@
 import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import type { ChatMessage } from './types'
 import { linkify } from './linkify'
 
 const INITIAL_MESSAGES: ChatMessage[] = [
   { role: 'assistant', content: 'Hi! I\'m the BYTE assistant. Ask me anything about the club — how to join, what we build, upcoming events, and more.' },
 ]
+
+const PAGE_LABELS: Record<string, string> = {
+  '/': 'Home',
+  '/team': 'Team',
+  '/projects': 'Projects',
+  '/events': 'Events',
+  '/news': 'News',
+  '/contact': 'Contact',
+  '/cybersecurity': 'Cyber Summit',
+}
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
@@ -47,6 +58,11 @@ export default function ChatWidget() {
       return
     }
 
+    const sourcePages = (res.headers.get('X-Source-Pages') ?? '')
+      .split(',')
+      .map(p => p.trim())
+      .filter(p => p in PAGE_LABELS)
+
     const reader = res.body.getReader()
     const decoder = new TextDecoder()
     let assistantContent = ''
@@ -68,6 +84,14 @@ export default function ChatWidget() {
           return next
         })
       }
+    }
+
+    if (sourcePages.length > 0) {
+      setMessages(prev => {
+        const next = [...prev]
+        next[next.length - 1] = { ...next[next.length - 1], pages: sourcePages }
+        return next
+      })
     }
 
     setLoading(false)
@@ -100,7 +124,7 @@ export default function ChatWidget() {
           {messages.map((msg, i) => (
             <div
               key={i}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
             >
               <div
                 className={`max-w-[85%] break-words px-3 py-2 text-sm leading-relaxed ${
@@ -111,6 +135,20 @@ export default function ChatWidget() {
               >
                 {linkify(msg.content)}
               </div>
+              {msg.pages && msg.pages.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {msg.pages.map(page => (
+                    <Link
+                      key={page}
+                      to={page}
+                      onClick={() => setOpen(false)}
+                      className="border border-[#333333] px-2 py-1 font-mono text-[10px] tracking-widest text-muted uppercase transition-colors hover:border-accent hover:text-accent"
+                    >
+                      Go to {PAGE_LABELS[page]} →
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
           {loading && (

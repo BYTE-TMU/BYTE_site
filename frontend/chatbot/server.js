@@ -76,7 +76,8 @@ const server = createServer(async (req, res) => {
         const { message, history } = JSON.parse(body);
 
         const relevantChunks = await retrieve(message);
-        const context = relevantChunks.join("\n\n---\n\n");
+        const context = relevantChunks.map((c) => c.text).join("\n\n---\n\n");
+        const sourcePages = [...new Set(relevantChunks.map((c) => c.page).filter(Boolean))];
 
         const chatHistory = sanitizeHistory(history).map((m) => ({
           role: m.role === "assistant" ? "assistant" : "user",
@@ -96,6 +97,8 @@ const server = createServer(async (req, res) => {
         res.writeHead(200, {
           "Content-Type": "text/plain; charset=utf-8",
           "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "X-Source-Pages",
+          "X-Source-Pages": sourcePages.join(","),
         });
         for await (const chunk of stream) {
           const text = chunk.choices[0]?.delta?.content;

@@ -1,42 +1,67 @@
 [
   {
     "id": "about",
+    "page": "/",
     "text": "BYTE is TMU's first student-led AI innovation lab at Toronto Metropolitan University.\nFull name: BYTE — TMU's First Student-Led AI Innovation Lab.\nMission: \"Building AI that matters, one student project at a time.\"\nBYTE is an open-source student group focused on AI. Members gain hands-on experience in real-world AI development by collaborating on projects that make a difference.\nContact: byte.tmu@gmail.com\nDiscord: https://discord.gg/6Xxyk9u4uU\nInstagram: @tmu.byte\nGitHub: @byte-tmu\nLinktree: https://linktr.ee/BYTETMU"
   },
   {
     "id": "values",
+    "page": "/",
     "text": "BYTE core values and what members do:\n- Build Real Projects: Work on open-source AI tools, productivity apps, ML research and more.\n- Learn by Doing: Whether you're a beginner or advanced, you'll learn what matters.\n- Leadership Opportunities: We actively mentor contributors into executive roles.\n- Community & Networking: Join a community of like-minded students passionate about AI and tech."
   },
   {
     "id": "join",
+    "page": "/",
     "text": "How to join BYTE:\nBYTE is open to ALL TMU students — no prior AI experience required.\nSign up through the Join page on the website or via the Instagram bio link.\nJoin form: https://docs.google.com/forms/d/e/1FAIpQLSdhPrWMuOerfjza3Wb_6noIe_of1Y_rr3Kmb5pi0l7k3N62QA/viewform\n\nMember types:\n- General Members: access Discord, workshops, networking events, can contribute to projects with mentorship.\n- Team Members: work on core BYTE projects, mentor general members, help run events (~5–10 hrs/week, flexible around academics)."
   },
   {
     "id": "faqs",
+    "page": "/",
     "text": "Frequently asked questions about BYTE:\nQ: Who can join BYTE?\nA: BYTE is open to all TMU students regardless of experience level. Complete beginners are very welcome.\n\nQ: What's the difference between General Members and Team Members?\nA: General Members have access to Discord, workshops, and networking events, and can contribute to projects. Team Members work on core projects like SecureBYTE, mentor general members, and help run events.\n\nQ: What types of projects does BYTE work on?\nA: AI applications solving real-world problems — code security, campus social platforms, ML models, NLP tools, computer vision, and more.\n\nQ: Does BYTE organize events?\nA: Yes — workshops, networking events, hackathons, and tech talks. Check the Events page or Discord for updates.\n\nQ: How much time commitment is expected?\nA: General Members can participate as much or as little as they want. Team Members typically commit 5–10 hours per week, flexible around academics.\n\nQ: How can I contribute to open-source projects?\nA: Sign up through the Instagram bio link or the Join page on the website. We guide first-time contributors and help you build a GitHub portfolio."
   },
   {
     "id": "projects",
-    "text": "BYTE projects:\n\nSecureBYTE (Completed):\nA Python-based AI vulnerability scanner combining static analysis and LLMs to identify security flaws, suggest remediations, and generate automated test cases.\nTech: Python, Flask, React, JavaScript, TailwindCSS, Firebase.\nGitHub: https://github.com/byte-org/securebyte\n\nYapp (In Development):\nA campus social platform for TMU students to connect, discover events across downtown Toronto, and explore the city.\nTech: Python, Flask, React, JavaScript, TailwindCSS, MongoDB, AWS.\nLive: https://yap-mu.vercel.app"
+    "page": "/projects",
+    "text": "BYTE projects:\n\nSecureBYTE (Completed):\nA Python-based AI vulnerability scanner combining static analysis and LLMs to identify security flaws, suggest remediations, and generate automated test cases.\nTech: Python, Flask, React, JavaScript, TailwindCSS, Firebase.\nGitHub: https://github.com/byte-org/securebyte\n\nYapp (In Development):\nA campus social platform for TMU students to connect, discover events across downtown Toronto, and explore the city.\nTech: Python, Flask, React, JavaScript, TailwindCSS, MongoDB, AWS.\nLive: https://yapp-mu.com"
   },
   {
     "id": "events-upcoming",
+    "page": "/events",
     "text": "Upcoming BYTE events:\n\nTMU Tech Week:\nDate: February 15, 2026. Location: TMU SLC.\nBYTE is hosting TMU Tech Week 2026, bringing together students and industry leaders to explore AI, machine learning, and software development.\n\nBYTE Pitch Day:\nDate: July 4, 2026.\nStudents pitch original project ideas for the chance to have them developed during Fall 2026.\nRegister: https://docs.google.com/forms/d/e/1FAIpQLSf8BGx0sShB8zdzl0jUF8dwkwvmFaM7CP7WQy-yugTxU3xoNg/viewform"
   },
   {
     "id": "events-past",
+    "page": "/events",
     "text": "Past BYTE events:\n\nOpenClaw 2026 Hackathon (May 2026): 200+ attendees, co-organized with @cryptochicks.ca.\n\nGoogle DevFest Toronto (November 15, 2025): Location: Metro Toronto Convention Centre. BYTE hosted a booth and showcased SecureBYTE. Connected with thousands of developers and industry professionals.\n\nBYTE Demo Day — SecureBYTE (December 1, 2025): Location: Daphne Cockwell Health Sciences Complex. Panel discussion where the team presented SecureBYTE and discussed the future of cybersecurity.\n\nBYTE Launch Event (September 29, 2025): Location: George Vari Engineering Building. Official launch of BYTE. Introduced SecureBYTE, welcomed new members, and presented the team's vision.\n\nTMSU Campus Street Fair (September 10, 2025): Location: Kerr Hall. Tabling event connecting with students interested in AI development and open-source projects."
   },
   {
     "id": "leadership-team",
-    "text": "BYTE leadership team:\n\nPresident:\n- Meet Patadia\n- Yeji Lee\n\nHead of Technical Operations: Hetvi Modi\nHead of Strategy: Areej Ubaid — VP of Growth\nMinnah Hussain: Executive Assistant\n\nVice Presidents:\n- Pearl Ved — Chief of Staff\n- Arshiya Das — VP of Events\n- Vashisht Pawa — VP of Finance\n- Parth Pawa — VP of Operations\n- Naetri Niranjan — VP of Marketing\n- Areej Tariq — VP of Events\n- Jacob Mobin — Principle Engineer\n- Rayan Roshan — VP of Technology\n\nStrategic Team:\n- Karunya Purohit — Digital Media Manager\n- Chris Ahn — HR Manager\n- Laboni Saha — Social Media Manager\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
+    "page": "/team",
+    "text": "BYTE leadership team:\n\nPresident:\n- Meet Patadia\n- Yeji Lee\n\nHead of Technical Operations: Hetvi Modi\nHead of Strategy: Areej Ubaid\nMinnah Hussain: Executive Administrator\n\nVice Presidents:\n- Pearl Ved — Chief of Staff\n- Arshiya Das — VP of Events\n- Vashisht Pawa — VP of Finance\n- Parth Pawa — VP of Operations\n- Naetri Niranjan — VP of Marketing\n- Areej Tariq — VP of Events\n- Jacob Mobin — Principle Engineer\n- Rayan Roshan — VP of Technology\n- Venujan Suthakaran — VP of Corporate Relations\n\nStrategic Team:\n- Karunya Purohit — Digital Media Manager\n- Chris Ahn — HR Manager\n- Laboni Saha — Social Media Manager\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
   },
   {
     "id": "strategic-team",
+    "page": "/team",
     "text": "BYTE\nStrategic Associates:\nShahd Alkadi, Bianca Tetcu (Marketing)\nNyra Thakur, Abanshaji Lukose (Growth)\nUmar Muhammad, Angelina Tibayan (Finance)\nSarah Khan, Sabesen Pathmanathan (Operations)\nRonyth Buenaventura (Events)\nYerin Kim, Aayan Areejo (Corporate Relations)"
   },
   {
     "id": "technical-team",
+    "page": "/team",
     "text": "BYTE technical team:\n\nEngineers:\n- Ethan Cha — Frontend Engineer\n- Anthony Ma — Frontend Engineer\n- Stephen Nguyen — Frontend Engineer\n- Akbar Ali — AI/ML Engineer\n- Maha Baig — Backend Engineer\n- Elena Kim — Director of Backend Engineer\n- Nancy Maliackel — Director of AI/ML Engineering\n- Johan Philip — Director of Frontend Engineering\n- Kashmala Fareed — Backend Engineer"
+  },
+  {
+    "id": "cyber-summit-overview",
+    "page": "/cybersecurity",
+    "text": "TMU Cyber Summit — Toronto's Premier Student Cybersecurity Conference.\nDates: October 3–4, 2026. Location: Downtown Toronto. Organized by BYTE at Toronto Metropolitan University.\n\nTMU Cyber Summit is a two-day, student-led cybersecurity conference connecting ambitious students and early career professionals with Canada's top cybersecurity organizations. It brings together workshops, panels, recruiting opportunities, technical challenges, and an exclusive closing gala.\n\nFour pillars of the summit:\n- LEARN: Workshops led by industry practitioners on real-world attack and defence techniques.\n- CONNECT: Career fair and networking with Canada's top cybersecurity organizations.\n- BUILD: Capture the Flag challenges spanning cryptography, forensics, and web exploitation.\n- CREATE: Hands-on sessions where students design, prototype, and present security solutions.\n\nImpact stats (from TMU Tech Week, the flagship event series organized by BYTE): 1,250+ attendees last year, 4,000+ students in community, 15+ universities represented.\n\nRegister interest as an attendee or sponsor at the TMU Cyber Summit page on the BYTE website (/cybersecurity)."
+  },
+  {
+    "id": "cyber-summit-schedule",
+    "page": "/cybersecurity",
+    "text": "TMU Cyber Summit 2-day agenda:\n\nDay 1 — Learn & Connect:\n9:00 AM Registration & Check-In — pick up your badge and connect with fellow attendees.\n10:00 AM Opening Keynote — industry leader sets the stage for two days of exploration.\n11:30 AM Cybersecurity Workshops Block 1 — hands-on sessions: web vulnerabilities, offensive tools, threat modelling.\n1:00 PM Lunch & Career Fair — meet recruiters from Canada's top cybersecurity organizations.\n3:00 PM Cybersecurity Workshops Block 2 — deep-dives into defensive security, forensics, and cloud security.\n5:00 PM Networking Reception — informal mixer with speakers, sponsors, and attendees.\n\nDay 2 — Build & Celebrate:\n9:30 AM Industry Panel — professionals discuss careers, emerging threats, and red team operations.\n11:00 AM Capture the Flag Challenge — live CTF across crypto, forensics, web exploitation, and binary analysis.\n1:00 PM Lunch Break — recharge before the final push.\n2:00 PM CTF Finals & Judging — top teams compete for prizes as judges evaluate solutions.\n3:30 PM Closing Keynote — reflections on the summit and the future of cybersecurity.\n5:00 PM Gala Dinner & Award Ceremony — celebrate top CTF teams and summit highlights."
+  },
+  {
+    "id": "cyber-summit-sponsorship",
+    "page": "/cybersecurity",
+    "text": "TMU Cyber Summit demographics and sponsorship:\n\nAttendee demographics — major breakdown: Computer Science 54.9%, Business Technology 15.2%, Computer Engineering 13.6%, Other 16.3%.\nYear of study: First Year 20.1%, Second Year 27.7%, Third Year 22.8%, Fourth Year 19.0%, Fifth Year+ 10.3%.\nRecruiting stats: 100+ students per summit, 84% majors with tech expertise, 80% ready for real-world tech.\n\nPrevious partners: Toronto Metropolitan University, Microsoft, TCS, BMO, IBM, Google, Wealthsimple.\n\nSponsorship tiers:\n- BRONZE ($500): sponsor booth, social post.\n- SILVER ($1,000): sponsor booth, access to resumes, social post, logo on assets.\n- GOLD ($2,500): sponsor booth, access to resumes, workshop host, social post, logo on assets, on-site visibility, single 3D logo distribution.\n- PLATINUM ($5,000): all Gold benefits plus opening speech, top 5 3D logo distribution, 1 hotel night. Most popular tier.\n- DIAMOND ($8,000+): all Platinum benefits plus 50 3D logo models distributed and 4 hotel nights.\n\nCustom sponsorship packages are available upon request. Contact byte.tmu@gmail.com for sponsorship inquiries."
   }
 ]

@@ -89,5 +89,5 @@ export async function retrieve(query, topK = 3) {
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, topK)
-    .map(({ chunk }) => chunk.text);
+    .map(({ chunk }) => ({ id: chunk.id, text: chunk.text, page: chunk.page }));
 }
