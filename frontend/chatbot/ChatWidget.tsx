@@ -23,7 +23,7 @@ export default function ChatWidget() {
     //Grab the input, clear the box immediately so it feels responsive
     //Add the user's message to the chat right away
     //Call /api/chat with the message
-    //When Gemini replies, append it to the chat
+    //When the assistant replies, append it to the chat
 
     e.preventDefault()
     if (!input.trim()) return
