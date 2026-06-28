@@ -63,6 +63,15 @@ const YEARS = [
   { label: 'Fifth Year+',  pct: 10.3 },
 ]
 
+const GALLERY_IMAGES = [
+  { src: '/cyber_images/collage/real/photo1.jpg', alt: 'A speaker addressing the audience with a microphone at a BYTE panel' },
+  { src: '/cyber_images/collage/real/photo2.jpg', alt: 'Students listening intently in the audience at TMU Tech Week' },
+  { src: '/cyber_images/collage/real/photo3.jpg', alt: 'A wide view of the crowd at TMU Tech Week' },
+  { src: '/cyber_images/collage/real/dsc03984.jpg', alt: 'A fireside chat in front of the TMU Tech Week banner' },
+  { src: '/cyber_images/collage/real/impact_dsc04031.jpg', alt: 'A panel discussion with a host holding a microphone at TMU Tech Week' },
+  { src: '/cyber_images/collage/real/impact_portrait.png', alt: 'The BYTE organizing team group photo on bleacher seating' },
+]
+
 const PARTNERS = [
   'Toronto Metropolitan University',
   'Microsoft',
@@ -264,12 +273,6 @@ export default function CyberSummit() {
             </a>
           </div>
         </div>
-
-        {/* Hero image placeholder */}
-        <div className={`reveal delay-500 ${heroInView ? 'visible' : ''} mt-16 w-full max-w-4xl border border-dashed border-[#222222] bg-[#111111] aspect-video flex flex-col items-center justify-center gap-3`}>
-          <span className="text-4xl text-[#2a2a2a]">⬚</span>
-          <p className="font-mono text-xs tracking-widest text-[#2a2a2a] uppercase">Hero Image Coming Soon</p>
-        </div>
       </section>
 
       {/* ── What is TMU Cyber Summit? ── */}
@@ -467,22 +470,18 @@ export default function CyberSummit() {
             Event Gallery
           </p>
           <h2 className={`reveal delay-100 ${galleryInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
-            From the Summit Floor
+            From TMU Tech Week
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {[0, 1, 2].map((i) => (
+            {GALLERY_IMAGES.map(({ src, alt }, i) => (
               <div
-                key={i}
-                className={`reveal ${i === 1 ? 'delay-150' : i === 2 ? 'delay-300' : ''} ${galleryInView ? 'visible' : ''} aspect-video border border-dashed border-[#222222] bg-[#111111] flex flex-col items-center justify-center gap-3`}
+                key={src}
+                className={`reveal ${i % 3 === 1 ? 'delay-150' : i % 3 === 2 ? 'delay-300' : ''} ${galleryInView ? 'visible' : ''} aspect-video overflow-hidden border border-[#222222]`}
               >
-                <span className="text-3xl text-[#2a2a2a]">⬚</span>
-                <p className="font-mono text-xs tracking-widest text-[#2a2a2a] uppercase">Photo Coming Soon</p>
+                <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
               </div>
             ))}
           </div>
-          <p className={`reveal delay-300 ${galleryInView ? 'visible' : ''} mt-6 text-center text-xs text-muted`}>
-            — Summit photos will appear here after the event —
-          </p>
         </div>
       </section>
 
