@@ -63,7 +63,7 @@ const allTeamMembers: Member[] = [
   {
     id: 'head-tech-001',
     name: 'Hetvi Modi',
-    position: 'Head of Technical Operations',
+    position: 'Chief of Technology',
     roleDescription: 'Drives BYTE\'s technical vision, leading engineering teams across frontend, backend, and AI/ML to build innovative projects that advance our members\' skills.',
     profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
     rank: 85,
@@ -113,7 +113,7 @@ const allTeamMembers: Member[] = [
   {
     id: 'vp-growth-001',
     name: 'Areej Ubaid',
-    position: 'Head of Strategy',
+    position: 'Chief of Strategy',
     roleDescription: 'Oversees BYTE\'s strategic initiatives including events, marketing, growth, and operations—ensuring our non-technical teams work in harmony to amplify our impact.',
     profilePicUrl: '/images/BYTE Website - Member Photos/areej_ubaid.png',
     rank: 85,

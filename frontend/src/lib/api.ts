@@ -11,14 +11,14 @@ const TEAM: TeamMember[] = [
   // Vice Presidents
   { id: '2', name: 'Arshiya Das', role: 'VP of Events', group: 'vp', imageUrl: avatar('AD'), linkedinUrl: '#' },
   { id: '3', name: 'Vashisht Pawa', role: 'VP of Finance', group: 'vp', imageUrl: avatar('VP'), linkedinUrl: '#' },
-  { id: '4', name: 'Areej Ubaid', role: 'VP of Growth', group: 'vp', imageUrl: avatar('AU'), linkedinUrl: '#' },
+  { id: '4', name: 'Areej Ubaid', role: 'Chief of Strategy', group: 'vp', imageUrl: avatar('AU'), linkedinUrl: '#' },
   { id: '5', name: 'Naetri Niranjan', role: 'VP of Marketing', group: 'vp', imageUrl: avatar('NN'), linkedinUrl: '#' },
   { id: '6', name: 'Jacob Mobin', role: 'VP of Technology', group: 'vp', imageUrl: avatar('JM'), linkedinUrl: '#' },
 
   // Leadership
   { id: '7', name: 'Pearl Ved', role: 'Chief of Staff', group: 'leadership', imageUrl: avatar('PV'), linkedinUrl: '#' },
   { id: '8', name: 'Yeji Lee', role: 'Head of Strategic Operations', group: 'leadership', imageUrl: avatar('YL'), linkedinUrl: '#' },
-  { id: '9', name: 'Hetvi Modi', role: 'Head of Technical Operations', group: 'leadership', imageUrl: avatar('HM'), linkedinUrl: '#' },
+  { id: '9', name: 'Hetvi Modi', role: 'Chief of Technology', group: 'leadership', imageUrl: avatar('HM'), linkedinUrl: '#' },
   { id: '10', name: 'Rayan Roshan', role: 'Project Experience Lead', group: 'leadership', imageUrl: avatar('RR'), linkedinUrl: '#' },
 
   // Directors

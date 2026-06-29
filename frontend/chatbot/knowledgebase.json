@@ -35,9 +35,24 @@
     "text": "Past BYTE events:\n\nOpenClaw 2026 Hackathon (May 2026): 200+ attendees, co-organized with @cryptochicks.ca.\n\nGoogle DevFest Toronto (November 15, 2025): Location: Metro Toronto Convention Centre. BYTE hosted a booth and showcased SecureBYTE. Connected with thousands of developers and industry professionals.\n\nBYTE Demo Day — SecureBYTE (December 1, 2025): Location: Daphne Cockwell Health Sciences Complex. Panel discussion where the team presented SecureBYTE and discussed the future of cybersecurity.\n\nBYTE Launch Event (September 29, 2025): Location: George Vari Engineering Building. Official launch of BYTE. Introduced SecureBYTE, welcomed new members, and presented the team's vision.\n\nTMSU Campus Street Fair (September 10, 2025): Location: Kerr Hall. Tabling event connecting with students interested in AI development and open-source projects."
   },
   {
-    "id": "leadership-team",
+    "id": "leadership-presidents",
     "page": "/team",
-    "text": "BYTE leadership team:\n\nPresident:\n- Meet Patadia\n- Yeji Lee\n\nHead of Technical Operations: Hetvi Modi\nHead of Strategy: Areej Ubaid\nMinnah Hussain: Executive Administrator\n\nVice Presidents:\n- Pearl Ved — Chief of Staff\n- Arshiya Das — VP of Events\n- Vashisht Pawa — VP of Finance\n- Parth Pawa — VP of Operations\n- Naetri Niranjan — VP of Marketing\n- Areej Tariq — VP of Events\n- Jacob Mobin — Principle Engineer\n- Rayan Roshan — VP of Technology\n- Venujan Suthakaran — VP of Corporate Relations\n\nStrategic Team:\n- Karunya Purohit — Digital Media Manager\n- Chris Ahn — HR Manager\n- Laboni Saha — Social Media Manager\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
+    "text": "BYTE leadership team — Presidents:\n- Meet Patadia — President\n- Yeji Lee — President\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
+  },
+  {
+    "id": "leadership-chiefs",
+    "page": "/team",
+    "text": "BYTE leadership team — Chiefs and administration:\n- Hetvi Modi — Chief of Technology\n- Areej Ubaid — Chief of Strategy\n- Minnah Hussain — Executive Administrator\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
+  },
+  {
+    "id": "leadership-vps",
+    "page": "/team",
+    "text": "BYTE leadership team — Vice Presidents:\n- Pearl Ved — Chief of Staff\n- Arshiya Das — VP of Events\n- Vashisht Pawa — VP of Finance\n- Parth Pawa — VP of Operations\n- Naetri Niranjan — VP of Marketing\n- Areej Tariq — VP of Events\n- Jacob Mobin — Principle Engineer\n- Rayan Roshan — VP of Technology\n- Venujan Suthakaran — VP of Corporate Relations\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
+  },
+  {
+    "id": "leadership-strategic-managers",
+    "page": "/team",
+    "text": "BYTE leadership team — Strategic Team managers:\n- Karunya Purohit — Digital Media Manager\n- Chris Ahn — HR Manager\n- Laboni Saha — Social Media Manager\n\nFor contact info for any leadership team member, email byte.tmu@gmail.com and we'll connect you."
   },
   {
     "id": "strategic-team",
