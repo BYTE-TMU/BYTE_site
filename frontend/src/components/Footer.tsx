@@ -66,6 +66,9 @@ export default function Footer() {
           © 2026 BYTE · TMU
         </p>
       </div>
+      <p className="mt-8 text-center font-mono text-[10px] italic tracking-widest text-[#1a1a1a]">
+        Our name holds the key. Press it five times — quickly now. Something stirs within.
+      </p>
     </footer>
   )
 }
