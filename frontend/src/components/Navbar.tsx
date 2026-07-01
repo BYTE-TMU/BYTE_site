@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import fullLogo from '../assets/byte_full-logo-white_s26-18.png'
 
@@ -12,9 +12,25 @@ const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-accent' : 'text-muted hover:text-white'
   }`
 
-export default function Navbar() {
+interface NavbarProps {
+  onEasterEgg?: () => void
+}
+
+export default function Navbar({ onEasterEgg }: NavbarProps) {
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const tapCountRef = useRef(0)
+  const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  function handleLogoTap() {
+    tapCountRef.current += 1
+    if (tapTimerRef.current) clearTimeout(tapTimerRef.current)
+    tapTimerRef.current = setTimeout(() => { tapCountRef.current = 0 }, 2000)
+    if (tapCountRef.current >= 5) {
+      tapCountRef.current = 0
+      onEasterEgg?.()
+    }
+  }
 
   useEffect(() => {
     setOpen(false)
@@ -23,7 +39,7 @@ export default function Navbar() {
   return (
     <nav className="animate-slide-down fixed top-0 left-0 right-0 z-50 border-b border-[#222222] bg-black/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <NavLink to="/" className="flex items-center">
+        <NavLink to="/" className="flex items-center" onClick={handleLogoTap}>
           <img src={fullLogo} alt="BYTE" className="h-24 w-auto" />
         </NavLink>
         <div className="hidden md:flex items-center gap-8">
