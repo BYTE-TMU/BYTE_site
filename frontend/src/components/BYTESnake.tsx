@@ -44,7 +44,7 @@ interface Props {
 // ---------------------------------------------------------------------------
 
 function getCell(): number {
-  return Math.floor(Math.min(400, window.innerWidth - 64) / COLS)
+  return Math.max(1, Math.floor(Math.min(400, window.innerWidth - 64) / COLS))
 }
 
 function randomFood(snake: Point[]): Point {
@@ -119,11 +119,7 @@ function drawTutorial(ctx: CanvasRenderingContext2D, cell: number, isTouchDevice
 
   ctx.fillStyle = COLOR_MUTED
   ctx.font = `${cell * 0.58}px monospace`
-  if (isTouchDevice) {
-    ctx.fillText('SWIPE TO MOVE', cx, h * 0.49)
-  } else {
-    ctx.fillText('[ ↑ ↓ ← → ]  TO MOVE', cx, h * 0.49)
-  }
+  ctx.fillText(isTouchDevice ? 'SWIPE TO MOVE' : 'WASD  OR  [ ↑ ↓ ← → ]', cx, h * 0.49)
   ctx.fillText('EAT BITS TO GROW', cx, h * 0.60)
   ctx.fillText('AVOID WALLS & YOURSELF', cx, h * 0.70)
 
@@ -135,7 +131,7 @@ function drawTutorial(ctx: CanvasRenderingContext2D, cell: number, isTouchDevice
   ctx.shadowBlur = 0
 }
 
-function drawFrame(ctx: CanvasRenderingContext2D, g: GameState, cell: number) {
+function drawFrame(ctx: CanvasRenderingContext2D, g: GameState, cell: number, isTouchDevice: boolean) {
   const w = COLS * cell
   const h = ROWS * cell
 
@@ -190,7 +186,7 @@ function drawFrame(ctx: CanvasRenderingContext2D, g: GameState, cell: number) {
 
     ctx.fillStyle = COLOR_MUTED
     ctx.font = `${cell * 0.6}px monospace`
-    ctx.fillText('[ R ] RESTART', w / 2, h * 0.66)
+    ctx.fillText(isTouchDevice ? 'TAP TO RESTART' : '[ R ] RESTART', w / 2, h * 0.66)
   }
 }
 
@@ -204,16 +200,35 @@ export default function BYTESnake({ onClose }: Props) {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const onCloseRef = useRef(onClose)
   const gameStartedRef = useRef(false)
+  // Stable ref to restart logic so touch handler can call it without stale closure
+  const restartRef = useRef<() => void>(() => {})
 
   const [score, setScore] = useState(0)
   const [generation, setGeneration] = useState(0)
   const [gameStarted, setGameStarted] = useState(false)
   const [cell, setCell] = useState(getCell)
+  const cellRef = useRef(getCell())
   const isTouchDevice = 'ontouchstart' in window
 
   useEffect(() => { onCloseRef.current = onClose }, [onClose])
-  // Keep ref in sync so touch handlers can read current value without stale closure
   useEffect(() => { gameStartedRef.current = gameStarted }, [gameStarted])
+
+  const initGame = useCallback(() => {
+    gameRef.current = makeInitialState()
+  }, [])
+
+  // Keep restartRef current so the touch handler can call it
+  useEffect(() => {
+    restartRef.current = () => {
+      initGame()
+      setScore(0)
+      setGameStarted(false)
+      setGeneration(g => g + 1)
+    }
+  }, [initGame])
+
+  // Keep cellRef current so the game loop always renders at the correct size
+  useEffect(() => { cellRef.current = cell }, [cell])
 
   // Recalculate cell size on window resize
   useEffect(() => {
@@ -233,13 +248,9 @@ export default function BYTESnake({ onClose }: Props) {
     if (!gameStarted) {
       drawTutorial(ctx, cell, isTouchDevice)
     } else {
-      drawFrame(ctx, gameRef.current, cell)
+      drawFrame(ctx, gameRef.current, cell, isTouchDevice)
     }
   }, [cell, gameStarted, isTouchDevice])
-
-  const initGame = useCallback(() => {
-    gameRef.current = makeInitialState()
-  }, [])
 
   // Game loop
   useEffect(() => {
@@ -253,11 +264,12 @@ export default function BYTESnake({ onClose }: Props) {
       return
     }
 
-    drawFrame(ctx, gameRef.current, cell)
+    drawFrame(ctx, gameRef.current, cell, isTouchDevice)
 
     function tick() {
       const g = gameRef.current
-      if (g.gameOver) { drawFrame(ctx!, g, cell); return }
+      const c = cellRef.current
+      if (g.gameOver) { drawFrame(ctx!, g, c, isTouchDevice); return }
 
       if (g.nextDirection !== opposite(g.direction)) {
         g.direction = g.nextDirection
@@ -271,13 +283,19 @@ export default function BYTESnake({ onClose }: Props) {
       if (g.direction === 'RIGHT') newHead.x += 1
 
       if (newHead.x < 0 || newHead.x >= COLS || newHead.y < 0 || newHead.y >= ROWS) {
-        g.gameOver = true; drawFrame(ctx!, g, cell); return
-      }
-      if (g.snake.some(p => p.x === newHead.x && p.y === newHead.y)) {
-        g.gameOver = true; drawFrame(ctx!, g, cell); return
+        g.gameOver = true; drawFrame(ctx!, g, c, isTouchDevice); return
       }
 
+      // Check food first so we know if the tail moves away this tick
       const ateFood = newHead.x === g.food.x && newHead.y === g.food.y
+
+      // Exclude the tail from self-collision: when not eating, the tail vacates
+      // its cell this tick, so the head moving into it is valid (classic Snake rule)
+      const bodyToCheck = ateFood ? g.snake : g.snake.slice(0, -1)
+      if (bodyToCheck.some(p => p.x === newHead.x && p.y === newHead.y)) {
+        g.gameOver = true; drawFrame(ctx!, g, c, isTouchDevice); return
+      }
+
       g.snake = [newHead, ...g.snake]
       if (!ateFood) g.snake.pop()
 
@@ -295,7 +313,7 @@ export default function BYTESnake({ onClose }: Props) {
         }
       }
 
-      drawFrame(ctx!, g, cell)
+      drawFrame(ctx!, g, c, isTouchDevice)
     }
 
     intervalRef.current = setInterval(tick, gameRef.current.speed)
@@ -309,20 +327,36 @@ export default function BYTESnake({ onClose }: Props) {
     if (d !== opposite(g.direction)) g.nextDirection = d
   }, [])
 
-  // Keyboard handler
+  // Keyboard handler — arrow keys also start the game so you don't have to press Space first
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       switch (e.key) {
-        case 'ArrowUp':    e.preventDefault(); handleDirection('UP');    break
-        case 'ArrowDown':  e.preventDefault(); handleDirection('DOWN');  break
-        case 'ArrowLeft':  e.preventDefault(); handleDirection('LEFT');  break
-        case 'ArrowRight': e.preventDefault(); handleDirection('RIGHT'); break
+        case 'ArrowUp': case 'w': case 'W':
+          e.preventDefault()
+          handleDirection('UP')
+          if (!gameStartedRef.current) setGameStarted(true)
+          break
+        case 'ArrowDown': case 's': case 'S':
+          e.preventDefault()
+          handleDirection('DOWN')
+          if (!gameStartedRef.current) setGameStarted(true)
+          break
+        case 'ArrowLeft': case 'a': case 'A':
+          e.preventDefault()
+          handleDirection('LEFT')
+          if (!gameStartedRef.current) setGameStarted(true)
+          break
+        case 'ArrowRight': case 'd': case 'D':
+          e.preventDefault()
+          handleDirection('RIGHT')
+          if (!gameStartedRef.current) setGameStarted(true)
+          break
         case ' ':
           e.preventDefault()
-          setGameStarted(true)
+          if (!gameStartedRef.current) setGameStarted(true)
           break
         case 'r': case 'R':
-          initGame(); setScore(0); setGameStarted(false); setGeneration(g => g + 1)
+          restartRef.current()
           break
         case 'Escape':
           onCloseRef.current()
@@ -331,10 +365,9 @@ export default function BYTESnake({ onClose }: Props) {
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [handleDirection, initGame])
+  }, [handleDirection])
 
   // Imperative touch listeners with { passive: false } so preventDefault works
-  // and the page doesn't scroll during swipes
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -355,22 +388,25 @@ export default function BYTESnake({ onClose }: Props) {
       const dy = t.clientY - touchStart.y
       touchStart = null
 
+      // Game over → any touch restarts
+      if (gameRef.current.gameOver) {
+        restartRef.current()
+        return
+      }
+
       const absDx = Math.abs(dx)
       const absDy = Math.abs(dy)
 
-      // Tap → start game (or just do nothing if already started)
+      // Tap → start game
       if (absDx < 15 && absDy < 15) {
         if (!gameStartedRef.current) setGameStarted(true)
         return
       }
 
-      // Swipe on tutorial → start and apply direction
+      // Swipe → start if needed, then steer
       if (!gameStartedRef.current) {
         setGameStarted(true)
-        return
       }
-
-      // Swipe during game → steer
       if (absDx > absDy) {
         handleDirection(dx > 0 ? 'RIGHT' : 'LEFT')
       } else {
@@ -438,7 +474,7 @@ export default function BYTESnake({ onClose }: Props) {
             </>
           ) : (
             <>
-              <span className="font-mono text-[10px] tracking-widest text-[#444444] uppercase">↑↓←→ Move</span>
+              <span className="font-mono text-[10px] tracking-widest text-[#444444] uppercase">WASD / ↑↓←→ Move</span>
               <span className="font-mono text-[10px] tracking-widest text-[#444444] uppercase">Space Start</span>
               <span className="font-mono text-[10px] tracking-widest text-[#444444] uppercase">R Restart</span>
               <span className="font-mono text-[10px] tracking-widest text-[#444444] uppercase">ESC Close</span>
