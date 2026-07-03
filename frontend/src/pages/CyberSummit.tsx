@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import { sendEmail, sendConfirmation } from '../lib/emailjs'
 import { canSubmit, recordSubmit } from '../lib/formRateLimit'
+import RegisterModal from '../components/RegisterModal'
+
+const SHOW_SPONSOR_TIERS = false
 
 interface ScheduleItem {
   time: string
@@ -177,10 +180,10 @@ export default function CyberSummit() {
   const [partnersRef, partnersInView] = useInView(0.1)
   const [tiersRef,    tiersInView]    = useInView(0.03)
   const [ctaRef,      ctaInView]      = useInView(0.1)
-  const [registerRef, registerInView] = useInView(0.1)
 
   const [form, setForm] = useState({ name: '', email: '', role: 'Attendee', tier: '', message: '', company: '' })
   const [submitState, setSubmitState] = useState<SubmitState>('idle')
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -188,7 +191,7 @@ export default function CyberSummit() {
 
   function goToRegister(role: 'Attendee' | 'Sponsor', tier = '') {
     setForm(prev => ({ ...prev, role, tier }))
-    document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })
+    setIsRegisterOpen(true)
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -265,12 +268,13 @@ export default function CyberSummit() {
             >
               Register as Attendee
             </button>
-            <a
-              href="#sponsor-tiers"
+            <button
+              type="button"
+              onClick={() => goToRegister('Sponsor')}
               className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
             >
               Become a Sponsor
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -509,6 +513,7 @@ export default function CyberSummit() {
       </section>
 
       {/* ── Sponsorship Tiers ── */}
+      {SHOW_SPONSOR_TIERS && (
       <section id="sponsor-tiers" className="border-t border-[#222222] py-24 px-6">
         <div ref={tiersRef} className="mx-auto max-w-7xl">
           <p className={`reveal ${tiersInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
@@ -560,119 +565,7 @@ export default function CyberSummit() {
           </p>
         </div>
       </section>
-
-      {/* ── Registration Form ── */}
-      <section id="register" className="border-t border-[#222222] py-24 px-6">
-        <div ref={registerRef} className="mx-auto max-w-2xl">
-          <p className={`reveal ${registerInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
-            Join Us
-          </p>
-          <h2 className={`reveal delay-100 ${registerInView ? 'visible' : ''} mb-8 text-3xl font-black tracking-tight`}>
-            Register Your Interest
-          </h2>
-          <form onSubmit={handleSubmit} className={`reveal delay-200 ${registerInView ? 'visible' : ''} flex flex-col gap-4`}>
-            <input
-              type="text"
-              name="company"
-              value={form.company}
-              onChange={handleChange}
-              autoComplete="off"
-              tabIndex={-1}
-              aria-hidden="true"
-              className="absolute left-[-9999px] h-0 w-0 opacity-0"
-            />
-            <div className="flex flex-col gap-1">
-              <label htmlFor="summit-name" className="font-mono text-xs tracking-widest text-muted uppercase">
-                Your Name
-              </label>
-              <input
-                id="summit-name"
-                name="name"
-                type="text"
-                required
-                placeholder="Enter your name"
-                value={form.name}
-                onChange={handleChange}
-                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white placeholder-[#444444] outline-none transition-colors focus:border-accent"
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="summit-email" className="font-mono text-xs tracking-widest text-muted uppercase">
-                Email Address
-              </label>
-              <input
-                id="summit-email"
-                name="email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                value={form.email}
-                onChange={handleChange}
-                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white placeholder-[#444444] outline-none transition-colors focus:border-accent"
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="summit-role" className="font-mono text-xs tracking-widest text-muted uppercase">
-                I am a...
-              </label>
-              <select
-                id="summit-role"
-                name="role"
-                value={form.role}
-                onChange={handleChange}
-                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-accent"
-              >
-                <option value="Attendee">Attendee</option>
-                <option value="Sponsor">Sponsor</option>
-              </select>
-            </div>
-            {form.role === 'Sponsor' && (
-              <div className="flex flex-col gap-1">
-                <label htmlFor="summit-tier" className="font-mono text-xs tracking-widest text-muted uppercase">
-                  Tier Interested In
-                </label>
-                <select
-                  id="summit-tier"
-                  name="tier"
-                  value={form.tier}
-                  onChange={handleChange}
-                  className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-accent"
-                >
-                  <option value="">Not sure yet</option>
-                  {TIERS.map(tier => (
-                    <option key={tier.name} value={tier.name}>{tier.name}</option>
-                  ))}
-                </select>
-              </div>
-            )}
-            <div className="flex flex-col gap-1">
-              <label htmlFor="summit-message" className="font-mono text-xs tracking-widest text-muted uppercase">
-                Message (Optional)
-              </label>
-              <textarea
-                id="summit-message"
-                name="message"
-                rows={4}
-                placeholder="Anything else we should know?"
-                value={form.message}
-                onChange={handleChange}
-                className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white placeholder-[#444444] outline-none transition-colors focus:border-accent resize-none"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={submitState === 'sending' || submitState === 'sent' || submitState === 'rate-limited'}
-              className={`self-start border px-6 py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:cursor-not-allowed ${
-                submitState === 'sent'
-                  ? 'border-accent text-accent'
-                  : 'border-white text-white hover:border-accent hover:text-accent'
-              }`}
-            >
-              {buttonLabel[submitState]}
-            </button>
-          </form>
-        </div>
-      </section>
+      )}
 
       {/* ── Dual CTA ── */}
       <section className="border-t border-[#222222] py-32 px-6">
@@ -714,6 +607,17 @@ export default function CyberSummit() {
           </div>
         </div>
       </section>
+
+      <RegisterModal
+        open={isRegisterOpen}
+        form={form}
+        submitState={submitState}
+        buttonLabel={buttonLabel}
+        tiers={TIERS}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        onClose={() => setIsRegisterOpen(false)}
+      />
 
     </div>
   )
