@@ -249,7 +249,7 @@ export default function CyberSummit() {
       >
         <div ref={heroRef} className="flex flex-col items-center">
           <p className={`reveal ${heroInView ? 'visible' : ''} mb-6 font-mono text-xs tracking-widest text-accent uppercase`}>
-            TMU × BYTE Presents
+            BYTE Presents
           </p>
           <h1 className={`reveal delay-100 ${heroInView ? 'visible' : ''} mb-4 text-5xl font-black tracking-tight leading-none sm:text-6xl md:text-7xl lg:text-[9rem]`}>
             TMU CYBER<br />SUMMIT
