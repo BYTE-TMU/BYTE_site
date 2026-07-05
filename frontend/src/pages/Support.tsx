@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { sendEmail, sendConfirmation } from '../lib/emailjs'
 import { canSubmit, recordSubmit } from '../lib/formRateLimit'
+import Reveal from '../components/Reveal'
 
 type SubmitState = 'idle' | 'sending' | 'sent' | 'error' | 'rate-limited'
 
@@ -57,17 +58,17 @@ export default function Contact() {
 
   return (
     <main className="mx-auto max-w-7xl px-6 pt-40 pb-24">
-      <div className="mb-12">
+      <Reveal className="mb-12">
         <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">Get in Touch</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">Contact</h1>
         <p className="mt-4 text-lg text-muted">
           Anything from project support to general inquiry, let us know.
         </p>
-      </div>
+      </Reveal>
 
       <div className="grid gap-16 md:grid-cols-2">
         {/* Form */}
-        <div>
+        <Reveal threshold={0.1}>
           <p className="mb-6 font-mono text-xs tracking-widest text-accent uppercase">Send a Message</p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <input
@@ -137,10 +138,10 @@ export default function Contact() {
               {buttonLabel[submitState]}
             </button>
           </form>
-        </div>
+        </Reveal>
 
         {/* Connect */}
-        <div>
+        <Reveal threshold={0.1} delayMs={150}>
           <p className="mb-6 font-mono text-xs tracking-widest text-accent uppercase">Connect With Us</p>
           <p className="mb-8 text-sm leading-relaxed text-muted">
             Join Toronto Metropolitan University's premier AI innovation lab. Whether you're interested
@@ -183,7 +184,7 @@ export default function Contact() {
             <p className="font-mono text-xs tracking-widest text-[#333333] uppercase">Always accepting new members</p>
             <p className="font-mono text-xs tracking-widest text-[#333333] uppercase">Join our community of AI innovators</p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </main>
   )

@@ -243,7 +243,7 @@ export default function CyberSummit() {
         className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-40 pb-16 text-center"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(74,222,128,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(74,222,128,0.025) 1px, transparent 1px)',
+            'linear-gradient(rgba(212,212,212,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(212,212,212,0.025) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }}
       >

@@ -7,7 +7,7 @@ import App from './App'
 
 console.log(
   '%c> BYTE.EXE loaded. Try the Konami Code.',
-  'color: #4ade80; font-family: monospace; font-size: 12px;'
+  'color: #d4d4d4; font-family: monospace; font-size: 12px;'
 )
 
 const rootEl = document.getElementById('root')

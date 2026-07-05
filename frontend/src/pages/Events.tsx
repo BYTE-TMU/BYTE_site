@@ -3,6 +3,9 @@ import { getEvents } from '../lib/api'
 import type { Event } from '../lib/types'
 import EventCard from '../components/EventCard'
 import EventModal from '../components/EventModal'
+import Reveal from '../components/Reveal'
+
+const COLUMNS = 3 // matches lg:grid-cols-3, the widest breakpoint's column count
 
 export default function Events() {
   const events = getEvents()
@@ -10,16 +13,18 @@ export default function Events() {
 
   return (
     <main className="mx-auto max-w-7xl px-6 pt-40 pb-24">
-      <div className="mb-12">
+      <Reveal className="mb-12">
         <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">What We Do</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">Events</h1>
         <p className="mt-4 text-lg text-muted">
           Workshops, hackathons, panels, and socials — there's always something happening at BYTE.
         </p>
-      </div>
+      </Reveal>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} onClick={() => setSelectedEvent(event)} />
+        {events.map((event, i) => (
+          <Reveal key={event.id} className="h-full" threshold={0.1} delayMs={(i % COLUMNS) * 150}>
+            <EventCard event={event} onClick={() => setSelectedEvent(event)} />
+          </Reveal>
         ))}
       </div>
       <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />

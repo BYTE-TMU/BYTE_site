@@ -1,7 +1,7 @@
 import type { TeamMember, Event, Project, Announcement } from './types'
 
 function avatar(seed: string) {
-  return `https://api.dicebear.com/8.x/initials/svg?seed=${seed}&backgroundColor=111111&fontColor=4ade80`
+  return `https://api.dicebear.com/8.x/initials/svg?seed=${seed}&backgroundColor=111111&fontColor=d4d4d4`
 }
 
 const TEAM: TeamMember[] = [
@@ -77,6 +77,7 @@ const EVENTS: Event[] = [
 const PROJECTS: Project[] = [
   {
     id: '1',
+    slug: 'securebyte',
     name: 'SecureBYTE',
     description: 'A Python-based AI vulnerability scanner that integrates static analysis and LLMs to identify security flaws and logical issues. Combines traditional analysis with natural language reasoning to provide insights, suggest remediations, and generate automated test cases.',
     techStack: ['Python', 'Flask', 'React', 'JavaScript', 'TailwindCSS', 'Firebase'],
@@ -85,6 +86,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: '2',
+    slug: 'yapp',
     name: 'Yapp',
     description: 'The campus social platform designed exclusively for TMU students. Connect with your community, discover amazing events across downtown Toronto, and explore your urban campus like never before.',
     techStack: ['Python', 'Flask', 'React', 'JavaScript', 'TailwindCSS', 'MongoDB', 'AWS'],
@@ -137,5 +139,8 @@ export function getEvents(limit?: number): Event[] {
 }
 export function getProjects(limit?: number): Project[] {
   return limit !== undefined ? PROJECTS.slice(0, limit) : PROJECTS
+}
+export function getProjectBySlug(slug: string): Project | undefined {
+  return PROJECTS.find(p => p.slug === slug)
 }
 export function getAnnouncements(): Announcement[] { return ANNOUNCEMENTS }

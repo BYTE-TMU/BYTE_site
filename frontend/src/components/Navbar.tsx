@@ -48,6 +48,14 @@ export default function Navbar({ onEasterEgg }: NavbarProps) {
           <NavLink to="/news" className={linkClass}>News</NavLink>
           <NavLink to="/contact" className={linkClass}>Contact</NavLink>
           <NavLink to="/cybersecurity" className={linkClass}>Cyber Summit</NavLink>
+          <a
+            href="https://tmutechweek.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs tracking-widest uppercase transition-colors text-muted hover:text-white"
+          >
+            Tech Week ↗
+          </a>
         </div>
         <button
           onClick={() => setOpen((o) => !o)}
@@ -83,6 +91,15 @@ export default function Navbar({ onEasterEgg }: NavbarProps) {
           <NavLink to="/cybersecurity" className={mobileLinkClass} onClick={() => setOpen(false)}>
             Cyber Summit
           </NavLink>
+          <a
+            href="https://tmutechweek.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block py-3 font-mono text-sm tracking-widest uppercase transition-colors text-muted hover:text-white"
+            onClick={() => setOpen(false)}
+          >
+            Tech Week ↗
+          </a>
         </div>
       )}
     </nav>

@@ -2,7 +2,9 @@ import { useState, useMemo } from 'react'
 import { meetTheTeamData, type Member } from '../lib/teamData'
 import { useInView } from '../hooks/useInView'
 import MemberModal from './MemberModal'
+import Reveal from './Reveal'
 
+const MEMBER_COLUMN_ESTIMATE = 6 // flex-wrap layout has no fixed grid-column count; approximate stagger cap
 
 const SECTIONS = [
   { label: 'Leadership',      key: 'leadership', arrows: false },
@@ -91,8 +93,10 @@ export default function TeamSection() {
             {president.length > 1 ? 'Presidents' : 'President'}
           </p>
           <div className="flex justify-center">
-            {president.map(m => (
-              <MemberCard key={m.id} member={m} onClick={() => setSelected(m)} />
+            {president.map((m, i) => (
+              <Reveal key={m.id} className="shrink-0" threshold={0.1} delayMs={(i % MEMBER_COLUMN_ESTIMATE) * 100}>
+                <MemberCard member={m} onClick={() => setSelected(m)} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -106,8 +110,10 @@ export default function TeamSection() {
                 {label}
               </p>
               <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 justify-center">
-                {members.map(m => (
-                  <MemberCard key={m.id} member={m} onClick={() => setSelected(m)} />
+                {members.map((m, i) => (
+                  <Reveal key={m.id} className="shrink-0" threshold={0.1} delayMs={(i % MEMBER_COLUMN_ESTIMATE) * 100}>
+                    <MemberCard member={m} onClick={() => setSelected(m)} />
+                  </Reveal>
                 ))}
               </div>
             </div>

@@ -8,7 +8,7 @@ const config: Config = {
         surface: '#111111',
         border: '#222222',
         muted: '#888888',
-        accent: '#4ade80',
+        accent: '#d4d4d4',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -11,6 +11,7 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import Projects from './pages/Projects'
+import ProjectDetail from './pages/ProjectDetail'
 import Team from './pages/Team.tsx'
 import News from './pages/News.tsx'
 import Contact from './pages/Support.tsx'
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
         <Route path="/team" element={<Team />} />
         <Route path="/news" element={<News />} />
         <Route path="/contact" element={<Contact />} />

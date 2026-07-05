@@ -290,7 +290,8 @@ const allTeamMembers: Member[] = [
     rank: 80,
     categories: ['Technical Team'],
     connections: ['head-tech-001', 'vp-tech-001'],
-    email: 'rayan.roshan@torontomu.ca'
+    email: 'rayan.roshan@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/rayan-roshan/'
   },
   {
     id: 'dir-frontend-001',

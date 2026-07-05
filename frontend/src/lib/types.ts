@@ -22,6 +22,7 @@ export interface Event {
 
 export interface Project {
   id: string
+  slug: string
   name: string
   description: string
   techStack: string[]

@@ -11,8 +11,8 @@ const MIN_SPEED = 80
 const SPEED_STEP = 10
 const FOOD_PER_LEVEL = 5
 
-const COLOR_ACCENT = '#4ade80'
-const COLOR_HEAD = '#86efac'
+const COLOR_ACCENT = '#d4d4d4'
+const COLOR_HEAD = '#ffffff'
 const COLOR_BG = '#000000'
 const COLOR_GRID = '#0d0d0d'
 const COLOR_MUTED = '#444444'

@@ -5,6 +5,7 @@ import AboutSection from '../components/AboutSection.tsx'
 import EventsSection from '../components/EventsSection'
 import ProjectsSection from '../components/ProjectsSection'
 import CyberSummitSection from '../components/CyberSummitSection'
+import TechWeekSection from '../components/TechWeekSection'
 import CTASection from '../components/CTASection'
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <EventsSection events={events} />
       <ProjectsSection projects={projects} />
       <CyberSummitSection />
+      <TechWeekSection />
       <CTASection />
     </>
   )
