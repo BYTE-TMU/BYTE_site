@@ -54,9 +54,8 @@ const EVENTS: Event[] = [
     id: '1',
     title: 'BYTE Pitch Day',
     category: 'PITCH EVENT',
-    date: 'JULY 4, 2026',
-    description: 'Have an idea for a project you\'d love to build? Pitch it at BYTE Pitch Day — TMU students will present original project ideas for the chance to have them developed during the Fall 2026 semester.',
-    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSf8BGx0sShB8zdzl0jUF8dwkwvmFaM7CP7WQy-yugTxU3xoNg/viewform',
+    date: 'Postponed',
+    description: 'Have an idea for a project you\'d love to build? Pitch it at BYTE Pitch Day — TMU students will present original project ideas for the chance to have them developed during the Fall 2026 semester.'
   },
   {
     id: '2',
