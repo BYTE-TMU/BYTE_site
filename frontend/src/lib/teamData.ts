@@ -318,17 +318,6 @@ const allTeamMembers: Member[] = [
     linkedInUrl: 'https://www.linkedin.com/in/ethan-cha-5692b8372/'
   },
   {
-    id: 'frontend-eng-002',
-    name: 'Anthony Ma',
-    position: 'Frontend Engineer',
-    roleDescription: 'Builds responsive and interactive web experiences for BYTE\'s projects, turning designs into polished, user-friendly interfaces.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
-    rank: 50,
-    categories: ['Technical Team'],
-    connections: ['dir-frontend-001'],
-    email: 'a1ma@torontomu.ca'
-  },
-  {
     id: 'frontend-eng-003',
     name: 'Stephen Nguyen',
     position: 'Frontend Engineer',
@@ -471,6 +460,18 @@ const allTeamMembers: Member[] = [
     connections: ['vp-finance-001'],
     email: 'yerin.kim@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/yerin-kim24/'
+  },
+  {
+    id: 'frontend-eng-004',
+    name: 'Rhea Braich',
+    position: 'Frontend Engineer',
+    roleDescription: 'Builds responsive and interactive web experiences for BYTE\'s projects, turning designs into polished, user-friendly interfaces.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
+    rank: 50,
+    categories: ['Technical Team'],
+    connections: ['dir-frontend-001'],
+    email: 'rhea.braich@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/rhea-braich06/'
   }
 ]
 
