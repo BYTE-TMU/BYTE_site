@@ -28,7 +28,7 @@ export default function TechWeekSection() {
             alt=""
             className="h-4 w-4 object-contain"
           />
-          <p className="font-mono text-xs tracking-widest text-accent uppercase">
+          <p className="neon-green-text font-mono text-sm tracking-widest uppercase">
             BYTE @ TMU Tech Week
           </p>
         </Reveal>

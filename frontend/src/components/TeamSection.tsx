@@ -83,7 +83,7 @@ export default function TeamSection() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">
       <div ref={ref} className={`reveal ${inView ? 'visible' : ''} mb-16`}>
-        <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">The Team</p>
+        <p className="neon-green-text mb-2 font-mono text-sm tracking-widest uppercase">The Team</p>
         <h2 className="text-4xl font-black tracking-tight md:text-5xl">Who We Are</h2>
       </div>
 

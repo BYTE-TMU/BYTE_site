@@ -248,7 +248,7 @@ export default function CyberSummit() {
         }}
       >
         <div ref={heroRef} className="flex flex-col items-center">
-          <p className={`reveal ${heroInView ? 'visible' : ''} mb-6 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${heroInView ? 'visible' : ''} neon-green-text mb-6 font-mono text-sm tracking-widest uppercase`}>
             BYTE Presents
           </p>
           <h1 className={`reveal delay-100 ${heroInView ? 'visible' : ''} mb-4 text-5xl font-black tracking-tight leading-none sm:text-6xl md:text-7xl lg:text-[9rem]`}>
@@ -282,7 +282,7 @@ export default function CyberSummit() {
       {/* ── What is TMU Cyber Summit? ── */}
       <section className="border-t border-[#222222] py-24 px-6">
         <div ref={aboutRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${aboutInView ? 'visible' : ''} mb-4 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${aboutInView ? 'visible' : ''} neon-green-text mb-4 font-mono text-sm tracking-widest uppercase`}>
             About the Summit
           </p>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
@@ -316,7 +316,7 @@ export default function CyberSummit() {
       {/* ── Impact Stats ── */}
       <section className="border-t border-[#222222] py-24 px-6">
         <div ref={statsRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${statsInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${statsInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             TMU Tech Week Impact
           </p>
           <h2 className={`reveal delay-100 ${statsInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
@@ -342,7 +342,7 @@ export default function CyberSummit() {
       {/* ── 2-Day Agenda ── */}
       <section className="border-t border-[#222222] py-24 px-6">
         <div ref={agendaRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${agendaInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${agendaInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             The Experience
           </p>
           <h2 className={`reveal delay-100 ${agendaInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
@@ -397,7 +397,7 @@ export default function CyberSummit() {
       {/* ── Demographics ── */}
       <section className="border-t border-[#222222] py-24 px-6">
         <div ref={demoRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${demoInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${demoInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             Why Partner With Us
           </p>
           <h2 className={`reveal delay-100 ${demoInView ? 'visible' : ''} mb-4 text-3xl font-black tracking-tight`}>
@@ -470,7 +470,7 @@ export default function CyberSummit() {
       {/* ── Event Gallery Placeholder ── */}
       <section className="border-t border-[#222222] py-24 px-6">
         <div ref={galleryRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${galleryInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${galleryInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             Event Gallery
           </p>
           <h2 className={`reveal delay-100 ${galleryInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
@@ -492,7 +492,7 @@ export default function CyberSummit() {
       {/* ── Previous Partners ── */}
       <section className="border-t border-[#222222] py-24 px-6">
         <div ref={partnersRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${partnersInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${partnersInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             Community Support
           </p>
           <h2 className={`reveal delay-100 ${partnersInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
@@ -516,7 +516,7 @@ export default function CyberSummit() {
       {SHOW_SPONSOR_TIERS && (
       <section id="sponsor-tiers" className="border-t border-[#222222] py-24 px-6">
         <div ref={tiersRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${tiersInView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${tiersInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             Partnership Packages
           </p>
           <h2 className={`reveal delay-100 ${tiersInView ? 'visible' : ''} mb-4 text-3xl font-black tracking-tight`}>
@@ -537,7 +537,7 @@ export default function CyberSummit() {
                 }`}
               >
                 {tier.highlight && (
-                  <p className="mb-3 font-mono text-xs tracking-widest text-accent uppercase">Most Popular</p>
+                  <p className="neon-green-text mb-3 font-mono text-sm tracking-widest uppercase">Most Popular</p>
                 )}
                 <p className={`mb-1 font-mono text-xs tracking-widest uppercase ${tier.color}`}>{tier.name}</p>
                 <p className="mb-6 text-3xl font-black text-white">{tier.price}</p>
@@ -573,7 +573,7 @@ export default function CyberSummit() {
           <div className="grid grid-cols-1 gap-px border border-[#222222] md:grid-cols-2">
             <div className={`reveal ${ctaInView ? 'visible' : ''} flex flex-col items-start justify-between gap-8 bg-[#111111] p-12`}>
               <div>
-                <p className="mb-3 font-mono text-xs tracking-widest text-accent uppercase">For Students</p>
+                <p className="neon-green-text mb-3 font-mono text-sm tracking-widest uppercase">For Students</p>
                 <h2 className="mb-4 text-3xl font-black tracking-tight">Are You a Student?</h2>
                 <p className="leading-relaxed text-muted">
                   Join 1,250+ attendees at Toronto's premier cybersecurity event. Learn from industry leaders, compete in CTF challenges, and connect with your next employer.
@@ -590,7 +590,7 @@ export default function CyberSummit() {
 
             <div className={`reveal delay-150 ${ctaInView ? 'visible' : ''} flex flex-col items-start justify-between gap-8 bg-black p-12`}>
               <div>
-                <p className="mb-3 font-mono text-xs tracking-widest text-accent uppercase">For Organizations</p>
+                <p className="neon-green-text mb-3 font-mono text-sm tracking-widest uppercase">For Organizations</p>
                 <h2 className="mb-4 text-3xl font-black tracking-tight">Ready to Reach Top Tech Talent?</h2>
                 <p className="leading-relaxed text-muted">
                   Start a conversation about partnership. Every tier puts your brand in front of a highly engaged, technically skilled audience across two action-packed days.

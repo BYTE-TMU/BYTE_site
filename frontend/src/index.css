@@ -10,6 +10,7 @@
     --color-text: #ffffff;
     --color-muted: #888888;
     --color-accent: #d4d4d4;
+    --neon: #66ff47; 
   }
 
   html {
@@ -43,6 +44,20 @@
     display: flex;
     width: max-content;
     animation: marquee 30s linear infinite;
+  }
+
+  .hero-accent-letter {
+    color: rgb(255 255 255 / 85%);
+    text-shadow:
+      0 0 6px color-mix(in srgb, var(--neon) 75%, transparent),
+      0 0 14px color-mix(in srgb, var(--neon) 45%, transparent);
+  }
+
+  .neon-green-text {
+    color: var(--neon);
+    text-shadow:
+      0 0 6px color-mix(in srgb, var(--neon) 75%, transparent),
+      0 0 14px color-mix(in srgb, var(--neon) 45%, transparent);
   }
 
   .ticker-track:hover {

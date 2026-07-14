@@ -35,7 +35,7 @@ export default function ImageCarousel() {
     <section className="border-y border-[#222222] py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div ref={ref} className="mb-8">
-          <p className={`reveal ${inView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal ${inView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             Gallery
           </p>
           <h2 className={`reveal delay-100 ${inView ? 'visible' : ''} text-4xl font-black tracking-tight md:text-5xl`}>

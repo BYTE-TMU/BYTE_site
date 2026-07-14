@@ -6,7 +6,7 @@ export default function CTASection() {
   return (
     <section className="border-t border-[#222222] px-6 py-32">
       <div ref={ref} className="mx-auto max-w-3xl text-center">
-        <p className={`reveal delay-[0ms] ${inView ? 'visible' : ''} mb-4 font-mono text-xs tracking-widest text-accent uppercase`}>
+        <p className={`reveal delay-[0ms] ${inView ? 'visible' : ''} neon-green-text mb-4 font-mono text-sm tracking-widest uppercase`}>
           Join Us
         </p>
         <h2 className={`reveal delay-100 ${inView ? 'visible' : ''} mb-6 text-5xl font-black tracking-tight md:text-7xl`}>

@@ -57,7 +57,7 @@ export default function RegisterModal({ open, form, submitState, buttonLabel, ti
         </button>
 
         <div className="p-8">
-          <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">
+          <p className="neon-green-text mb-2 font-mono text-sm tracking-widest uppercase">
             Join Us
           </p>
           <h2 className="mb-8 text-2xl font-black tracking-tight text-white">

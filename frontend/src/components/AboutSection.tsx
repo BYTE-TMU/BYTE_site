@@ -38,10 +38,10 @@ export default function AboutSection() {
   }, [paused, current])
 
   return (
-    <section id="about" className="border-t border-[#222222] mx-auto max-w-7xl px-6 py-24">
+    <section id="about" className="border-t border-[#222222] mx-auto max-w-8xl px-7 py-24">
       <div ref={ref} className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
-          <p className={`reveal delay-[0ms] ${inView ? 'visible' : ''} mb-2 font-mono text-xs tracking-widest text-accent uppercase`}>
+          <p className={`reveal delay-[0ms] ${inView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
             About
           </p>
           <h2 className={`reveal delay-100 ${inView ? 'visible' : ''} mb-6 text-4xl font-black tracking-tight md:text-5xl`}>

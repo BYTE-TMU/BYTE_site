@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <main className="mx-auto max-w-7xl px-6 pt-40 pb-24">
       <Reveal className="mb-12">
-        <p className="mb-2 font-mono text-xs tracking-widest text-accent uppercase">What We Build</p>
+        <p className="neon-green-text mb-2 font-mono text-sm tracking-widest uppercase">What We Build</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">Projects</h1>
         <p className="mt-4 text-lg text-muted">
           Real products built by BYTE members. We ship, iterate, and open-source everything we can.
