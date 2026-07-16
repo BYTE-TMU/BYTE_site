@@ -25,6 +25,7 @@ export default function EventCard({ event, onClick }: Props) {
           href={event.registrationUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={e => e.stopPropagation()}
           className="self-start border border-[#222222] px-4 py-2 font-mono text-xs tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
         >
           Register →

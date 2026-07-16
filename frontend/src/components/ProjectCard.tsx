@@ -54,6 +54,7 @@ export default function ProjectCard({ project, onClick }: Props) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
             className="flex items-center gap-2 self-start font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:text-accent"
           >
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -67,6 +68,7 @@ export default function ProjectCard({ project, onClick }: Props) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
             className="flex items-center gap-2 self-start font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:text-accent"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
