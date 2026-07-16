@@ -8,15 +8,15 @@ export default function Footer() {
     <footer className="border-t border-[#222222] px-6 py-12">
       <div
         ref={ref}
-        className={`reveal ${inView ? 'visible' : ''} mx-auto flex max-w-7xl flex-col items-center gap-8 sm:flex-row sm:justify-between`}
+        className={`reveal ${inView ? 'visible' : ''} mx-auto flex max-w-7xl flex-col items-center gap-8 sm:grid sm:grid-cols-[1fr_auto_1fr]`}
       >
-        <div className="flex flex-col items-center sm:items-start">
+        <div className="flex flex-col items-center sm:justify-self-start sm:items-start">
           <img src={markLogo} alt="BYTE" className="h-14 w-auto" />
           <p className="mt-1 font-mono text-xs tracking-widest text-muted uppercase">
             Build Your Tech Experience
           </p>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center justify-center gap-6 sm:justify-self-center">
           <a
             href="https://www.instagram.com/tmu.byte/"
             target="_blank"
@@ -73,7 +73,7 @@ export default function Footer() {
             </svg>
           </a>
         </div>
-        <p className="font-mono text-xs tracking-widest text-[#333333] uppercase">
+        <p className="font-mono text-xs tracking-widest text-[#333333] uppercase sm:justify-self-end">
           © 2026 BYTE · TMU
         </p>
       </div>

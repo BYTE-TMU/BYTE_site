@@ -40,7 +40,7 @@ export default function HeroSection() {
     const accent = ACCENT_LETTERS[index]
     return (
       <span key={index} className="inline-block">
-        <span className="text-accent">{accent}</span>
+        <span className="hero-accent-letter">{accent}</span> 
         <span className="text-white">{word.slice(1)}</span>
       </span>
     )
@@ -52,7 +52,7 @@ export default function HeroSection() {
     const hasAccent = partial.length >= 1
     return (
       <span key="typing" className="inline-block">
-        {hasAccent && <span className="text-accent">{accent}</span>}
+        {hasAccent && <span className="hero-accent-letter">{accent}</span>}
         <span className="text-white">{partial.slice(1)}</span>
         <span className="animate-pulse text-accent">|</span>
       </span>
@@ -64,7 +64,7 @@ export default function HeroSection() {
       <p className="animate-fade-up anim-delay-0 mb-6 font-mono text-xs tracking-widest text-muted uppercase">
         TMU's First Student-Led AI Innovation Lab
       </p>
-      <h1 className="mb-6 text-6xl font-black leading-none tracking-tight md:text-8xl lg:text-9xl space-x-2">
+      <h1 className="mb-6 space-x-2 text-[3.375rem] leading-none font-black tracking-tight md:text-[5.25rem] lg:text-[7rem]">
         {displayed.map((word, i) => renderWord(word, i))}
         {renderTyping(currentTyping, wordIndex)}
       </h1>

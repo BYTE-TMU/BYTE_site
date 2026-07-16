@@ -24,7 +24,7 @@ export default function CyberSummitSection() {
     <section className="py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="mb-4 font-mono text-xs tracking-widest text-accent uppercase">
+          <p className="neon-green-text mb-4 font-mono text-sm tracking-widest uppercase">
             Featured Conference
           </p>
         </Reveal>

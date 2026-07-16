@@ -9,10 +9,12 @@ const config: Config = {
         border: '#222222',
         muted: '#888888',
         accent: '#d4d4d4',
+        neon: 'var(--neon)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+
       keyframes: {
         wordIn: {
           '0%': { opacity: '0', transform: 'translateY(40px)' },
