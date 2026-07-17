@@ -5,37 +5,27 @@ interface Props {
   onClick?: () => void
 }
 
-const STATUS_LABELS: Record<Project['status'], string> = {
-  live: 'Live',
-  'in dev': 'In Dev',
-  archived: 'Archived',
-}
-
-const STATUS_DOT_COLORS: Record<Project['status'], string> = {
-  live: 'bg-accent',
-  'in dev': 'bg-yellow-400',
-  archived: 'bg-[#444444]',
-}
-
 export default function ProjectCard({ project, onClick }: Props) {
   return (
     <article
       className={`flex flex-col h-full border border-[#222222] bg-surface p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#3a3a3a] ${onClick ? 'cursor-pointer' : ''}`}
       onClick={onClick}
     >
-      <div className="mb-4 flex items-center gap-2">
-        {project.status === 'live' ? (
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+      {(project.status === 'live' || project.status === 'archived') && (
+        <div className="mb-4 flex h-4 items-center gap-2">
+          {project.status === 'live' ? (
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+          ) : (
+            <span className="h-2 w-2 rounded-full bg-[#444444]" />
+          )}
+          <span className="whitespace-nowrap font-mono text-xs leading-none tracking-widest text-muted uppercase">
+            {project.status === 'live' ? 'Live' : 'Past Project'}
           </span>
-        ) : (
-          <span className={`h-2 w-2 rounded-full ${STATUS_DOT_COLORS[project.status]}`} />
-        )}
-        <span className="font-mono text-xs tracking-widest text-muted uppercase">
-          {STATUS_LABELS[project.status]}
-        </span>
-      </div>
+        </div>
+      )}
       <h3 className="mb-3 text-xl font-bold leading-tight text-white">{project.name}</h3>
       <p className="mb-6 flex-1 text-sm leading-relaxed text-muted">{project.description}</p>
       <div className="mb-6 flex flex-wrap gap-2">

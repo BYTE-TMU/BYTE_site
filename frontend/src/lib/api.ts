@@ -80,8 +80,8 @@ const PROJECTS: Project[] = [
     name: 'SecureBYTE',
     description: 'A Python-based AI vulnerability scanner that integrates static analysis and LLMs to identify security flaws and logical issues. Combines traditional analysis with natural language reasoning to provide insights, suggest remediations, and generate automated test cases.',
     techStack: ['Python', 'Flask', 'React', 'JavaScript', 'TailwindCSS', 'Firebase'],
-    status: 'live',
-    githubUrl: 'https://github.com/byte-org/securebyte',
+    status: 'archived',
+    githubUrl: 'https://github.com/BYTE-TMU/SecureBYTE_Frontend',
   },
   {
     id: '2',

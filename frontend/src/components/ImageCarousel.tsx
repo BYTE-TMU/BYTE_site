@@ -18,10 +18,16 @@ export default function ImageCarousel() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   function prev() {
-    setCurrent((c) => (c === 0 ? SLIDES.length - 1 : c - 1))
+    console.log('prev slide')
+    setCurrent((c) => {
+      const newSlide = c === 0 ? SLIDES.length - 1 : c - 1
+      console.log('slide', c, 'to', newSlide)
+      return newSlide
+    })
   }
 
   function next() {
+    console.log('next slide')
     setCurrent((c) => (c === SLIDES.length - 1 ? 0 : c + 1))
   }
 
