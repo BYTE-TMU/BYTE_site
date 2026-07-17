@@ -1,6 +1,12 @@
 import { useInView } from '../hooks/useInView'
 import markLogo from '../assets/byte_logo-mark-white_s26-18.png'
 
+function positionUvLight(event: React.PointerEvent<HTMLParagraphElement>) {
+  const bounds = event.currentTarget.getBoundingClientRect()
+  event.currentTarget.style.setProperty('--uv-x', `${event.clientX - bounds.left}px`)
+  event.currentTarget.style.setProperty('--uv-y', `${event.clientY - bounds.top}px`)
+}
+
 export default function Footer() {
   const [ref, inView] = useInView(0.3)
 
@@ -77,8 +83,37 @@ export default function Footer() {
           © 2026 BYTE · TMU
         </p>
       </div>
-      <p className="mt-8 text-center font-mono text-[10px] italic tracking-widest text-[#1a1a1a]">
-        Our name holds the key. Press it five times — quickly now. Something stirs within.
+      <p
+        className="uv-ink mx-auto mt-8 w-fit max-w-full text-center font-mono text-[10px] italic tracking-widest uppercase"
+        onPointerDown={(event) => {
+          positionUvLight(event)
+          if (event.pointerType === 'touch') {
+            event.currentTarget.dataset.uvActive = 'true'
+            event.currentTarget.setPointerCapture(event.pointerId)
+          }
+        }}
+        onPointerMove={positionUvLight}
+        onPointerUp={(event) => {
+          if (event.pointerType === 'touch') {
+            delete event.currentTarget.dataset.uvActive
+            if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+              event.currentTarget.releasePointerCapture(event.pointerId)
+            }
+          }
+        }}
+        onPointerCancel={(event) => {
+          delete event.currentTarget.dataset.uvActive
+        }}
+        onLostPointerCapture={(event) => {
+          delete event.currentTarget.dataset.uvActive
+        }}
+      >
+        <span className="uv-ink-base">
+          Our name holds the key. Press it five times — quickly now. Something stirs within.
+        </span>
+        <span className="uv-ink-reveal" aria-hidden="true">
+          Our name holds the key. Press it five times — quickly now. Something stirs within.
+        </span>
       </p>
     </footer>
   )

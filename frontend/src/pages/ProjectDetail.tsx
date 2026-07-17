@@ -5,7 +5,7 @@ import type { Project } from '../lib/types'
 const STATUS_LABELS: Record<Project['status'], string> = {
   live: 'Live',
   'in dev': 'In Dev',
-  archived: 'Archived',
+  archived: 'Past Project',
 }
 
 const STATUS_DOT_COLORS: Record<Project['status'], string> = {
