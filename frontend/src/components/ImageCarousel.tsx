@@ -2,11 +2,17 @@ import { useState, useEffect, useRef } from 'react'
 import { useInView } from '../hooks/useInView'
 
 const SLIDES = [
-  { id: 1, label: 'BYTE Launch',         src: '/images/events/bytelaunch.jpeg' },
-  { id: 2, label: 'Demo Day',            src: '/images/events/Demoday.JPG' },
-  { id: 3, label: 'DevFest Event',       src: '/images/events/devfestevent.JPG' },
-  { id: 4, label: 'TMSU Street Fair',    src: '/images/events/tmsustreetfair.jpeg' },
-  { id: 5, label: 'TMU Tech Week',       src: '/images/events/Tmutechweek.png' },
+  { id: 1, label: 'BYTE Launch',           src: '/images/events/bytelaunch.jpeg' },
+  { id: 2, label: 'Securebyte Demo Day',              src: '/images/events/Demoday.JPG' },
+  { id: 3, label: 'DevFest Event',         src: '/images/events/devfestevent.JPG' },
+  { id: 4, label: 'TMSU Street Fair',      src: '/images/events/tmsustreetfair.jpeg' },
+  { id: 5, label: 'TMU Tech Week',         src: '/images/events/Tmutechweek.png' },
+  { id: 6, label: 'Slalom Workshop Session',      src: '/images/events/469d1ff9669e38ad11bdd91acdb34fa8.JPG' },
+  { id: 7, label: 'Crypto Chicks x BYTE Hackathon',  src: '/images/events/DSC06369.JPG' },
+  { id: 8, label: 'TMU Tech Week Crowd',   src: '/images/events/DSC06372.JPG' },
+  { id: 9, label: 'BYTE Info Booth',       src: '/images/events/IMG_1646.JPG' },
+  { id: 10, label: 'TechTO Tabling',      src: '/images/events/_DSC8954.jpeg' },
+  { id: 11, label: 'TMSU Street Fair', src: '/images/events/tmsu-street-fair-2.jpeg' },
 ]
 
 const INTERVAL = 4000
