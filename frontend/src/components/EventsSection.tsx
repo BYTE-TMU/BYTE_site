@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import type { Event } from '../lib/types'
 import EventCard from './EventCard'
 import EventModal from './EventModal'
@@ -10,9 +10,15 @@ interface Props {
 }
 
 export default function EventsSection({ events }: Props) {
+  const navigate = useNavigate()
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [headingRef, headingInView] = useInView()
   const [cardsRef, cardsInView] = useInView(0.1)
+
+  function handleEventClick(event: Event) {
+    if (event.detailsPath) navigate(event.detailsPath)
+    else setSelectedEvent(event)
+  }
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">
@@ -34,7 +40,7 @@ export default function EventsSection({ events }: Props) {
             key={event.id}
             className={`reveal h-full ${i === 1 ? 'delay-150' : i === 2 ? 'delay-300' : ''} ${cardsInView ? 'visible' : ''}`}
           >
-            <EventCard event={event} onClick={() => setSelectedEvent(event)} />
+            <EventCard event={event} onClick={() => handleEventClick(event)} />
           </div>
         ))}
       </div>

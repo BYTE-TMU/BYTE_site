@@ -17,9 +17,9 @@ export default function Home() {
       <HeroSection />
       <StatsTicker />
       <AboutSection />
+      <CyberSummitSection />
       <EventsSection events={events} />
       <ProjectsSection projects={projects} />
-      <CyberSummitSection />
       <TechWeekSection />
       <CTASection />
     </>

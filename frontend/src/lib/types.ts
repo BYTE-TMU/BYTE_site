@@ -18,6 +18,7 @@ export interface Event {
   location?: string
   coHosts?: string[]
   timing?: string
+  detailsPath?: string
 }
 
 export interface Project {
