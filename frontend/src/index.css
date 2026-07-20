@@ -64,6 +64,91 @@
     animation-play-state: paused;
   }
 
+  .partner-logo-track:hover {
+    animation-play-state: running;
+  }
+
+  .partner-logo-track {
+    animation-duration: 80s;
+  }
+
+  .tech-week-partner-card {
+    --partner-sheen: var(--neon);
+    --partner-sheen-strength: 70%;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    background:
+      linear-gradient(#050505, #050505) padding-box,
+      linear-gradient(135deg, var(--neon) 0%, rgb(46 120 36) 38%, #111 72%, #000 100%) border-box;
+    box-shadow:
+      0 0 9px rgb(102 255 71 / 14%),
+      0 0 20px rgb(102 255 71 / 6%);
+    transition: box-shadow 220ms ease, filter 220ms ease;
+  }
+
+  .tech-week-partner-logo-frame {
+    overflow: hidden;
+    border-radius: 0.7rem;
+    background: #000;
+  }
+
+  .partner-logo-item[data-tier='gold'] .tech-week-partner-card {
+    --partner-sheen: #ffd54a;
+  }
+
+  .partner-logo-item[data-tier='title'] .tech-week-partner-card {
+    --partner-sheen: #fff;
+    --partner-sheen-strength: 100%;
+  }
+
+  .partner-logo-item[data-tier='silver'] .tech-week-partner-card {
+    --partner-sheen: #dce3ea;
+  }
+
+  .partner-logo-item[data-tier='bronze'] .tech-week-partner-card,
+  .partner-logo-item[data-tier='bronze+'] .tech-week-partner-card {
+    --partner-sheen: #92562f;
+  }
+
+  .tech-week-partner-card::after {
+    position: absolute;
+    top: -45%;
+    bottom: -45%;
+    left: -70%;
+    width: 42%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--partner-sheen) var(--partner-sheen-strength), transparent),
+      transparent
+    );
+    content: '';
+    transform: skewX(-18deg);
+    transition: left 600ms ease;
+    pointer-events: none;
+  }
+
+  .tech-week-partner-card:hover {
+    box-shadow:
+      0 0 12px rgb(102 255 71 / 65%),
+      0 0 32px rgb(102 255 71 / 30%);
+    filter: brightness(1.35);
+  }
+
+  .partner-logo-item[data-tier='title'] .tech-week-partner-card:hover {
+    box-shadow:
+      0 0 12px rgb(255 255 255 / 58%),
+      0 0 30px rgb(255 255 255 / 28%);
+    filter: brightness(1.4);
+  }
+
+  .tech-week-partner-card:hover::after {
+    left: 130%;
+  }
+
   @keyframes marquee {
     0% {
       transform: translateX(0);
