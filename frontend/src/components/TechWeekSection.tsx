@@ -1,5 +1,4 @@
 import Reveal from './Reveal'
-import PartnerLogoBar from './PartnerLogoBar'
 
 const STATS = [
   {
@@ -63,10 +62,6 @@ export default function TechWeekSection() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delayMs={250} className="mb-12">
-          <PartnerLogoBar />
-        </Reveal>
 
         <Reveal delayMs={300}>
           <a

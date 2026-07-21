@@ -95,22 +95,13 @@
     background: #000;
   }
 
-  .partner-logo-item[data-tier='gold'] .tech-week-partner-card {
-    --partner-sheen: #ffd54a;
-  }
-
-  .partner-logo-item[data-tier='title'] .tech-week-partner-card {
-    --partner-sheen: #fff;
-    --partner-sheen-strength: 100%;
-  }
-
-  .partner-logo-item[data-tier='silver'] .tech-week-partner-card {
-    --partner-sheen: #dce3ea;
-  }
-
+  .partner-logo-item[data-tier='gold'] .tech-week-partner-card,
+  .partner-logo-item[data-tier='title'] .tech-week-partner-card,
+  .partner-logo-item[data-tier='silver'] .tech-week-partner-card,
   .partner-logo-item[data-tier='bronze'] .tech-week-partner-card,
   .partner-logo-item[data-tier='bronze+'] .tech-week-partner-card {
-    --partner-sheen: #92562f;
+    --partner-sheen: #dce3ea;
+    --partner-sheen-strength: 70%;
   }
 
   .tech-week-partner-card::after {

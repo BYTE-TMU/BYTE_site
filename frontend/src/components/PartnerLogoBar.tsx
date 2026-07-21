@@ -8,7 +8,7 @@ type PartnerLogoCardProps = {
 function PartnerLogoCard({ partner, interactive }: PartnerLogoCardProps) {
   const content = (
     <>
-      <div className="tech-week-partner-card flex h-24 w-24 items-center justify-center p-2 sm:h-28 sm:w-28">
+      <div className="tech-week-partner-card flex h-28 w-28 items-center justify-center p-2 sm:h-32 sm:w-32">
         <div className="tech-week-partner-logo-frame flex h-full w-full items-center justify-center p-2">
           <img
             src={partner.logo}
@@ -21,13 +21,13 @@ function PartnerLogoCard({ partner, interactive }: PartnerLogoCardProps) {
           />
         </div>
       </div>
-      <span className="mt-3 block w-24 truncate text-center text-sm font-semibold text-muted sm:w-28">
+      <span className="mt-3 block w-28 truncate text-center text-sm font-semibold text-muted sm:w-32">
         {partner.displayName ?? partner.name}
       </span>
     </>
   )
 
-  const className = 'partner-logo-item block w-24 shrink-0 sm:w-28'
+  const className = 'partner-logo-item block w-28 shrink-0 sm:w-32'
 
   if (partner.link && interactive) {
     return (
@@ -58,29 +58,23 @@ function PartnerLogoCard({ partner, interactive }: PartnerLogoCardProps) {
 
 export default function PartnerLogoBar() {
   return (
-    <div>
-      <h3 className="mb-7 text-xl font-bold tracking-tight sm:text-2xl">
-        Event Partners
-      </h3>
-
-      <div className="overflow-hidden py-6" aria-label="Event partners">
-        <div className="ticker-track partner-logo-track">
-          {[0, 1].map((copyIndex) => (
-            <div
-              key={copyIndex}
-              className="flex shrink-0 gap-10 pr-10 sm:gap-12 sm:pr-12"
-              aria-hidden={copyIndex === 1 ? true : undefined}
-            >
-              {EVENT_PARTNERS.map((partner) => (
-                <PartnerLogoCard
-                  key={partner.name}
-                  partner={partner}
-                  interactive={copyIndex === 0}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
+    <div className="overflow-hidden py-6" aria-label="Past sponsors and speakers">
+      <div className="ticker-track partner-logo-track">
+        {[0, 1].map((copyIndex) => (
+          <div
+            key={copyIndex}
+            className="flex shrink-0 gap-10 pr-10 sm:gap-12 sm:pr-12"
+            aria-hidden={copyIndex === 1 ? true : undefined}
+          >
+            {EVENT_PARTNERS.map((partner) => (
+              <PartnerLogoCard
+                key={partner.name}
+                partner={partner}
+                interactive={copyIndex === 0}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   )

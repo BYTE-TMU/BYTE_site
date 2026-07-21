@@ -2,6 +2,7 @@ import { getEvents, getProjects } from '../lib/api'
 import HeroSection from '../components/HeroSection'
 import StatsTicker from '../components/StatsTicker'
 import AboutSection from '../components/AboutSection.tsx'
+import SponsorsAndSpeakers from '../components/Sponsors&Speakers'
 import EventsSection from '../components/EventsSection'
 import ProjectsSection from '../components/ProjectsSection'
 import CyberSummitSection from '../components/CyberSummitSection'
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <StatsTicker />
       <AboutSection />
+      <SponsorsAndSpeakers />
       <CyberSummitSection />
       <EventsSection events={events} />
       <ProjectsSection projects={projects} />
