@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 
+const INTEREST_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdTXJmwg4CDZouFuuRKnW73MgkD35Jf0kDWm0RCjySXCTE1IA/viewform'
+
 const FEATURES = [
   {
     icon: '◈',
@@ -59,7 +62,15 @@ export default function CyberSummitSection() {
           ))}
         </div>
 
-        <Reveal delayMs={300}>
+        <Reveal delayMs={300} className="flex flex-wrap items-center gap-6">
+          <a
+            href={INTEREST_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
+          >
+            Register Interest →
+          </a>
           <Link
             to="/cybersecurity"
             className="font-mono text-sm tracking-widest text-accent uppercase transition-colors hover:text-white"

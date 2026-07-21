@@ -13,6 +13,12 @@ const SLIDES = [
   { id: 9,  label: 'Fireside Chat',     src: '/cyber_images/collage/real/dsc03984.jpg' },
   { id: 10, label: 'Panel Discussion',  src: '/cyber_images/collage/real/impact_dsc04031.jpg' },
   { id: 11, label: 'BYTE Team',         src: '/cyber_images/collage/real/impact_portrait.png' },
+  { id: 12, label: 'Workshop Session',      src: '/images/events/469d1ff9669e38ad11bdd91acdb34fa8.JPG' },
+  { id: 13, label: 'TMU Tech Week Coding',  src: '/images/events/DSC06369.JPG' },
+  { id: 14, label: 'TMU Tech Week Crowd',   src: '/images/events/DSC06372.JPG' },
+  { id: 15, label: 'BYTE Info Booth',       src: '/images/events/IMG_1646.JPG' },
+  { id: 16, label: 'Campus Outreach',       src: '/images/events/_DSC8954.jpeg' },
+  { id: 17, label: 'TMSU Street Fair Crew', src: '/images/events/tmsu-street-fair-2.jpeg' },
 ]
 
 const INTERVAL = 4000

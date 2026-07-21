@@ -6,6 +6,9 @@ import RegisterModal from '../components/RegisterModal'
 
 const SHOW_SPONSOR_TIERS = false
 
+const INTEREST_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdTXJmwg4CDZouFuuRKnW73MgkD35Jf0kDWm0RCjySXCTE1IA/viewform'
+
 interface ScheduleItem {
   time: string
   name: string
@@ -181,7 +184,7 @@ export default function CyberSummit() {
   const [tiersRef,    tiersInView]    = useInView(0.03)
   const [ctaRef,      ctaInView]      = useInView(0.1)
 
-  const [form, setForm] = useState({ name: '', email: '', role: 'Attendee', tier: '', message: '', company: '' })
+  const [form, setForm] = useState({ name: '', email: '', role: 'Sponsor', tier: '', message: '', company: '' })
   const [submitState, setSubmitState] = useState<SubmitState>('idle')
   const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
@@ -189,8 +192,8 @@ export default function CyberSummit() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  function goToRegister(role: 'Attendee' | 'Sponsor', tier = '') {
-    setForm(prev => ({ ...prev, role, tier }))
+  function goToRegister(tier = '') {
+    setForm(prev => ({ ...prev, tier }))
     setIsRegisterOpen(true)
   }
 
@@ -261,16 +264,17 @@ export default function CyberSummit() {
             ◈ &nbsp;October 3 – 4, 2026&nbsp; ◈
           </div>
           <div className={`reveal delay-[400ms] ${heroInView ? 'visible' : ''} flex flex-col items-center gap-4 sm:flex-row`}>
-            <button
-              type="button"
-              onClick={() => goToRegister('Attendee')}
+            <a
+              href={INTEREST_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
             >
               Register as Attendee
-            </button>
+            </a>
             <button
               type="button"
-              onClick={() => goToRegister('Sponsor')}
+              onClick={() => goToRegister()}
               className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
             >
               Become a Sponsor
@@ -551,7 +555,7 @@ export default function CyberSummit() {
                 </ul>
                 <button
                   type="button"
-                  onClick={() => goToRegister('Sponsor', tier.name)}
+                  onClick={() => goToRegister(tier.name)}
                   className="mt-8 block w-full border border-[#333333] py-2 text-center font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:border-accent hover:text-accent"
                 >
                   Inquire
@@ -579,13 +583,14 @@ export default function CyberSummit() {
                   Join 1,250+ attendees at Toronto's premier cybersecurity event. Learn from industry leaders, compete in CTF challenges, and connect with your next employer.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => goToRegister('Attendee')}
+              <a
+                href={INTEREST_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
               >
                 Register Interest
-              </button>
+              </a>
             </div>
 
             <div className={`reveal delay-150 ${ctaInView ? 'visible' : ''} flex flex-col items-start justify-between gap-8 bg-black p-12`}>
@@ -598,7 +603,7 @@ export default function CyberSummit() {
               </div>
               <button
                 type="button"
-                onClick={() => goToRegister('Sponsor')}
+                onClick={() => goToRegister()}
                 className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
               >
                 Contact Us

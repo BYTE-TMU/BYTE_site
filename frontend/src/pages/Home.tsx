@@ -19,9 +19,9 @@ export default function Home() {
       <StatsTicker />
       <AboutSection />
       <SponsorsAndSpeakers />
+      <CyberSummitSection />
       <EventsSection events={events} />
       <ProjectsSection projects={projects} />
-      <CyberSummitSection />
       <TechWeekSection />
       <CTASection />
     </>

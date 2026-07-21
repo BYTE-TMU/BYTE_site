@@ -106,39 +106,22 @@ export default function RegisterModal({ open, form, submitState, buttonLabel, ti
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label htmlFor="summit-role" className="font-mono text-xs tracking-widest text-muted uppercase">
-                I am a...
+              <label htmlFor="summit-tier" className="font-mono text-xs tracking-widest text-muted uppercase">
+                Tier Interested In
               </label>
               <select
-                id="summit-role"
-                name="role"
-                value={form.role}
+                id="summit-tier"
+                name="tier"
+                value={form.tier}
                 onChange={onChange}
                 className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-accent"
               >
-                <option value="Attendee">Attendee</option>
-                <option value="Sponsor">Sponsor</option>
+                <option value="">Not sure yet</option>
+                {tiers.map(tier => (
+                  <option key={tier.name} value={tier.name}>{tier.name}</option>
+                ))}
               </select>
             </div>
-            {form.role === 'Sponsor' && (
-              <div className="flex flex-col gap-1">
-                <label htmlFor="summit-tier" className="font-mono text-xs tracking-widest text-muted uppercase">
-                  Tier Interested In
-                </label>
-                <select
-                  id="summit-tier"
-                  name="tier"
-                  value={form.tier}
-                  onChange={onChange}
-                  className="border border-[#222222] bg-[#111111] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-accent"
-                >
-                  <option value="">Not sure yet</option>
-                  {tiers.map(tier => (
-                    <option key={tier.name} value={tier.name}>{tier.name}</option>
-                  ))}
-                </select>
-              </div>
-            )}
             <div className="flex flex-col gap-1">
               <label htmlFor="summit-message" className="font-mono text-xs tracking-widest text-muted uppercase">
                 Message (Optional)
