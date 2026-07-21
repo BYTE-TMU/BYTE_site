@@ -12,6 +12,42 @@ const imagePath = (filename: string) =>
 
 export const EVENT_PARTNERS: readonly EventPartner[] = [
   {
+    name: 'Wealthsimple',
+    tier: 'Silver',
+    logo: imagePath('wealthsimpleLogo.png'),
+  },
+  {
+    name: 'Microsoft',
+    tier: 'Silver',
+    logo: imagePath('Microsoft_logo.webp'),
+  },
+  {
+    name: 'AMD',
+    tier: 'Silver',
+    logo: imagePath('amd_logo.png'),
+  },
+  {
+    name: 'Pfizer',
+    tier: 'Silver',
+    logo: imagePath('Pfizer_(2021).svg'),
+  },
+  {
+    name: 'IBM',
+    tier: 'Silver',
+    logo: imagePath('IBM_logo.svg.webp'),
+  },
+  {
+    name: 'TCS',
+    displayName: 'Tata Consultancy Services',
+    tier: 'Silver',
+    logo: imagePath('tcs_logo.webp'),
+  },
+  {
+    name: 'Manulife',
+    tier: 'Silver',
+    logo: imagePath('Manulife_logo.svg.webp'),
+  },
+  {
     name: 'Faculty of Science',
     tier: 'Gold',
     logo: imagePath('TMU_logo.png'),
