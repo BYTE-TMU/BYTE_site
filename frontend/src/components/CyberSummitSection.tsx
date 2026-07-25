@@ -37,7 +37,7 @@ export default function CyberSummitSection() {
             TMU CYBER<br />SUMMIT
           </h2>
           <span className="self-start border border-[#222222] px-3 py-1.5 font-mono text-xs tracking-widest text-muted uppercase md:self-center">
-            Coming Fall 2025
+            Coming Fall 2026
           </span>
         </Reveal>
 
