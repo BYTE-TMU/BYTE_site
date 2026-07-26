@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import ChatWidget from '../chatbot/ChatWidget'
 import PageTransition from './components/PageTransition'
 import ScrollToTop from './components/ScrollToTop'
+import IntroVideo from './components/IntroVideo'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import Projects from './pages/Projects'
@@ -19,15 +20,20 @@ import CyberSummit from './pages/CyberSummit'
 
 export default function App() {
   const [showSnake, setShowSnake] = useState(false)
+  const [introDone, setIntroDone] = useState(false)
   useKonamiCode(() => setShowSnake(true))
 
   return (
     <div className="min-h-screen bg-black text-white">
       <ScrollToTop />
       <PageTransition />
+      <IntroVideo onFinish={() => setIntroDone(true)} />
       <Navbar onEasterEgg={() => setShowSnake(true)} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* The key remounts Home when the intro lifts. Without it the hero typewriter and
+            every scroll reveal would run to completion behind the overlay, and the intro
+            would fade away onto a page that had already finished animating. */}
+        <Route path="/" element={<Home key={introDone ? 'post-intro' : 'pre-intro'} />} />
         <Route path="/events" element={<Events />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:slug" element={<ProjectDetail />} />
