@@ -130,7 +130,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Naetri_Niranjan.png',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'marketing-assoc-001', 'marketing-assoc-005', 'social-media-mgr-001'],
+    connections: ['pres-001', 'head-strat-001', 'marketing-assoc-001', 'marketing-assoc-005', 'social-media-mgr-001', 'photographer-001'],
     email: 'naetri.niranjan@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/naetri-niranjan/'
   },
@@ -510,6 +510,18 @@ const allTeamMembers: Member[] = [
     connections: ['vp-operations-001'],
     email: 'hbarakat@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/hussein-barakat-07a67a203/'
+  },
+  {
+    id: 'photographer-001',
+    name: 'Ajmain Hyder',
+    position: 'Photographer',
+    roleDescription: 'Captures BYTE\'s events and community on camera, building the visual archive that brings our workshops, hackathons, and socials to life long after they wrap.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-marketing-001'],
+    email: 'ajmain.hyder@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/ajhdr'
   }
 ]
 
