@@ -82,7 +82,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Arshiya_Das.jpeg',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'events-assoc-002', 'events-assoc-004'],
+    connections: ['pres-001', 'head-strat-001', 'events-assoc-002', 'events-assoc-004', 'events-assoc-005'],
     email: 'arshiya.das@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/arshiya-das-b97209331/'
   },
@@ -460,6 +460,18 @@ const allTeamMembers: Member[] = [
     connections: ['dir-frontend-001'],
     email: 'rhea.braich@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/rhea-braich06/'
+  },
+  {
+    id: 'events-assoc-005',
+    name: 'Evan Roy-DiClemente',
+    position: 'Events Associate',
+    roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-events-001'],
+    email: 'eroydiclemente@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/evan-roy-diclemente/'
   }
 ]
 
