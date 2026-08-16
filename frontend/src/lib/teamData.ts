@@ -82,7 +82,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Arshiya_Das.jpeg',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'events-assoc-002', 'events-assoc-004', 'events-assoc-005'],
+    connections: ['pres-001', 'head-strat-001', 'events-assoc-002', 'events-assoc-004', 'events-assoc-005', 'events-assoc-006'],
     email: 'arshiya.das@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/arshiya-das-b97209331/'
   },
@@ -106,7 +106,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Parth Pawa_7.JPG',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'operations-assoc-002', 'operations-assoc-003'],
+    connections: ['pres-001', 'head-strat-001', 'operations-assoc-002', 'operations-assoc-003', 'operations-assoc-004'],
     email: 'parth.pawa@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/parth-pawa-7ab14a222/'
   },
@@ -154,24 +154,12 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Venujan.jpg',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'corp-rel-assoc-002', 'corp-rel-assoc-003'],
+    connections: ['pres-001', 'head-strat-001', 'corp-rel-assoc-002', 'corp-rel-assoc-003', 'corp-rel-assoc-004'],
     email: 'Vsuthakaran@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/venujan-s'
   },
 
   // Strategic Team Members (not in Leadership)
-  {
-    id: 'marketing-assoc-001',
-    name: 'Shahd Alkadi',
-    position: 'Marketing Associate',
-    roleDescription: 'Creates engaging content and graphics that communicate BYTE\'s message, helping spread the word about our events and initiatives to the TMU community.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/Shahd_Alkadi.jpg',
-    rank: 60,
-    categories: ['Strategic Team'],
-    connections: ['vp-marketing-001'],
-    email: 'shahd.alkadi@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/shahd-alkadi/'
-  },
   {
     id: 'events-assoc-002',
     name: 'Areej Tariq',
@@ -396,10 +384,12 @@ const allTeamMembers: Member[] = [
     name: 'Laboni Saha',
     position: 'Social Media Manager',
     roleDescription: 'Manages BYTE\'s social media presence, growing our online community and keeping members engaged with timely, on-brand content.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    profilePicUrl: '/images/BYTE Website - Member Photos/laboni_saha.jpg',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['vp-marketing-001']
+    connections: ['vp-marketing-001'],
+    email: 'laboni.saha@torontomu.ca',
+    linkedInUrl : 'https://www.linkedin.com/in/laboni-saha0721?utm_source=share_via&utm_content=profile&utm_medium=member_ios'
   },
   {
     id: 'operations-assoc-003',
@@ -411,7 +401,7 @@ const allTeamMembers: Member[] = [
     categories: ['Strategic Team'],
     connections: ['vp-operations-001'],
     email: 's71khan@torontomu.ca',
-    linkedInUrl: 'https://www.linkedin.com/in/sarah-khan-896a3b38a'
+    linkedInUrl: 'https://www.linkedin.com/in/sarahkhan00/'
   },
   {
     id: 'events-assoc-004',
@@ -472,6 +462,54 @@ const allTeamMembers: Member[] = [
     connections: ['vp-events-001'],
     email: 'eroydiclemente@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/evan-roy-diclemente/'
+  },
+  {
+    id: 'events-assoc-006',
+    name: 'Po Po Thit',
+    position: 'Events Associate',
+    roleDescription: 'Helps bring BYTE\'s events to life, handling logistics and coordination to ensure every workshop, hackathon, and networking session runs seamlessly.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/Po_Po_Thit.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-events-001'],
+    email: 'pthit@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/popothit/'
+  },
+  {
+    id: 'corp-rel-assoc-004',
+    name: 'Aleena Zaidi',
+    position: 'Corporate Relations Associate',
+    roleDescription: 'Builds partnerships with industry sponsors and companies, securing opportunities and resources that benefit BYTE members and our tech community.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-corp-rel-001'],
+    email: 'aleena.zaidi@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/aleena-zaidi-1449133a7/'
+  },
+  {
+    id: 'aiml-eng-002',
+    name: 'Shawn Truong',
+    position: 'AI/ML Engineer',
+    roleDescription: 'Develops machine learning models and AI solutions for BYTE\'s projects, applying data science techniques to solve real-world problems.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
+    rank: 50,
+    categories: ['Technical Team'],
+    connections: ['dir-aiml-001'],
+    email: 'shawn.truong@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/shawntruong/'
+  },
+  {
+    id: 'operations-assoc-004',
+    name: 'Hussein Barakat',
+    position: 'Operations Associate',
+    roleDescription: 'Keeps BYTE\'s internal operations running smoothly, managing logistics and administrative tasks that power our day-to-day activities.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/Hussein_Barakat.png',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-operations-001'],
+    email: 'hbarakat@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/hussein-barakat-07a67a203/'
   }
 ]
 
