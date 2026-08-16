@@ -55,7 +55,7 @@ const EVENTS: Event[] = [
     title: 'TMU Cyber Summit',
     category: 'CYBERSECURITY SUMMIT',
     date: 'OCT 2026',
-    description: 'Toronto\'s premier student cybersecurity conference — two days of hands-on workshops, a live CTF competition, and keynote speakers from industry, in downtown Toronto.',
+    description: 'Toronto\'s premier student cybersecurity conference: two days of hands-on workshops, a live CTF competition, and keynote speakers from industry, in downtown Toronto.',
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdTXJmwg4CDZouFuuRKnW73MgkD35Jf0kDWm0RCjySXCTE1IA/viewform',
     detailsPath: '/cybersecurity',
   },
@@ -64,14 +64,14 @@ const EVENTS: Event[] = [
     title: 'BYTE Pitch Day',
     category: 'PITCH EVENT',
     date: 'Postponed',
-    description: 'Have an idea for a project you\'d love to build? Pitch it at BYTE Pitch Day — TMU students will present original project ideas for the chance to have them developed during the Fall 2026 semester.'
+    description: 'Have an idea for a project you\'d love to build? Pitch it at BYTE Pitch Day: TMU students will present original project ideas for the chance to have them developed during the Fall 2026 semester.'
   },
   {
     id: '2',
     title: 'OpenClaw 2026',
     category: 'HACKATHON',
     date: 'MAY 2026',
-    description: 'Hackathons test your builds. This one tested everything else too. When the lights went out mid-event, we found a new spot and got back to it — 200+ attendees, incredible ideas, real connections, and deserving winners. Co-organized with @cryptochicks.ca.',
+    description: 'Hackathons test your builds. This one tested everything else too. When the lights went out mid-event, we found a new spot and got back to it: 200+ attendees, incredible ideas, real connections, and deserving winners. Co-organized with @cryptochicks.ca.',
   },
   {
     id: '3',
@@ -113,7 +113,7 @@ const ANNOUNCEMENTS: Announcement[] = [
   },
   {
     id: '2',
-    title: 'BYTE Demo Day — SecureBYTE Showcase',
+    title: 'BYTE Demo Day: SecureBYTE Showcase',
     date: 'DEC 1, 2025',
     imageUrl: '/images/events/Demoday.JPG',
     body: 'We hosted an incredible Demo Day featuring our flagship SecureBYTE cybersecurity project! Thank you to everyone who attended our panel discussion on the future of security solutions and innovation at BYTE.',

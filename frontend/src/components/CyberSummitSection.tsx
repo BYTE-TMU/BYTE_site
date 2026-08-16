@@ -13,7 +13,7 @@ const FEATURES = [
   {
     icon: '⬡',
     title: 'CTF COMPETITION',
-    desc: 'Capture The Flag challenges for all skill levels — prizes for top teams.',
+    desc: 'Capture The Flag challenges for all skill levels, with prizes for top teams.',
   },
   {
     icon: '◎',
@@ -43,7 +43,7 @@ export default function CyberSummitSection() {
 
         <Reveal delayMs={200}>
           <p className="mb-12 max-w-lg text-lg text-muted">
-            Toronto's premier student cybersecurity conference — workshops, a live CTF, and keynote speakers from industry.
+            Toronto's premier student cybersecurity conference, workshops, a live CTF, and keynote speakers from industry.
           </p>
         </Reveal>
 

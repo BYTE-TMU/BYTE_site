@@ -39,9 +39,9 @@ const STATS = [
 const DAY1: ScheduleItem[] = [
   { time: '9:00 AM',  name: 'Registration & Check-In',            desc: 'Pick up your badge and connect with fellow attendees' },
   { time: '10:00 AM', name: 'Opening Keynote',                    desc: 'Industry leader sets the stage for two days of exploration' },
-  { time: '11:30 AM', name: 'Cybersecurity Workshops — Block 1',  desc: 'Hands-on sessions: web vulnerabilities, offensive tools, threat modelling' },
+  { time: '11:30 AM', name: 'Cybersecurity Workshops: Block 1',  desc: 'Hands-on sessions: web vulnerabilities, offensive tools, threat modelling' },
   { time: '1:00 PM',  name: 'Lunch & Career Fair',                desc: 'Meet recruiters from Canada\'s top cybersecurity organizations' },
-  { time: '3:00 PM',  name: 'Cybersecurity Workshops — Block 2',  desc: 'Deep-dives into defensive security, forensics, and cloud security' },
+  { time: '3:00 PM',  name: 'Cybersecurity Workshops: Block 2',  desc: 'Deep-dives into defensive security, forensics, and cloud security' },
   { time: '5:00 PM',  name: 'Networking Reception',               desc: 'Informal mixer with speakers, sponsors, and attendees' },
 ]
 
@@ -298,7 +298,7 @@ export default function CyberSummit() {
                 TMU Cyber Summit is a two-day, student-led cybersecurity conference in downtown Toronto, connecting ambitious students and early career professionals with Canada's top cybersecurity organizations.
               </p>
               <p className={`reveal delay-300 ${aboutInView ? 'visible' : ''} leading-relaxed text-muted`}>
-                The conference brings together workshops, panels, recruiting opportunities, technical challenges, and an exclusive closing gala — all organized by BYTE at Toronto Metropolitan University.
+                The conference brings together workshops, panels, recruiting opportunities, technical challenges, and an exclusive closing gala, all organized by BYTE at Toronto Metropolitan University.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -338,7 +338,7 @@ export default function CyberSummit() {
             ))}
           </div>
           <p className={`reveal delay-300 ${statsInView ? 'visible' : ''} mt-4 text-center text-xs text-muted`}>
-            Stats from TMU Tech Week — the flagship event series organized by BYTE
+            Stats from TMU Tech Week, the flagship event series organized by BYTE
           </p>
         </div>
       </section>
@@ -408,7 +408,7 @@ export default function CyberSummit() {
             Our Demographic
           </h2>
           <p className={`reveal delay-200 ${demoInView ? 'visible' : ''} mb-12 max-w-2xl text-muted leading-relaxed`}>
-            TMU Cyber Summit gives partners direct access to a highly engaged, diverse technical talent pool — designed for authentic recruiting conversations and long-term relationship building.
+            TMU Cyber Summit gives partners direct access to a highly engaged, diverse technical talent pool, designed for authentic recruiting conversations and long-term relationship building.
           </p>
 
           <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">

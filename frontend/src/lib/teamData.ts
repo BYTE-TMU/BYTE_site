@@ -114,7 +114,7 @@ const allTeamMembers: Member[] = [
     id: 'vp-growth-001',
     name: 'Areej Ubaid',
     position: 'Chief of Strategy',
-    roleDescription: 'Oversees BYTE\'s strategic initiatives including events, marketing, growth, and operations—ensuring our non-technical teams work in harmony to amplify our impact.',
+    roleDescription: 'Oversees BYTE\'s strategic initiatives including events, marketing, growth, and operations, ensuring our non-technical teams work in harmony to amplify our impact.',
     profilePicUrl: '/images/BYTE Website - Member Photos/areej_ubaid.png',
     rank: 85,
     categories: ['Leadership', 'Strategic Team'],

@@ -69,7 +69,7 @@ export default function HeroSection() {
         {renderTyping(currentTyping, wordIndex)}
       </h1>
       <p className="animate-fade-up anim-delay-500 mb-10 max-w-xl text-lg text-muted md:text-xl">
-        We build, research, and explore AI together. Open to all TMU students — no experience required.
+        We build, research, and explore AI together. Open to all TMU students, no experience required.
       </p>
       <div className="animate-fade-up anim-delay-600 flex flex-col items-center gap-4 sm:flex-row">
         <a

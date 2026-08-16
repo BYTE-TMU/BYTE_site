@@ -24,7 +24,7 @@ export default function Events() {
         <p className="neon-green-text mb-2 font-mono text-sm tracking-widest uppercase">What We Do</p>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">Events</h1>
         <p className="mt-4 text-lg text-muted">
-          Workshops, hackathons, panels, and socials — there's always something happening at BYTE.
+          Workshops, hackathons, panels, and socials. There's always something happening at BYTE.
         </p>
       </Reveal>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

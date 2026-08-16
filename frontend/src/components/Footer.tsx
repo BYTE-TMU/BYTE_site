@@ -109,10 +109,10 @@ export default function Footer() {
         }}
       >
         <span className="uv-ink-base">
-          Our name holds the key. Press it five times — quickly now. Something stirs within.
+          Our name holds the key. Press it five times, quickly now. Something stirs within.
         </span>
         <span className="uv-ink-reveal" aria-hidden="true">
-          Our name holds the key. Press it five times — quickly now. Something stirs within.
+          Our name holds the key. Press it five times, quickly now. Something stirs within.
         </span>
       </p>
     </footer>

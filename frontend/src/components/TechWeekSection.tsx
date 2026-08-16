@@ -44,7 +44,7 @@ export default function TechWeekSection() {
 
         <Reveal delayMs={200}>
           <p className="mb-12 max-w-lg text-lg text-muted">
-            BYTE joined 10+ student clubs and industry leaders for a university-wide celebration of technology, innovation, and creativity across TMU's campus. The week has wrapped — here's a look back.
+            BYTE joined 10+ student clubs and industry leaders for a university-wide celebration of technology, innovation, and creativity across TMU's campus. The week has wrapped. Here's a look back.
           </p>
         </Reveal>
 

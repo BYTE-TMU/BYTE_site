@@ -13,7 +13,7 @@ export default function CTASection() {
           Ready to Build?
         </h2>
         <p className={`reveal delay-200 ${inView ? 'visible' : ''} mb-10 text-lg text-muted`}>
-          BYTE is open to all TMU students. No experience required — just curiosity and a willingness to ship.
+          BYTE is open to all TMU students. No experience required, just curiosity and a willingness to ship.
         </p>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSdhPrWMuOerfjza3Wb_6noIe_of1Y_rr3Kmb5pi0l7k3N62QA/viewform"

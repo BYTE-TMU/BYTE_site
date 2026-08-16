@@ -64,7 +64,7 @@ export default function AboutSection() {
               BYTE is TMU's open-source student group that focuses on AI. By joining us, you'll get to gain hands-on experience in real-world AI development by working collaboratively on projects that make a difference.
             </p>
             <p>
-              From weekly workshops to semester-long project teams, we give every TMU student the chance to go from zero to shipped — no experience required.
+              From weekly workshops to semester-long project teams, we give every TMU student the chance to go from zero to shipped, no experience required.
             </p>
           </div>
         </div>
