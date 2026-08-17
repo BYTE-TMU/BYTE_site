@@ -118,7 +118,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/areej_ubaid.png',
     rank: 85,
     categories: ['Leadership', 'Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'growth-assoc-001', 'growth-assoc-002'],
+    connections: ['pres-001', 'head-strat-001', 'growth-assoc-001', 'growth-assoc-002', 'community-assoc-001'],
     email: 'areej.ubaid@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/areej-ubaid/'
   },
@@ -522,6 +522,18 @@ const allTeamMembers: Member[] = [
     connections: ['vp-marketing-001'],
     email: 'ajmain.hyder@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/ajhdr'
+  },
+  {
+    id: 'community-assoc-001',
+    name: 'Ansugan Subramaniam',
+    position: 'Community Associate',
+    roleDescription: 'Builds and nurtures BYTE\'s member community, running the everyday touchpoints that keep students connected, welcomed, and coming back.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-growth-001'],
+    email: 'ansugan.subramaniam@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/ansugan-subramaniam'
   }
 ]
 
