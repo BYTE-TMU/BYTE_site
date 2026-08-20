@@ -94,7 +94,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/vashisht_pawa.png',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'finance-assoc-001', 'finance-assoc-002'],
+    connections: ['pres-001', 'head-strat-001', 'finance-assoc-001', 'finance-assoc-002', 'finance-assoc-003'],
     email: 'vpawa@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/vpawa/'
   },
@@ -130,7 +130,7 @@ const allTeamMembers: Member[] = [
     profilePicUrl: '/images/BYTE Website - Member Photos/Naetri_Niranjan.png',
     rank: 80,
     categories: ['Strategic Team'],
-    connections: ['pres-001', 'head-strat-001', 'marketing-assoc-001', 'marketing-assoc-005', 'social-media-mgr-001', 'photographer-001'],
+    connections: ['pres-001', 'head-strat-001', 'marketing-assoc-001', 'marketing-assoc-005', 'social-media-mgr-001', 'photographer-001', 'graphic-designer-001'],
     email: 'naetri.niranjan@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/naetri-niranjan/'
   },
@@ -248,7 +248,7 @@ const allTeamMembers: Member[] = [
     name: 'Karunya Purohit',
     position: 'Digital Media Manager',
     roleDescription: 'Manages BYTE\'s digital media presence, creating and curating content across social platforms to engage the TMU tech community and showcase our initiatives.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    profilePicUrl: '/images/BYTE Website - Member Photos/karunya.jpg',
     rank: 80,
     categories: ['Strategic Team'],
     connections: ['vp-marketing-001'],
@@ -534,6 +534,30 @@ const allTeamMembers: Member[] = [
     connections: ['vp-growth-001'],
     email: 'ansugan.subramaniam@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/ansugan-subramaniam'
+  },
+  {
+    id: 'graphic-designer-001',
+    name: 'Ranjit Khela',
+    position: 'Graphic Designer',
+    roleDescription: 'Designs the visual identity behind BYTE\'s events and campaigns, turning ideas into the posters, graphics, and brand assets our community sees first.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/ranjit.jpeg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-marketing-001'],
+    email: 'rkhela@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/ranjit-khela-a697292b1'
+  },
+  {
+    id: 'finance-assoc-003',
+    name: 'Hasti Inanlooyeganji',
+    position: 'Finance Associate',
+    roleDescription: 'Supports BYTE\'s financial operations, assisting with budgeting, expense tracking, and ensuring our resources are used effectively.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-finance-001'],
+    email: 'Hasti.Inanlooyeganji@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/hasti-inanlooyeganji-a29962365'
   }
 ]
 
