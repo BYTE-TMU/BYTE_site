@@ -57,12 +57,12 @@
   {
     "id": "strategic-team",
     "page": "/team",
-    "text": "BYTE\nStrategic Associates:\nShahd Alkadi, Bianca Tetcu (Marketing)\nNyra Thakur, Abanshaji Lukose (Growth)\nUmar Muhammad, Angelina Tibayan (Finance)\nSarah Khan, Sabesen Pathmanathan (Operations)\nRonyth Buenaventura (Events)\nYerin Kim, Aayan Areejo (Corporate Relations)"
+    "text": "BYTE\nStrategic Associates:\nBianca Tetcu (Marketing)\nNyra Thakur, Abanshaji Lukose (Growth)\nUmar Muhammad, Angelina Tibayan (Finance)\nSarah Khan, Sabesen Pathmanathan (Operations)\nRonyth Buenaventura (Events)\nYerin Kim, Aayan Areejo (Corporate Relations)"
   },
   {
     "id": "technical-team",
     "page": "/team",
-    "text": "BYTE technical team:\n\nEngineers:\n- Ethan Cha — Frontend Engineer\n- Anthony Ma — Frontend Engineer\n- Stephen Nguyen — Frontend Engineer\n- Akbar Ali — AI/ML Engineer\n- Maha Baig — Backend Engineer\n- Elena Kim — Director of Backend Engineer\n- Nancy Maliackel — Director of AI/ML Engineering\n- Johan Philip — Director of Frontend Engineering\n- Kashmala Fareed — Backend Engineer"
+    "text": "BYTE technical team:\n\nEngineers:\n- Ethan Cha — Frontend Engineer\n- Stephen Nguyen — Frontend Engineer\n- Akbar Ali — AI/ML Engineer\n- Maha Baig — Backend Engineer\n- Xena Patel — Backend Engineer\n- Elena Kim — Director of Backend Engineer\n- Nancy Maliackel — Director of AI/ML Engineering\n- Johan Philip — Director of Frontend Engineering"
   },
   {
     "id": "cyber-summit-overview",

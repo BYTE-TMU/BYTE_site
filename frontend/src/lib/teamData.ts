@@ -558,6 +558,18 @@ const allTeamMembers: Member[] = [
     connections: ['vp-finance-001'],
     email: 'Hasti.Inanlooyeganji@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/hasti-inanlooyeganji-a29962365'
+  },
+  {
+    id: 'backend-eng-003',
+    name: 'Xena Patel',
+    position: 'Backend Engineer',
+    roleDescription: 'Builds robust server-side systems and APIs for BYTE\'s projects, ensuring our applications are fast, secure, and scalable.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
+    rank: 50,
+    categories: ['Technical Team'],
+    connections: ['backend-eng-002'],
+    email: 'xena.patel@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/xena-patel-b13a0533b'
   }
 ]
 
