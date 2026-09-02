@@ -560,6 +560,18 @@ const allTeamMembers: Member[] = [
     linkedInUrl: 'https://www.linkedin.com/in/hasti-inanlooyeganji-a29962365'
   },
   {
+    id: 'community-assoc-002',
+    name: 'Asal Rajabzadeh',
+    position: 'Community Associate',
+    roleDescription: 'Builds and nurtures BYTE\'s member community, running the everyday touchpoints that keep students connected, welcomed, and coming back.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/strategy_image_default.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-growth-001'],
+    email: 'asal.rajabzadeh@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/asal-rajabzadeh-a819202a7'
+  },
+  {
     id: 'backend-eng-003',
     name: 'Xena Patel',
     position: 'Backend Engineer',

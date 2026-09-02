@@ -57,12 +57,12 @@
   {
     "id": "strategic-team",
     "page": "/team",
-    "text": "BYTE\nStrategic Associates:\nBianca Tetcu (Marketing)\nNyra Thakur, Abanshaji Lukose (Growth)\nUmar Muhammad, Angelina Tibayan (Finance)\nSarah Khan, Sabesen Pathmanathan (Operations)\nRonyth Buenaventura (Events)\nYerin Kim, Aayan Areejo (Corporate Relations)"
+    "text": "BYTE\nStrategic Associates:\nMarketing: Bianca Tetcu (Marketing Associate), Ajmain Hyder (Photographer), Ranjit Khela (Graphic Designer)\nGrowth & Community: Nyra Thakur, Abanshaji Lukose (Growth Associates); Ansugan Subramaniam, Asal Rajabzadeh (Community Associates)\nFinance: Umar Muhammad, Angelina Tibayan, Hasti Inanlooyeganji (Finance Associates)\nOperations: Sarah Khan, Sabesen Pathmanathan, Hussein Barakat (Operations Associates)\nEvents: Ronyth Buenaventura, Evan Roy-DiClemente, Po Po Thit (Events Associates)\nCorporate Relations: Yerin Kim, Aayan Areejo, Aleena Zaidi (Corporate Relations Associates)"
   },
   {
     "id": "technical-team",
     "page": "/team",
-    "text": "BYTE technical team:\n\nEngineers:\n- Ethan Cha — Frontend Engineer\n- Stephen Nguyen — Frontend Engineer\n- Akbar Ali — AI/ML Engineer\n- Maha Baig — Backend Engineer\n- Xena Patel — Backend Engineer\n- Elena Kim — Director of Backend Engineer\n- Nancy Maliackel — Director of AI/ML Engineering\n- Johan Philip — Director of Frontend Engineering"
+    "text": "BYTE technical team:\n\nEngineers:\n- Ethan Cha — Frontend Engineer\n- Stephen Nguyen — Frontend Engineer\n- Rhea Braich — Frontend Engineer\n- Akbar Ali — AI/ML Engineer\n- Shawn Truong — AI/ML Engineer\n- Maha Baig — Backend Engineer\n- Xena Patel — Backend Engineer\n- Elena Kim — Director of Backend Engineer\n- Nancy Maliackel — Director of AI/ML Engineering\n- Johan Philip — Director of Frontend Engineering"
   },
   {
     "id": "cyber-summit-overview",
