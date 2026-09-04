@@ -12,7 +12,6 @@ const INTEREST_FORM_URL =
 interface ScheduleItem {
   time: string
   name: string
-  desc: string
 }
 
 interface SponsorTier {
@@ -37,21 +36,29 @@ const STATS = [
 ]
 
 const DAY1: ScheduleItem[] = [
-  { time: '9:00 AM',  name: 'Registration & Check-In',            desc: 'Pick up your badge and connect with fellow attendees' },
-  { time: '10:00 AM', name: 'Opening Keynote',                    desc: 'Industry leader sets the stage for two days of exploration' },
-  { time: '11:30 AM', name: 'Cybersecurity Workshops: Block 1',  desc: 'Hands-on sessions: web vulnerabilities, offensive tools, threat modelling' },
-  { time: '1:00 PM',  name: 'Lunch & Career Fair',                desc: 'Meet recruiters from Canada\'s top cybersecurity organizations' },
-  { time: '3:00 PM',  name: 'Cybersecurity Workshops: Block 2',  desc: 'Deep-dives into defensive security, forensics, and cloud security' },
-  { time: '5:00 PM',  name: 'Networking Reception',               desc: 'Informal mixer with speakers, sponsors, and attendees' },
+  { time: '9:00 AM – 9:45 AM',   name: 'Registration, Breakfast and Program Commencement' },
+  { time: '9:45 AM – 10:00 AM',  name: 'Opening Keynote' },
+  { time: '10:00 AM – 10:15 AM', name: 'Introduction to Cybersecurity' },
+  { time: '10:15 AM – 11:45 AM', name: 'Workshop: Ironclad Defense – Security Operations Centre' },
+  { time: '12:00 PM – 1:00 PM',  name: 'Panel: Unpacking the Intern Experience' },
+  { time: '1:00 PM – 1:45 PM',   name: 'Lunch' },
+  { time: '1:45 PM – 2:45 PM',   name: 'Open Networking / Tabling Session 1' },
+  { time: '3:00 PM – 3:30 PM',   name: 'Talk: The Awaited Intersection: AI and Security' },
+  { time: '3:30 PM – 4:30 PM',   name: 'Workshop: Cloud Elevated: Balancing Speed, Scale & Security' },
+  { time: '11:45 AM – 4:30 PM',  name: 'SiberX Escape Room' },
+  { time: '4:30 PM – 5:00 PM',   name: 'Closing Announcement' },
 ]
 
 const DAY2: ScheduleItem[] = [
-  { time: '9:30 AM',  name: 'Industry Panel',             desc: 'Professionals discuss careers, emerging threats, and red team operations' },
-  { time: '11:00 AM', name: 'Capture the Flag Challenge', desc: 'Live CTF across crypto, forensics, web exploitation, and binary analysis' },
-  { time: '1:00 PM',  name: 'Lunch Break',                desc: 'Recharge before the final push' },
-  { time: '2:00 PM',  name: 'CTF Finals & Judging',       desc: 'Top teams compete for prizes as judges evaluate solutions' },
-  { time: '3:30 PM',  name: 'Closing Keynote',            desc: 'Reflections on the summit and the future of cybersecurity' },
-  { time: '5:00 PM',  name: 'Gala Dinner & Award Ceremony', desc: 'Celebrate top CTF teams and summit highlights' },
+  { time: '9:00 AM – 10:00 AM',  name: 'Registration, Breakfast and Program Commencement' },
+  { time: '10:00 AM – 10:45 AM', name: 'Panel: Corporate Cybersecurity Panel' },
+  { time: '11:00 AM – 1:00 PM',  name: 'Know Your Enemy: Adversary Emulation' },
+  { time: '1:00 PM – 1:45 PM',   name: 'Lunch' },
+  { time: '2:00 PM – 3:30 PM',   name: 'TMU Cyber Summit CTF' },
+  { time: '3:30 PM – 3:45 PM',   name: 'Transfer-to-Gala Announcement' },
+  { time: '6:30 PM – 6:45 PM',   name: 'Awards Ceremony (Gala at the Hotel)' },
+  { time: '6:45 PM – 7:00 PM',   name: 'Closing Keynote (Gala at the Hotel)' },
+  { time: '7:00 PM – 9:00 PM',   name: 'Dinner (Gala at the Hotel)' },
 ]
 
 const MAJORS = [
@@ -357,18 +364,14 @@ export default function CyberSummit() {
             <div className={`reveal delay-200 ${agendaInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8`}>
               <p className="mb-1 font-mono text-xs tracking-widest text-muted uppercase">Day 1</p>
               <h3 className="mb-8 text-xl font-black text-accent tracking-tight">Learn &amp; Connect</h3>
-              <ul className="space-y-6">
+              <ul className="-mx-2 divide-y divide-[#222222]">
                 {DAY1.map((item) => (
-                  <li key={item.name} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                      <span className="mt-1 w-px flex-1 bg-[#222222]" />
-                    </div>
-                    <div className="pb-2">
-                      <p className="mb-0.5 font-mono text-xs text-muted">{item.time}</p>
-                      <p className="font-medium text-white">{item.name}</p>
-                      <p className="mt-0.5 text-sm text-muted">{item.desc}</p>
-                    </div>
+                  <li
+                    key={item.name}
+                    className="flex flex-col gap-1 px-2 py-4 transition-colors first:pt-0 last:pb-0 hover:bg-[#181818] sm:flex-row sm:items-baseline sm:gap-6"
+                  >
+                    <p className="shrink-0 font-mono text-xs text-accent sm:w-44">{item.time}</p>
+                    <p className="font-medium text-white">{item.name}</p>
                   </li>
                 ))}
               </ul>
@@ -377,18 +380,14 @@ export default function CyberSummit() {
             <div className={`reveal delay-300 ${agendaInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8`}>
               <p className="mb-1 font-mono text-xs tracking-widest text-muted uppercase">Day 2</p>
               <h3 className="mb-8 text-xl font-black text-accent tracking-tight">Build &amp; Celebrate</h3>
-              <ul className="space-y-6">
+              <ul className="-mx-2 divide-y divide-[#222222]">
                 {DAY2.map((item) => (
-                  <li key={item.name} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                      <span className="mt-1 w-px flex-1 bg-[#222222]" />
-                    </div>
-                    <div className="pb-2">
-                      <p className="mb-0.5 font-mono text-xs text-muted">{item.time}</p>
-                      <p className="font-medium text-white">{item.name}</p>
-                      <p className="mt-0.5 text-sm text-muted">{item.desc}</p>
-                    </div>
+                  <li
+                    key={item.name}
+                    className="flex flex-col gap-1 px-2 py-4 transition-colors first:pt-0 last:pb-0 hover:bg-[#181818] sm:flex-row sm:items-baseline sm:gap-6"
+                  >
+                    <p className="shrink-0 font-mono text-xs text-accent sm:w-44">{item.time}</p>
+                    <p className="font-medium text-white">{item.name}</p>
                   </li>
                 ))}
               </ul>
