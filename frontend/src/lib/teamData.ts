@@ -576,7 +576,7 @@ const allTeamMembers: Member[] = [
     name: 'Xena Patel',
     position: 'Backend Engineer',
     roleDescription: 'Builds robust server-side systems and APIs for BYTE\'s projects, ensuring our applications are fast, secure, and scalable.',
-    profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
+    profilePicUrl: '/images/BYTE Website - Member Photos/xena_patel.jpg',
     rank: 50,
     categories: ['Technical Team'],
     connections: ['backend-eng-002'],
