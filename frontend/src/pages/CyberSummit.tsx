@@ -6,9 +6,8 @@ import RegisterModal from '../components/RegisterModal'
 
 const SHOW_SPONSOR_TIERS = false
 
-const INTEREST_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdTXJmwg4CDZouFuuRKnW73MgkD35Jf0kDWm0RCjySXCTE1IA/viewform'
-
+const SIGN_UP_FORM =
+  'https://luma.com/um25akl7'
 interface ScheduleItem {
   time: string
   name: string
@@ -272,7 +271,7 @@ export default function CyberSummit() {
           </div>
           <div className={`reveal delay-[400ms] ${heroInView ? 'visible' : ''} flex flex-col items-center gap-4 sm:flex-row`}>
             <a
-              href={INTEREST_FORM_URL}
+              href={SIGN_UP_FORM}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
@@ -583,12 +582,12 @@ export default function CyberSummit() {
                 </p>
               </div>
               <a
-                href={INTEREST_FORM_URL}
+                href={SIGN_UP_FORM}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
               >
-                Register Interest
+                Sign Up Today!
               </a>
             </div>
 
