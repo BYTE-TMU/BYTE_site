@@ -55,9 +55,9 @@ const DAY2: ScheduleItem[] = [
   { time: '1:00 PM – 1:45 PM',   name: 'Lunch' },
   { time: '2:00 PM – 3:30 PM',   name: 'TMU Cyber Summit CTF' },
   { time: '3:30 PM – 3:45 PM',   name: 'Transfer-to-Gala Announcement' },
-  { time: '6:30 PM – 6:45 PM',   name: 'Awards Ceremony (Gala at the Hotel)' },
-  { time: '6:45 PM – 7:00 PM',   name: 'Closing Keynote (Gala at the Hotel)' },
-  { time: '7:00 PM – 9:00 PM',   name: 'Dinner (Gala at the Hotel)' },
+  { time: '6:30 PM – 6:45 PM',   name: 'Awards Ceremony' },
+  { time: '6:45 PM – 7:00 PM',   name: 'Closing Keynote' },
+  { time: '7:00 PM – 9:00 PM',   name: 'Dinner' },
 ]
 
 const MAJORS = [
@@ -105,8 +105,7 @@ const TIERS: SponsorTier[] = [
       { label: 'Social Post',           value: true  },
       { label: 'Logo on Assets',        value: false },
       { label: 'On-Site Visibility',    value: false },
-      { label: '3D Logo Distribution',  value: '—'   },
-      { label: 'Hotel Nights',          value: '—'   },
+      { label: '3D Logo Distribution',  value: '—'   }
     ],
   },
   {
@@ -119,8 +118,7 @@ const TIERS: SponsorTier[] = [
       { label: 'Social Post',           value: true  },
       { label: 'Logo on Assets',        value: true  },
       { label: 'On-Site Visibility',    value: false },
-      { label: '3D Logo Distribution',  value: '—'   },
-      { label: 'Hotel Nights',          value: '—'   },
+      { label: '3D Logo Distribution',  value: '—'   }
     ],
   },
   {
@@ -133,8 +131,7 @@ const TIERS: SponsorTier[] = [
       { label: 'Social Post',           value: true     },
       { label: 'Logo on Assets',        value: true     },
       { label: 'On-Site Visibility',    value: true     },
-      { label: '3D Logo Distribution',  value: 'Single' },
-      { label: 'Hotel Nights',          value: '—'      },
+      { label: '3D Logo Distribution',  value: 'Single' }
     ],
   },
   {
@@ -147,8 +144,7 @@ const TIERS: SponsorTier[] = [
       { label: 'Social Post',           value: true    },
       { label: 'Logo on Assets',        value: true    },
       { label: 'On-Site Visibility',    value: true    },
-      { label: '3D Logo Distribution',  value: 'Top 5' },
-      { label: 'Hotel Nights',          value: '1'     },
+      { label: '3D Logo Distribution',  value: 'Top 5' }
     ],
   },
   {
@@ -161,8 +157,7 @@ const TIERS: SponsorTier[] = [
       { label: 'Social Post',           value: true       },
       { label: 'Logo on Assets',        value: true       },
       { label: 'On-Site Visibility',    value: true       },
-      { label: '3D Logo Distribution',  value: '50 Models'},
-      { label: 'Hotel Nights',          value: '4'        },
+      { label: '3D Logo Distribution',  value: '50 Models'}
     ],
   },
 ]
