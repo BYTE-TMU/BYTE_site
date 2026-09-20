@@ -354,6 +354,18 @@ const allTeamMembers: Member[] = [
     linkedInUrl: 'https://www.linkedin.com/in/maha-baig-79752b292/'
   },
   {
+    id: 'backend-eng-003',
+    name: 'Srushti Patel',
+    position: 'Backend Engineer',
+    roleDescription: 'Builds robust server-side systems and APIs for BYTE\'s projects, ensuring our applications are fast, secure, and scalable.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/technology_image_default.jpg',
+    rank: 50,
+    categories: ['Technical Team'],
+    connections: ['dir-backend-001'],
+    email: 'srushti.patel@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/srushti-patel1/'
+  },
+  {
     id: 'backend-eng-002',
     name: 'Elena Kim',
     position: 'Director of Backend Engineering',
