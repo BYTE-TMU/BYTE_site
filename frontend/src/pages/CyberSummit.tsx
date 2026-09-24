@@ -11,6 +11,7 @@ const SIGN_UP_FORM =
 interface ScheduleItem {
   time: string
   name: string
+  poi?: string
 }
 
 interface SponsorTier {
@@ -35,29 +36,91 @@ const STATS = [
 ]
 
 const DAY1: ScheduleItem[] = [
-  { time: '9:00 AM – 9:45 AM',   name: 'Registration, Breakfast and Program Commencement' },
-  { time: '9:45 AM – 10:00 AM',  name: 'Opening Keynote' },
-  { time: '10:00 AM – 10:15 AM', name: 'Introduction to Cybersecurity' },
-  { time: '10:15 AM – 11:45 AM', name: 'Workshop: Ironclad Defense – Security Operations Centre' },
-  { time: '12:00 PM – 1:00 PM',  name: 'Panel: Unpacking the Intern Experience' },
-  { time: '1:00 PM – 1:45 PM',   name: 'Lunch' },
-  { time: '1:45 PM – 2:45 PM',   name: 'Open Networking / Tabling Session 1' },
-  { time: '3:00 PM – 3:30 PM',   name: 'Talk: The Awaited Intersection: AI and Security' },
-  { time: '3:30 PM – 4:30 PM',   name: 'Workshop: Cloud Elevated: Balancing Speed, Scale & Security' },
-  { time: '11:45 AM – 4:30 PM',  name: 'SiberX Escape Room' },
-  { time: '4:30 PM – 5:00 PM',   name: 'Closing Announcement' },
+  {
+    time: '9:00 AM – 9:45 AM',
+    name: 'Registration, Breakfast and Program Commencement',
+    poi: 'Meet Patadia & Yeji Lee — BYTE President and Co-President',
+  },
+  {
+    time: '9:45 AM – 10:00 AM',
+    name: 'Opening Keynote',
+    poi: 'Junior Williams — Industry Research Fellow, Rogers CyberSecure Catalyst',
+  },
+  {
+    time: '10:00 AM – 10:15 AM',
+    name: 'Introduction to Cybersecurity',
+    poi: 'Nancy Maliackel — Technical Co-Chair, TMU Cyber Summit',
+  },
+  {
+    time: '10:15 AM – 11:45 AM',
+    name: 'Workshop: Eliminating LLM Hallucinations in Active Threat Remediation & Building Quantum-Ready SOCs',
+    poi: 'Jonathan Catalano MacPherson-Gray — Founder, NEX Labs',
+  },
+  {
+    time: '12:00 PM – 1:00 PM',
+    name: 'Panel: Unpacking the Intern Experience',
+    poi: 'Walker Egsgard, Auswah Imaan, Mikayla Morrison, Kshitij Chada & Azeem Cochinwala',
+  },
+  { time: '1:00 PM – 1:45 PM', name: 'Lunch' },
+  { time: '1:45 PM – 2:45 PM', name: 'Open Networking / Tabling Session 1' },
+  {
+    time: '3:00 PM – 3:30 PM',
+    name: 'Talk: Engineering Trust in AI Agents — Permissions, Proof, and Accountability',
+    poi: 'Junior Williams — Industry Research Fellow, Rogers CyberSecure Catalyst',
+  },
+  {
+    time: '3:30 PM – 4:30 PM',
+    name: 'Workshop: Cloud Elevated: Balancing Speed, Scale & Security',
+    poi: 'Sandipkumar Patel — Cloud Engineer, AWS User Group Leader',
+  },
+  {
+    time: '11:45 AM – 4:30 PM',
+    name: 'SiberX Escape Room',
+    poi: 'SiberX will host escape rooms throughout the afternoon',
+  },
+  { time: '4:30 PM – 5:00 PM', name: 'Closing Announcement' },
 ]
 
 const DAY2: ScheduleItem[] = [
-  { time: '9:00 AM – 10:00 AM',  name: 'Registration, Breakfast and Program Commencement' },
-  { time: '10:00 AM – 10:45 AM', name: 'Panel: Corporate Cybersecurity Panel' },
-  { time: '11:00 AM – 1:00 PM',  name: 'Know Your Enemy: Adversary Emulation' },
-  { time: '1:00 PM – 1:45 PM',   name: 'Lunch' },
-  { time: '2:00 PM – 3:30 PM',   name: 'TMU Cyber Summit CTF' },
-  { time: '3:30 PM – 3:45 PM',   name: 'Transfer-to-Gala Announcement' },
-  { time: '6:30 PM – 6:45 PM',   name: 'Awards Ceremony' },
-  { time: '6:45 PM – 7:00 PM',   name: 'Closing Keynote' },
-  { time: '7:00 PM – 9:00 PM',   name: 'Dinner' },
+  {
+    time: '9:00 AM – 9:30 AM',
+    name: 'Registration, Breakfast and Program Commencement',
+    poi: 'Meet Patadia & Yeji Lee — BYTE President and Co-President',
+  },
+  {
+    time: '9:30 AM – 10:00 AM',
+    name: 'Opening Keynote',
+    poi: 'Randy Purse — Senior Practice Lead, Rogers CyberSecure Catalyst',
+  },
+  {
+    time: '10:00 AM – 11:30 AM',
+    name: 'TMU Cyber Summit CTF',
+    poi: 'A gamified beginner-level capture-the-flag competition developed in-house',
+  },
+  { time: '11:45 AM – 12:00 PM', name: 'Adderbee Product Announcement' },
+  { time: '12:00 PM – 12:45 PM', name: 'Lunch' },
+  {
+    time: '1:00 PM – 1:45 PM',
+    name: 'Panel: Corporate Cybersecurity Panel',
+    poi: 'Harsh Sahni (ISACA), Mohammad Suleman (KPMG), Kai Iyer (Amazon), Steve M Brown (CIBC) & Catherine Lee (IDMWorks)',
+  },
+  {
+    time: '2:00 PM – 3:30 PM',
+    name: 'Know Your Enemy: Adversary Emulation',
+    poi: 'Milos Stojadinovic — Cyber Fellow & Vice President, RBC Adversary Emulation',
+  },
+  { time: '3:30 PM – 3:45 PM', name: 'Transfer-to-Gala Announcement' },
+  {
+    time: '6:30 PM – 6:45 PM',
+    name: 'Awards Ceremony: Gala',
+    poi: 'David Cramb — Dean, Faculty of Science, TMU',
+  },
+  {
+    time: '6:45 PM – 7:00 PM',
+    name: 'Closing Keynote: Gala',
+    poi: 'Milos Stojadinovic — Cyber Fellow & Vice President, RBC Adversary Emulation',
+  },
+  { time: '7:00 PM – 9:00 PM', name: 'Dinner: Gala' },
 ]
 
 const MAJORS = [
@@ -365,7 +428,10 @@ export default function CyberSummit() {
                     className="flex flex-col gap-1 px-2 py-4 transition-colors first:pt-0 last:pb-0 hover:bg-[#181818] sm:flex-row sm:items-baseline sm:gap-6"
                   >
                     <p className="shrink-0 font-mono text-xs text-accent sm:w-44">{item.time}</p>
-                    <p className="font-medium text-white">{item.name}</p>
+                    <div>
+                      <p className="font-medium text-white">{item.name}</p>
+                      {item.poi && <p className="mt-1 text-xs text-muted">{item.poi}</p>}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -381,7 +447,10 @@ export default function CyberSummit() {
                     className="flex flex-col gap-1 px-2 py-4 transition-colors first:pt-0 last:pb-0 hover:bg-[#181818] sm:flex-row sm:items-baseline sm:gap-6"
                   >
                     <p className="shrink-0 font-mono text-xs text-accent sm:w-44">{item.time}</p>
-                    <p className="font-medium text-white">{item.name}</p>
+                    <div>
+                      <p className="font-medium text-white">{item.name}</p>
+                      {item.poi && <p className="mt-1 text-xs text-muted">{item.poi}</p>}
+                    </div>
                   </li>
                 ))}
               </ul>
