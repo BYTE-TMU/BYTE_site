@@ -147,14 +147,17 @@ const GALLERY_IMAGES = [
   { src: '/cyber_images/collage/real/impact_portrait.png', alt: 'The BYTE organizing team group photo on bleacher seating' },
 ]
 
-const PARTNERS = [
-  'Toronto Metropolitan University',
-  'Microsoft',
-  'TCS',
-  'BMO',
-  'IBM',
-  'Google',
-  'Wealthsimple',
+const SPONSOR_LOGOS = [
+  { name: '88', src: '/images/Partner%20Logos/88_logo.png', surface: 'white' },
+  { name: 'AWS', src: '/images/Partner%20Logos/AWS_logo.png' },
+  { name: 'ArmorCode', src: '/images/Partner%20Logos/ArmorCode_logo.png', tier: 'Bronze', halo: 'bronze' },
+  { name: 'Borikong', src: '/images/Partner%20Logos/Borikong_logo.png' },
+  { name: 'CrowdStrike', src: '/images/Partner%20Logos/CrowdStrike_logo.svg', surface: 'white' },
+  { name: 'ISC2', src: '/images/Partner%20Logos/ISC2_logo.png' },
+  { name: 'NEX', src: '/images/Partner%20Logos/Nex_logo.jpg' },
+  { name: 'RBC', src: '/images/Partner%20Logos/RBC_logo.png', tier: 'Silver', halo: 'silver' },
+  { name: 'Rogers Cybersecure Catalyst', src: '/images/Partner%20Logos/RCC_logo.png', surface: 'white', halo: 'teal' },
+  { name: 'SACR', src: '/images/Partner%20Logos/SACR_logo.png', tier: 'Silver', halo: 'silver' },
 ]
 
 const TIERS: SponsorTier[] = [
@@ -244,7 +247,7 @@ export default function CyberSummit() {
   const [agendaRef,   agendaInView]   = useInView(0.05)
   const [demoRef,     demoInView]     = useInView(0.05)
   const [galleryRef,  galleryInView]  = useInView(0.1)
-  const [partnersRef, partnersInView] = useInView(0.1)
+  const [sponsorsRef, sponsorsInView] = useInView(0.1)
   const [tiersRef,    tiersInView]    = useInView(0.03)
   const [ctaRef,      ctaInView]      = useInView(0.1)
 
@@ -377,6 +380,41 @@ export default function CyberSummit() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Sponsors & Partners ── */}
+      <section className="py-16 px-6 md:py-20">
+        <div ref={sponsorsRef} className="mx-auto max-w-7xl">
+          <p className={`reveal ${sponsorsInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
+            Our Sponsors
+          </p>
+          <h2 className={`reveal delay-100 ${sponsorsInView ? 'visible' : ''} mb-10 text-3xl font-black tracking-tight`}>
+            Sponsors &amp; Partners
+          </h2>
+          <div className={`reveal delay-200 ${sponsorsInView ? 'visible' : ''} grid grid-cols-2 justify-items-center gap-x-5 gap-y-8 sm:grid-cols-3 md:grid-cols-5`}>
+            {SPONSOR_LOGOS.map(({ name, src, surface, tier, halo }, i) => (
+              <div
+                key={name}
+                data-surface={surface ?? 'dark'}
+                data-halo={halo ?? 'green'}
+                className={`cyber-sponsor-card reveal ${i % 5 === 1 ? 'delay-75' : i % 5 === 2 ? 'delay-150' : i % 5 === 3 ? 'delay-200' : i % 5 === 4 ? 'delay-300' : ''} ${sponsorsInView ? 'visible' : ''} w-28 text-center sm:w-32`}
+              >
+                <div className="tech-week-partner-card mx-auto flex h-28 w-28 items-center justify-center p-2 sm:h-32 sm:w-32">
+                  <div className="tech-week-partner-logo-frame flex h-full w-full items-center justify-center p-2">
+                    <img
+                      src={src}
+                      alt={name}
+                      className="max-h-full max-w-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <span className="mt-3 block min-h-10 text-sm font-semibold leading-tight text-muted">{name}</span>
+                {tier && <span data-tier={tier.toLowerCase()} className="cyber-sponsor-tier mt-1 block font-mono text-[10px] tracking-widest uppercase">{tier}</span>}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -549,29 +587,6 @@ export default function CyberSummit() {
                 className={`reveal ${i % 3 === 1 ? 'delay-150' : i % 3 === 2 ? 'delay-300' : ''} ${galleryInView ? 'visible' : ''} aspect-video overflow-hidden border border-[#222222]`}
               >
                 <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Previous Partners ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={partnersRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${partnersInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            Community Support
-          </p>
-          <h2 className={`reveal delay-100 ${partnersInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
-            Previous Partners
-          </h2>
-          {/* Replace text with <img> tags once logo assets are supplied */}
-          <div className={`reveal delay-200 ${partnersInView ? 'visible' : ''} grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7`}>
-            {PARTNERS.map((name) => (
-              <div
-                key={name}
-                className="border border-[#222222] bg-[#111111] flex items-center justify-center p-6 text-center transition-colors hover:border-accent"
-              >
-                <span className="font-bold text-sm leading-tight text-muted">{name}</span>
               </div>
             ))}
           </div>
