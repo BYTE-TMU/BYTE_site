@@ -257,19 +257,20 @@
   .anim-delay-700 { animation-delay: 700ms; }
   .anim-delay-800 { animation-delay: 800ms; }
 
-  /* Page transition overlay */
+  /* Page transition overlay. Percentages map to the timings in PageTransition.tsx
+     (2000ms total): covered by 24%, new page swapped in at 68%. */
   @keyframes pageCurtain {
     0%   { transform: translateY(100%); }
-    30%  { transform: translateY(0%); }
-    70%  { transform: translateY(0%); }
+    24%  { transform: translateY(0%); }
+    68%  { transform: translateY(0%); }
     100% { transform: translateY(-100%); }
   }
 
   @keyframes pageLabelReveal {
-    0%   { opacity: 0; transform: translateY(16px); }
-    30%  { opacity: 1; transform: translateY(0); }
-    70%  { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-16px); }
+    0%, 24% { opacity: 0; transform: translateY(24px); }
+    38%     { opacity: 1; transform: translateY(0); }
+    62%     { opacity: 1; transform: translateY(0); }
+    74%, 100% { opacity: 0; transform: translateY(-16px); }
   }
 
   .page-transition-curtain {
@@ -281,10 +282,115 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    animation: pageCurtain 1.5s cubic-bezier(0.77, 0, 0.175, 1) both;
+    animation: pageCurtain 2s cubic-bezier(0.77, 0, 0.175, 1) both;
   }
 
   .page-transition-label {
-    animation: pageLabelReveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) both;
+    animation: pageLabelReveal 2s cubic-bezier(0.77, 0, 0.175, 1) both;
+  }
+
+  /* ── TMU Cyber Summit theme (scoped: only used by the recap page and home teaser) ── */
+  .summit-bg {
+    position: relative;
+    background-color: #05060f;
+    background-image:
+      radial-gradient(60rem 40rem at 0% 0%, rgb(42 44 255 / 28%), transparent 60%),
+      radial-gradient(50rem 36rem at 100% 100%, rgb(106 61 245 / 24%), transparent 60%),
+      radial-gradient(40rem 28rem at 70% 20%, rgb(63 224 166 / 7%), transparent 65%);
+  }
+
+  .summit-grid {
+    background-image:
+      linear-gradient(rgb(59 130 246 / 14%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(59 130 246 / 14%) 1px, transparent 1px);
+    background-size: 88px 88px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 70%);
+    mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 70%);
+  }
+
+  .summit-silk {
+    position: absolute;
+    /* Oversized so the drift animation never exposes an edge. */
+    top: -4%;
+    left: -4%;
+    width: 108%;
+    height: 108%;
+    pointer-events: none;
+    opacity: 0.85;
+    animation: summitDrift 18s ease-in-out infinite alternate;
+  }
+
+  .summit-card {
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(rgb(11 13 46 / 82%), rgb(7 8 28 / 88%)) padding-box,
+      linear-gradient(135deg, rgb(63 224 166 / 65%), rgb(42 44 255 / 55%) 55%, rgb(106 61 245 / 35%)) border-box;
+    box-shadow: 0 0 0 rgb(63 224 166 / 0%);
+    transition: box-shadow 250ms ease, transform 250ms ease;
+  }
+
+  .summit-card:hover {
+    box-shadow: 0 0 28px rgb(63 224 166 / 14%), 0 0 60px rgb(42 44 255 / 12%);
+  }
+
+  .summit-gradient-text {
+    background-image: linear-gradient(90deg, #3fe0a6 0%, #3b82f6 55%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .summit-wave {
+    display: block;
+    width: 100%;
+    height: clamp(4rem, 9vw, 8rem);
+  }
+
+  @keyframes summitDrift {
+    0%   { transform: translate3d(-1.5%, 0, 0) scale(1); }
+    100% { transform: translate3d(1.5%, -1%, 0) scale(1.04); }
+  }
+
+  /* Scroll reveal for the summit page (see ScrollReveal.tsx). The delay lives in a variable that
+     only the opacity/transform transitions read, so it never lags a card's hover glow. */
+  .sr {
+    --sr-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transition:
+      opacity 0.9s var(--sr-ease) var(--sr-delay, 0ms),
+      transform 0.9s var(--sr-ease) var(--sr-delay, 0ms);
+  }
+  .sr-up    { transform: translate3d(0, 36px, 0); }
+  .sr-zoom  { transform: translate3d(0, 24px, 0) scale(0.94); }
+  .sr-line  { transform: scaleX(0); transform-origin: left; opacity: 1; }
+  .sr.visible { opacity: 1; transform: none; }
+
+  /* Agenda slide changes: the new slide enters from the side it was navigated towards. */
+  @keyframes summitSlideNext {
+    from { opacity: 0; transform: translate3d(56px, 0, 0); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes summitSlidePrev {
+    from { opacity: 0; transform: translate3d(-56px, 0, 0); }
+    to   { opacity: 1; transform: none; }
+  }
+  .summit-slide-next { animation: summitSlideNext 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .summit-slide-prev { animation: summitSlidePrev 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  /* Countdown fill on the agenda's active progress segment; the duration is set inline. */
+  @keyframes summitSlideTimer {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .summit-slide-timer { transform-origin: left; animation: summitSlideTimer linear both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .summit-silk { animation: none; }
+    .summit-card { transition: none; }
+    .sr { opacity: 1; transform: none; transition: none; }
+    .summit-slide-next, .summit-slide-prev, .summit-slide-timer { animation: none; }
   }
 }

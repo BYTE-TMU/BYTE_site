@@ -54,9 +54,9 @@ const EVENTS: Event[] = [
     id: '4',
     title: 'TMU Cyber Summit',
     category: 'CYBERSECURITY SUMMIT',
-    date: 'OCT 2026',
-    description: 'Toronto\'s premier student cybersecurity conference: two days of hands-on workshops, a live CTF competition, and keynote speakers from industry, in downtown Toronto.',
-    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdTXJmwg4CDZouFuuRKnW73MgkD35Jf0kDWm0RCjySXCTE1IA/viewform',
+    date: 'OCT 3–4, 2026',
+    description: 'Toronto\'s premier student cybersecurity conference: two days of workshops, panels, a CTF competition, and a closing gala at Sears Atrium. Relive the weekend in the recap and photo album.',
+    location: 'Sears Atrium',
     detailsPath: '/cybersecurity',
   },
   {

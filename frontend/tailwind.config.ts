@@ -10,9 +10,18 @@ const config: Config = {
         muted: '#888888',
         accent: '#d4d4d4',
         neon: 'var(--neon)',
+        summit: {
+          ink: '#05060f',
+          navy: '#0b0d2e',
+          indigo: '#2a2cff',
+          violet: '#6a3df5',
+          teal: '#3fe0a6',
+          sky: '#3b82f6',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        summit: ['Sora', 'Inter', 'system-ui', 'sans-serif'],
       },
 
       keyframes: {

@@ -1,150 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useInView } from '../hooks/useInView'
-import { sendEmail, sendConfirmation } from '../lib/emailjs'
-import { canSubmit, recordSubmit } from '../lib/formRateLimit'
-import RegisterModal from '../components/RegisterModal'
+import { useScrollEffect } from '../hooks/useScrollEffect'
+import PhotoLightbox, { type AlbumPhoto } from '../components/PhotoLightbox'
+import AgendaSlides from '../components/summit/AgendaSlides'
+import ScrollProgress from '../components/summit/ScrollProgress'
+import ScrollReveal from '../components/summit/ScrollReveal'
+import SummitDate from '../components/summit/SummitDate'
+import SummitSilk from '../components/summit/SummitSilk'
+import SummitWave from '../components/summit/SummitWave'
+import SummitWordmark from '../components/summit/SummitWordmark'
 
-const SHOW_SPONSOR_TIERS = false
+const INSTAGRAM_URL = 'https://www.instagram.com/tmu.byte/'
 
-const SIGN_UP_FORM =
-  'https://luma.com/um25akl7'
-interface ScheduleItem {
-  time: string
-  name: string
-  poi?: string
-}
-
-interface SponsorTier {
-  name: string
-  price: string
-  color: string
-  features: { label: string; value: string | boolean }[]
-  highlight?: boolean
-}
-
-const PILLARS = [
-  { icon: '◈', label: 'LEARN', desc: 'Workshops led by industry practitioners on real-world attack and defence techniques.' },
-  { icon: '⬡', label: 'CONNECT', desc: 'Career fair and networking with Canada\'s top cybersecurity organizations.' },
-  { icon: '◎', label: 'BUILD', desc: 'Capture the Flag challenges spanning cryptography, forensics, and web exploitation.' },
-  { icon: '✦', label: 'CREATE', desc: 'Hands-on sessions where students design, prototype, and present security solutions.' },
-]
-
+// TODO: replace the placeholder stats with the real figures. "Speakers & Panelists" is counted
+// from the agenda (BYTE hosts excluded); every other value is a placeholder. Each number counts
+// up to exactly the value given here.
 const STATS = [
-  { value: '1250+', label: 'Attendees Last Year' },
-  { value: '4000+', label: 'Students in Community' },
-  { value: '15+', label: 'Universities Represented' },
-]
-
-const DAY1: ScheduleItem[] = [
-  {
-    time: '9:00 AM – 9:45 AM',
-    name: 'Registration, Breakfast and Program Commencement',
-    poi: 'Meet Patadia & Yeji Lee — BYTE President and Co-President',
-  },
-  {
-    time: '9:45 AM – 10:00 AM',
-    name: 'Opening Keynote',
-    poi: 'Junior Williams — Industry Research Fellow, Rogers CyberSecure Catalyst',
-  },
-  {
-    time: '10:00 AM – 10:15 AM',
-    name: 'Introduction to Cybersecurity',
-    poi: 'Nancy Maliackel — Technical Co-Chair, TMU Cyber Summit',
-  },
-  {
-    time: '10:15 AM – 11:45 AM',
-    name: 'Workshop: Eliminating LLM Hallucinations in Active Threat Remediation & Building Quantum-Ready SOCs',
-    poi: 'Jonathan Catalano MacPherson-Gray — Founder, NEX Labs',
-  },
-  {
-    time: '12:00 PM – 1:00 PM',
-    name: 'Panel: Unpacking the Intern Experience',
-    poi: 'Walker Egsgard, Auswah Imaan, Mikayla Morrison, Kshitij Chada & Azeem Cochinwala',
-  },
-  { time: '1:00 PM – 1:45 PM', name: 'Lunch' },
-  { time: '1:45 PM – 2:45 PM', name: 'Open Networking / Tabling Session 1' },
-  {
-    time: '3:00 PM – 3:30 PM',
-    name: 'Talk: Engineering Trust in AI Agents — Permissions, Proof, and Accountability',
-    poi: 'Junior Williams — Industry Research Fellow, Rogers CyberSecure Catalyst',
-  },
-  {
-    time: '3:30 PM – 4:30 PM',
-    name: 'Workshop: Cloud Elevated: Balancing Speed, Scale & Security',
-    poi: 'Sandipkumar Patel — Cloud Engineer, AWS User Group Leader',
-  },
-  {
-    time: '11:45 AM – 4:30 PM',
-    name: 'SiberX Escape Room',
-    poi: 'SiberX will host escape rooms throughout the afternoon',
-  },
-  { time: '4:30 PM – 5:00 PM', name: 'Closing Announcement' },
-]
-
-const DAY2: ScheduleItem[] = [
-  {
-    time: '9:00 AM – 9:30 AM',
-    name: 'Registration, Breakfast and Program Commencement',
-    poi: 'Meet Patadia & Yeji Lee — BYTE President and Co-President',
-  },
-  {
-    time: '9:30 AM – 10:00 AM',
-    name: 'Opening Keynote',
-    poi: 'Randy Purse — Senior Practice Lead, Rogers CyberSecure Catalyst',
-  },
-  {
-    time: '10:00 AM – 11:30 AM',
-    name: 'TMU Cyber Summit CTF',
-    poi: 'A gamified beginner-level capture-the-flag competition developed in-house',
-  },
-  { time: '11:45 AM – 12:00 PM', name: 'Adderbee Product Announcement' },
-  { time: '12:00 PM – 12:45 PM', name: 'Lunch' },
-  {
-    time: '1:00 PM – 1:45 PM',
-    name: 'Panel: Corporate Cybersecurity Panel',
-    poi: 'Harsh Sahni (ISACA), Mohammad Suleman (KPMG), Kai Iyer (Amazon), Steve M Brown (CIBC) & Catherine Lee (IDMWorks)',
-  },
-  {
-    time: '2:00 PM – 3:30 PM',
-    name: 'Know Your Enemy: Adversary Emulation',
-    poi: 'Milos Stojadinovic — Cyber Fellow & Vice President, RBC Adversary Emulation',
-  },
-  { time: '3:30 PM – 3:45 PM', name: 'Transfer-to-Gala Announcement' },
-  {
-    time: '6:30 PM – 6:45 PM',
-    name: 'Awards Ceremony: Gala',
-    poi: 'David Cramb — Dean, Faculty of Science, TMU',
-  },
-  {
-    time: '6:45 PM – 7:00 PM',
-    name: 'Closing Keynote: Gala',
-    poi: 'Milos Stojadinovic — Cyber Fellow & Vice President, RBC Adversary Emulation',
-  },
-  { time: '7:00 PM – 9:00 PM', name: 'Dinner: Gala' },
-]
-
-const MAJORS = [
-  { label: 'Computer Science',    pct: 54.9 },
-  { label: 'Business Technology', pct: 15.2 },
-  { label: 'Computer Engineering', pct: 13.6 },
-  { label: 'Other',               pct: 16.3 },
-]
-
-const YEARS = [
-  { label: 'First Year',   pct: 20.1 },
-  { label: 'Second Year',  pct: 27.7 },
-  { label: 'Third Year',   pct: 22.8 },
-  { label: 'Fourth Year',  pct: 19.0 },
-  { label: 'Fifth Year+',  pct: 10.3 },
-]
-
-const GALLERY_IMAGES = [
-  { src: '/cyber_images/collage/real/photo1.jpg', alt: 'A speaker addressing the audience with a microphone at a BYTE panel' },
-  { src: '/cyber_images/collage/real/photo2.jpg', alt: 'Students listening intently in the audience at TMU Tech Week' },
-  { src: '/cyber_images/collage/real/photo3.jpg', alt: 'A wide view of the crowd at TMU Tech Week' },
-  { src: '/cyber_images/collage/real/dsc03984.jpg', alt: 'A fireside chat in front of the TMU Tech Week banner' },
-  { src: '/cyber_images/collage/real/impact_dsc04031.jpg', alt: 'A panel discussion with a host holding a microphone at TMU Tech Week' },
-  { src: '/cyber_images/collage/real/impact_portrait.png', alt: 'The BYTE organizing team group photo on bleacher seating' },
+  { value: 17, label: 'Speakers & Panelists' },
+  { value: 100, label: 'Attendees' },
+  { value: 12, label: 'Partner Organizations' },
+  { value: 100, label: 'CTF Competitors' },
+  { value: 10, label: 'Universities Represented' },
+  { value: 14, label: 'Sessions & Workshops' },
 ]
 
 const PARTNERS = [
@@ -157,535 +35,245 @@ const PARTNERS = [
   'Wealthsimple',
 ]
 
-const TIERS: SponsorTier[] = [
-  {
-    name: 'BRONZE', price: '$500', color: 'text-orange-400',
-    features: [
-      { label: 'Sponsor Booth',         value: true  },
-      { label: 'Access to Resumes',     value: false },
-      { label: 'Workshop Host',         value: false },
-      { label: 'Opening Speech',        value: false },
-      { label: 'Social Post',           value: true  },
-      { label: 'Logo on Assets',        value: false },
-      { label: 'On-Site Visibility',    value: false },
-      { label: '3D Logo Distribution',  value: '—'   }
-    ],
-  },
-  {
-    name: 'SILVER', price: '$1,000', color: 'text-gray-300',
-    features: [
-      { label: 'Sponsor Booth',         value: true  },
-      { label: 'Access to Resumes',     value: true  },
-      { label: 'Workshop Host',         value: false },
-      { label: 'Opening Speech',        value: false },
-      { label: 'Social Post',           value: true  },
-      { label: 'Logo on Assets',        value: true  },
-      { label: 'On-Site Visibility',    value: false },
-      { label: '3D Logo Distribution',  value: '—'   }
-    ],
-  },
-  {
-    name: 'GOLD', price: '$2,500', color: 'text-yellow-400',
-    features: [
-      { label: 'Sponsor Booth',         value: true     },
-      { label: 'Access to Resumes',     value: true     },
-      { label: 'Workshop Host',         value: true     },
-      { label: 'Opening Speech',        value: false    },
-      { label: 'Social Post',           value: true     },
-      { label: 'Logo on Assets',        value: true     },
-      { label: 'On-Site Visibility',    value: true     },
-      { label: '3D Logo Distribution',  value: 'Single' }
-    ],
-  },
-  {
-    name: 'PLATINUM', price: '$5,000', color: 'text-white', highlight: true,
-    features: [
-      { label: 'Sponsor Booth',         value: true    },
-      { label: 'Access to Resumes',     value: true    },
-      { label: 'Workshop Host',         value: true    },
-      { label: 'Opening Speech',        value: true    },
-      { label: 'Social Post',           value: true    },
-      { label: 'Logo on Assets',        value: true    },
-      { label: 'On-Site Visibility',    value: true    },
-      { label: '3D Logo Distribution',  value: 'Top 5' }
-    ],
-  },
-  {
-    name: 'DIAMOND', price: '$8,000+', color: 'text-accent',
-    features: [
-      { label: 'Sponsor Booth',         value: true       },
-      { label: 'Access to Resumes',     value: true       },
-      { label: 'Workshop Host',         value: true       },
-      { label: 'Opening Speech',        value: true       },
-      { label: 'Social Post',           value: true       },
-      { label: 'Logo on Assets',        value: true       },
-      { label: 'On-Site Visibility',    value: true       },
-      { label: '3D Logo Distribution',  value: '50 Models'}
-    ],
-  },
+// To swap or add photos: drop the full-size originals in frontend/photo-originals/, run
+// `npm run photos:recap -- photo-originals`, and update this list. The script prints each entry with
+// its original file name; the order below is the order they appear in the album, so reorder freely.
+// The first INITIAL_VISIBLE show before "View all", so lead with the strongest and most varied.
+const ALBUM: AlbumPhoto[] = [
+  { src: '/cyber_images/recap/01.jpg', width: 1800, height: 1019, alt: 'Attendees seated at desks with laptops, watching a session intently' }, // DSC07285
+  { src: '/cyber_images/recap/06.jpg', width: 1800, height: 1019, alt: 'A speaker presenting at a podium beside a screen with an about-me slide, while attendees watch from round tables' }, // DSC07702
+  { src: '/cyber_images/recap/05.jpg', width: 1800, height: 1019, alt: 'A person with an event badge holding a coffee in front of a large screen that reads "Capture The Flag!"' }, // DSC07499
+  { src: '/cyber_images/recap/08.jpg', width: 1800, height: 1200, alt: 'People posing together at a sponsor table with RBC branding, water bottles and QR codes' }, // IMG_0103
+  { src: '/cyber_images/recap/09.jpg', width: 1800, height: 1200, alt: 'Two attendees holding CTF competition award certificates, "Last Man Standing" and "Most Involved Attendee"' }, // IMG_0279
+  { src: '/cyber_images/recap/04.jpg', width: 1800, height: 1019, alt: 'Two attendees looking at a laptop together at a table while others work on laptops behind them' }, // DSC07497
+  { src: '/cyber_images/recap/07.jpg', width: 1800, height: 1200, alt: 'Six people posing in front of a Rogers Cybersecure Catalyst and CyberStart Canada banner beside large windows' }, // IMG_0079
+  { src: '/cyber_images/recap/03.jpg', width: 1800, height: 1019, alt: 'A speaker in a blazer holding a coffee cup, presenting in front of the sponsor wall to attendees at tables' }, // DSC07468
+  { src: '/cyber_images/recap/02.jpg', width: 1800, height: 1200, alt: 'Eight people posing together on stage in front of the sponsor wall, some holding gift bags' }, // IMG_0799
+  { src: '/cyber_images/recap/10.jpg', width: 1800, height: 1200, alt: 'Seven people posing on stage in front of the sponsor wall, one holding a microphone' }, // IMG_9987
 ]
 
-const TIER_DELAYS = ['', 'delay-75', 'delay-150', 'delay-200', 'delay-300'] as const
+const INITIAL_VISIBLE = 6
 
-type SubmitState = 'idle' | 'sending' | 'sent' | 'error' | 'rate-limited'
+const BUTTON_FILLED =
+  'rounded-full bg-summit-teal px-8 py-3 text-sm font-semibold tracking-widest text-summit-ink uppercase transition-opacity hover:opacity-85'
+const BUTTON_OUTLINE =
+  'rounded-full border border-white/30 px-8 py-3 text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:border-summit-teal hover:text-summit-teal'
 
-const RATE_LIMIT_MS = 30_000
+// Hero parallax: the glow drifts slower than the page, and the hero copy fades as it scrolls away.
+function driftSilk(scrollY: number, el: HTMLDivElement) {
+  el.style.transform = `translate3d(0, ${Math.min(scrollY, 900) * 0.25}px, 0)`
+}
+function fadeHeroContent(scrollY: number, el: HTMLDivElement) {
+  el.style.opacity = String(Math.max(1 - scrollY / 450, 0))
+  el.style.transform = `translate3d(0, ${Math.min(scrollY, 450) * 0.15}px, 0)`
+}
 
-function FeatureValue({ value }: { value: string | boolean }) {
-  if (value === true)  return <span className="text-accent">✓</span>
-  if (value === false) return <span className="text-[#333333]">—</span>
-  return <span className="font-mono text-xs text-muted">{value}</span>
+/** Counts from 0 up to exactly `to` the first time it scrolls into view. */
+function CountUp({ to }: { to: number }) {
+  const [ref, inView] = useInView<HTMLSpanElement>(0.5)
+  const [n, setN] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const t0 = performance.now()
+    let raf = requestAnimationFrame(function tick(now) {
+      const t = reduceMotion ? 1 : Math.min((now - t0) / 1600, 1)
+      setN(Math.round(to * (1 - (1 - t) ** 3))) // ease-out; lands on exactly `to` at t = 1
+      if (t < 1) raf = requestAnimationFrame(tick)
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [inView, to])
+
+  return <span ref={ref}>{n}</span>
+}
+
+function SectionHead({ eyebrow, light, bold }: { eyebrow: string; light: string; bold: string }) {
+  return (
+    <div className="mb-10 sm:mb-12">
+      <ScrollReveal>
+        <p className="mb-3 text-xs font-semibold tracking-[0.3em] text-summit-teal uppercase sm:text-sm">{eyebrow}</p>
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <h2 className="text-3xl tracking-tight sm:text-4xl md:text-5xl">
+          <span className="font-light">{light} </span>
+          <span className="summit-gradient-text font-bold">{bold}</span>
+        </h2>
+      </ScrollReveal>
+      <ScrollReveal variant="line" delay={250} className="mt-5 h-px w-24 bg-gradient-to-r from-summit-teal to-transparent" />
+    </div>
+  )
 }
 
 export default function CyberSummit() {
-  const [heroRef,     heroInView]     = useInView(0.05)
-  const [aboutRef,    aboutInView]    = useInView(0.1)
-  const [statsRef,    statsInView]    = useInView(0.1)
-  const [agendaRef,   agendaInView]   = useInView(0.05)
-  const [demoRef,     demoInView]     = useInView(0.05)
-  const [galleryRef,  galleryInView]  = useInView(0.1)
-  const [partnersRef, partnersInView] = useInView(0.1)
-  const [tiersRef,    tiersInView]    = useInView(0.03)
-  const [ctaRef,      ctaInView]      = useInView(0.1)
+  const silkRef = useScrollEffect<HTMLDivElement>(driftSilk)
+  const heroContentRef = useScrollEffect<HTMLDivElement>(fadeHeroContent)
 
-  const [form, setForm] = useState({ name: '', email: '', role: 'Sponsor', tier: '', message: '', company: '' })
-  const [submitState, setSubmitState] = useState<SubmitState>('idle')
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+  const [showAll, setShowAll] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  function goToRegister(tier = '') {
-    setForm(prev => ({ ...prev, tier }))
-    setIsRegisterOpen(true)
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-
-    if (form.company) return // honeypot triggered, silently drop
-
-    if (!canSubmit('summit-form', RATE_LIMIT_MS)) {
-      setSubmitState('rate-limited')
-      setTimeout(() => setSubmitState('idle'), 4000)
-      return
-    }
-
-    setSubmitState('sending')
-    try {
-      await sendEmail(import.meta.env.VITE_EMAILJS_SUMMIT_TEMPLATE_ID, {
-        name: form.name,
-        email: form.email,
-        role: form.role,
-        tier: form.tier,
-        message: form.message,
-        reply_to: form.email,
-      })
-      recordSubmit('summit-form')
-      sendConfirmation(form.name, form.email)
-      setSubmitState('sent')
-      setTimeout(() => {
-        setSubmitState('idle')
-        setForm({ name: '', email: '', role: 'Attendee', tier: '', message: '', company: '' })
-      }, 4000)
-    } catch {
-      setSubmitState('error')
-    }
-  }
-
-  const buttonLabel: Record<SubmitState, string> = {
-    idle: 'Submit Registration',
-    sending: 'Sending...',
-    sent: 'Submitted!',
-    error: 'Try Again',
-    'rate-limited': 'Please Wait...',
-  }
+  const visiblePhotos = showAll ? ALBUM : ALBUM.slice(0, INITIAL_VISIBLE)
 
   return (
-    <div className="min-h-screen">
+    <div className="summit-bg min-h-screen overflow-x-hidden font-summit text-white">
+      <ScrollProgress />
 
       {/* ── Hero ── */}
-      <section
-        className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-40 pb-16 text-center"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(212,212,212,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(212,212,212,0.025) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      >
-        <div ref={heroRef} className="flex flex-col items-center">
-          <p className={`reveal ${heroInView ? 'visible' : ''} neon-green-text mb-6 font-mono text-sm tracking-widest uppercase`}>
-            BYTE Presents
-          </p>
-          <h1 className={`reveal delay-100 ${heroInView ? 'visible' : ''} mb-4 text-5xl font-black tracking-tight leading-none sm:text-6xl md:text-7xl lg:text-[9rem]`}>
-            TMU CYBER<br />SUMMIT
-          </h1>
-          <p className={`reveal delay-200 ${heroInView ? 'visible' : ''} mb-6 max-w-lg text-lg text-muted`}>
-            Toronto's Premier Student Cybersecurity Conference · Downtown Toronto
-          </p>
-          <div className={`reveal delay-300 ${heroInView ? 'visible' : ''} mb-10 border border-[#222222] px-5 py-2 font-mono text-xs tracking-widest text-muted uppercase`}>
-            ◈ &nbsp;October 3 – 4, 2026&nbsp; ◈
-          </div>
-          <div className={`reveal delay-[400ms] ${heroInView ? 'visible' : ''} flex flex-col items-center gap-4 sm:flex-row`}>
-            <a
-              href={SIGN_UP_FORM}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
-            >
-              Register as Attendee
-            </a>
-            <button
-              type="button"
-              onClick={() => goToRegister()}
-              className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
-            >
-              Become a Sponsor
-            </button>
-          </div>
+      <section className="relative flex min-h-[80svh] flex-col items-center justify-center overflow-hidden px-6 pt-40 pb-32 text-center sm:pb-40">
+        <div aria-hidden className="summit-grid absolute inset-0" />
+        <div ref={silkRef} aria-hidden className="absolute inset-x-0 -top-1/4 bottom-0">
+          <SummitSilk />
+        </div>
+        <div ref={heroContentRef} className="relative flex w-full flex-col items-center">
+          <ScrollReveal>
+            <p className="mb-6 text-xs font-semibold tracking-[0.3em] text-summit-teal uppercase sm:text-sm">
+              BYTE Presents · 2026 Recap
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={120}>
+            <h1 className="mb-6">
+              <SummitWordmark className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl" />
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={240}>
+            <p className="mb-8 text-3xl tracking-tight sm:text-5xl">
+              <span className="font-light">That&rsquo;s a </span>
+              <span className="font-bold">wrap.</span>
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={360}>
+            <SummitDate className="mb-6" />
+          </ScrollReveal>
+          <ScrollReveal delay={440}>
+            <p className="mb-10 max-w-lg font-light leading-relaxed text-white/70">
+              Two days of workshops, panels, CTF and a closing gala. Thank you to every speaker, sponsor, volunteer and attendee who made it happen.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={520}>
+            <div className="flex flex-col items-center gap-4 sm:flex-row">
+              <a href="#album" className={BUTTON_FILLED}>View the Album ↓</a>
+              <a href="#recap" className={BUTTON_OUTLINE}>What Happened</a>
+            </div>
+          </ScrollReveal>
+        </div>
+        <div className="absolute inset-x-0 bottom-0">
+          <SummitWave />
         </div>
       </section>
 
-      {/* ── What is TMU Cyber Summit? ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={aboutRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${aboutInView ? 'visible' : ''} neon-green-text mb-4 font-mono text-sm tracking-widest uppercase`}>
-            About the Summit
-          </p>
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <div>
-              <h2 className={`reveal delay-100 ${aboutInView ? 'visible' : ''} mb-6 text-4xl font-black tracking-tight md:text-5xl`}>
-                What is TMU<br />Cyber Summit?
-              </h2>
-              <p className={`reveal delay-200 ${aboutInView ? 'visible' : ''} mb-4 leading-relaxed text-muted`}>
-                TMU Cyber Summit is a two-day, student-led cybersecurity conference in downtown Toronto, connecting ambitious students and early career professionals with Canada's top cybersecurity organizations.
-              </p>
-              <p className={`reveal delay-300 ${aboutInView ? 'visible' : ''} leading-relaxed text-muted`}>
-                The conference brings together workshops, panels, recruiting opportunities, technical challenges, and an exclusive closing gala, all organized by BYTE at Toronto Metropolitan University.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {PILLARS.map(({ icon, label, desc }, i) => (
-                <div
-                  key={label}
-                  className={`reveal ${i === 0 ? 'delay-100' : i === 1 ? 'delay-200' : i === 2 ? 'delay-300' : 'delay-[400ms]'} ${aboutInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-6 transition-colors hover:border-accent`}
-                >
-                  <span className="mb-4 block font-mono text-2xl text-accent">{icon}</span>
-                  <h3 className="mb-2 font-mono text-xs tracking-widest text-white uppercase">{label}</h3>
-                  <p className="text-sm leading-relaxed text-muted">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Impact Stats ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={statsRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${statsInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            TMU Tech Week Impact
-          </p>
-          <h2 className={`reveal delay-100 ${statsInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
-            Our Reach
-          </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {/* ── By the Numbers ── */}
+      <section className="px-6 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHead eyebrow="The Summit" light="By the" bold="Numbers" />
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
             {STATS.map(({ value, label }, i) => (
-              <div
-                key={label}
-                className={`reveal ${i === 1 ? 'delay-150' : i === 2 ? 'delay-300' : ''} ${statsInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8 text-center`}
-              >
-                <p className="mb-2 text-5xl font-black text-accent">{value}</p>
-                <p className="font-mono text-xs tracking-widest text-muted uppercase">{label}</p>
-              </div>
-            ))}
-          </div>
-          <p className={`reveal delay-300 ${statsInView ? 'visible' : ''} mt-4 text-center text-xs text-muted`}>
-            Stats from TMU Tech Week, the flagship event series organized by BYTE
-          </p>
-        </div>
-      </section>
-
-      {/* ── 2-Day Agenda ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={agendaRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${agendaInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            The Experience
-          </p>
-          <h2 className={`reveal delay-100 ${agendaInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
-            2-Day Summit Agenda
-          </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-
-            <div className={`reveal delay-200 ${agendaInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8`}>
-              <p className="mb-1 font-mono text-xs tracking-widest text-muted uppercase">Day 1</p>
-              <h3 className="mb-8 text-xl font-black text-accent tracking-tight">Learn &amp; Connect</h3>
-              <ul className="-mx-2 divide-y divide-[#222222]">
-                {DAY1.map((item) => (
-                  <li
-                    key={item.name}
-                    className="flex flex-col gap-1 px-2 py-4 transition-colors first:pt-0 last:pb-0 hover:bg-[#181818] sm:flex-row sm:items-baseline sm:gap-6"
-                  >
-                    <p className="shrink-0 font-mono text-xs text-accent sm:w-44">{item.time}</p>
-                    <div>
-                      <p className="font-medium text-white">{item.name}</p>
-                      {item.poi && <p className="mt-1 text-xs text-muted">{item.poi}</p>}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={`reveal delay-300 ${agendaInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8`}>
-              <p className="mb-1 font-mono text-xs tracking-widest text-muted uppercase">Day 2</p>
-              <h3 className="mb-8 text-xl font-black text-accent tracking-tight">Build &amp; Celebrate</h3>
-              <ul className="-mx-2 divide-y divide-[#222222]">
-                {DAY2.map((item) => (
-                  <li
-                    key={item.name}
-                    className="flex flex-col gap-1 px-2 py-4 transition-colors first:pt-0 last:pb-0 hover:bg-[#181818] sm:flex-row sm:items-baseline sm:gap-6"
-                  >
-                    <p className="shrink-0 font-mono text-xs text-accent sm:w-44">{item.time}</p>
-                    <div>
-                      <p className="font-medium text-white">{item.name}</p>
-                      {item.poi && <p className="mt-1 text-xs text-muted">{item.poi}</p>}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── Demographics ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={demoRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${demoInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            Why Partner With Us
-          </p>
-          <h2 className={`reveal delay-100 ${demoInView ? 'visible' : ''} mb-4 text-3xl font-black tracking-tight`}>
-            Our Demographic
-          </h2>
-          <p className={`reveal delay-200 ${demoInView ? 'visible' : ''} mb-12 max-w-2xl text-muted leading-relaxed`}>
-            TMU Cyber Summit gives partners direct access to a highly engaged, diverse technical talent pool, designed for authentic recruiting conversations and long-term relationship building.
-          </p>
-
-          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {[
-              { value: '100+', label: 'Students per Summit' },
-              { value: '84%',  label: 'Majors with Tech Expertise' },
-              { value: '80%',  label: 'Ready for Real-World Tech' },
-            ].map(({ value, label }, i) => (
-              <div
-                key={label}
-                className={`reveal ${i === 1 ? 'delay-150' : i === 2 ? 'delay-300' : ''} ${demoInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-6 text-center`}
-              >
-                <p className="mb-1 text-4xl font-black text-accent">{value}</p>
-                <p className="font-mono text-xs tracking-widest text-muted uppercase">{label}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className={`reveal delay-[400ms] ${demoInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8`}>
-              <h3 className="mb-6 font-mono text-xs tracking-widest text-white uppercase">Major Breakdown</h3>
-              <ul className="space-y-4">
-                {MAJORS.map(({ label, pct }) => (
-                  <li key={label}>
-                    <div className="mb-1 flex justify-between">
-                      <span className="text-sm text-muted">{label}</span>
-                      <span className="font-mono text-xs text-accent">{pct}%</span>
-                    </div>
-                    <div className="h-px w-full bg-[#222222]">
-                      <div
-                        className="h-px bg-accent transition-all duration-700"
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={`reveal delay-500 ${demoInView ? 'visible' : ''} border border-[#222222] bg-[#111111] p-8`}>
-              <h3 className="mb-6 font-mono text-xs tracking-widest text-white uppercase">Year of Study</h3>
-              <ul className="space-y-4">
-                {YEARS.map(({ label, pct }) => (
-                  <li key={label}>
-                    <div className="mb-1 flex justify-between">
-                      <span className="text-sm text-muted">{label}</span>
-                      <span className="font-mono text-xs text-accent">{pct}%</span>
-                    </div>
-                    <div className="h-px w-full bg-[#222222]">
-                      <div
-                        className="h-px bg-accent transition-all duration-700"
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Event Gallery Placeholder ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={galleryRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${galleryInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            Event Gallery
-          </p>
-          <h2 className={`reveal delay-100 ${galleryInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
-            From TMU Tech Week
-          </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {GALLERY_IMAGES.map(({ src, alt }, i) => (
-              <div
-                key={src}
-                className={`reveal ${i % 3 === 1 ? 'delay-150' : i % 3 === 2 ? 'delay-300' : ''} ${galleryInView ? 'visible' : ''} aspect-video overflow-hidden border border-[#222222]`}
-              >
-                <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
-              </div>
+              <ScrollReveal key={label} variant="zoom" delay={(i % 3) * 120} className="h-full">
+                <div className="summit-card h-full p-5 text-center sm:p-8">
+                  <p className="summit-gradient-text mb-2 text-4xl font-bold tabular-nums sm:text-5xl lg:text-6xl">
+                    <CountUp to={value} />
+                  </p>
+                  <p className="text-[0.65rem] font-light tracking-[0.18em] text-white/70 uppercase sm:text-xs">{label}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Previous Partners ── */}
-      <section className="border-t border-[#222222] py-24 px-6">
-        <div ref={partnersRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${partnersInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            Community Support
-          </p>
-          <h2 className={`reveal delay-100 ${partnersInView ? 'visible' : ''} mb-12 text-3xl font-black tracking-tight`}>
-            Previous Partners
-          </h2>
-          {/* Replace text with <img> tags once logo assets are supplied */}
-          <div className={`reveal delay-200 ${partnersInView ? 'visible' : ''} grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7`}>
-            {PARTNERS.map((name) => (
-              <div
-                key={name}
-                className="border border-[#222222] bg-[#111111] flex items-center justify-center p-6 text-center transition-colors hover:border-accent"
-              >
-                <span className="font-bold text-sm leading-tight text-muted">{name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Sponsorship Tiers ── */}
-      {SHOW_SPONSOR_TIERS && (
-      <section id="sponsor-tiers" className="border-t border-[#222222] py-24 px-6">
-        <div ref={tiersRef} className="mx-auto max-w-7xl">
-          <p className={`reveal ${tiersInView ? 'visible' : ''} neon-green-text mb-2 font-mono text-sm tracking-widest uppercase`}>
-            Partnership Packages
-          </p>
-          <h2 className={`reveal delay-100 ${tiersInView ? 'visible' : ''} mb-4 text-3xl font-black tracking-tight`}>
-            Sponsorship Tiers
-          </h2>
-          <p className={`reveal delay-200 ${tiersInView ? 'visible' : ''} mb-12 max-w-2xl text-muted leading-relaxed`}>
-            Every tier includes direct access to an engaged technical talent pool. Custom packages are available upon request.
-          </p>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {TIERS.map((tier, i) => (
-              <div
-                key={tier.name}
-                className={`reveal ${TIER_DELAYS[i]} ${tiersInView ? 'visible' : ''} flex flex-col border bg-[#111111] p-6 transition-colors hover:border-[#444444] ${
-                  tier.highlight
-                    ? 'border-accent ring-1 ring-accent ring-offset-1 ring-offset-black'
-                    : 'border-[#222222]'
-                }`}
-              >
-                {tier.highlight && (
-                  <p className="neon-green-text mb-3 font-mono text-sm tracking-widest uppercase">Most Popular</p>
-                )}
-                <p className={`mb-1 font-mono text-xs tracking-widest uppercase ${tier.color}`}>{tier.name}</p>
-                <p className="mb-6 text-3xl font-black text-white">{tier.price}</p>
-                <ul className="flex-1 space-y-3">
-                  {tier.features.map(({ label, value }) => (
-                    <li key={label} className="flex items-center justify-between gap-2">
-                      <span className="text-xs text-muted">{label}</span>
-                      <FeatureValue value={value} />
-                    </li>
-                  ))}
-                </ul>
+      {/* ── The Album ── */}
+      <section id="album" className="scroll-mt-24 px-6 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHead eyebrow="Photo Album" light="Moments from the" bold="Summit" />
+          <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+            {visiblePhotos.map((photo, i) => (
+              <ScrollReveal key={photo.src} variant="zoom" delay={(i % 3) * 100} className="mb-4 break-inside-avoid">
                 <button
                   type="button"
-                  onClick={() => goToRegister(tier.name)}
-                  className="mt-8 block w-full border border-[#333333] py-2 text-center font-mono text-xs tracking-widest text-muted uppercase transition-colors hover:border-accent hover:text-accent"
+                  onClick={() => setLightboxIndex(i)}
+                  aria-label={`Open photo ${i + 1} of ${ALBUM.length}: ${photo.alt}`}
+                  className="group block w-full overflow-hidden rounded-2xl border border-white/10 bg-summit-navy transition-colors hover:border-summit-teal/70 focus-visible:border-summit-teal focus-visible:outline-none"
                 >
-                  Inquire
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
                 </button>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
-
-          <p className={`reveal delay-300 ${tiersInView ? 'visible' : ''} mt-8 text-center font-mono text-xs text-muted`}>
-            Custom sponsorship packages are available upon request · byte.tmu@gmail.com
-          </p>
-        </div>
-      </section>
-      )}
-
-      {/* ── Dual CTA ── */}
-      <section className="border-t border-[#222222] py-32 px-6">
-        <div ref={ctaRef} className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 gap-px border border-[#222222] md:grid-cols-2">
-            <div className={`reveal ${ctaInView ? 'visible' : ''} flex flex-col items-start justify-between gap-8 bg-[#111111] p-12`}>
-              <div>
-                <p className="neon-green-text mb-3 font-mono text-sm tracking-widest uppercase">For Students</p>
-                <h2 className="mb-4 text-3xl font-black tracking-tight">Are You a Student?</h2>
-                <p className="leading-relaxed text-muted">
-                  Join 1,250+ attendees at Toronto's premier cybersecurity event. Learn from industry leaders, compete in CTF challenges, and connect with your next employer.
-                </p>
-              </div>
-              <a
-                href={SIGN_UP_FORM}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-accent px-8 py-3 font-mono text-sm tracking-widest text-black uppercase transition-opacity hover:opacity-80"
-              >
-                Sign Up Today!
-              </a>
-            </div>
-
-            <div className={`reveal delay-150 ${ctaInView ? 'visible' : ''} flex flex-col items-start justify-between gap-8 bg-black p-12`}>
-              <div>
-                <p className="neon-green-text mb-3 font-mono text-sm tracking-widest uppercase">For Organizations</p>
-                <h2 className="mb-4 text-3xl font-black tracking-tight">Ready to Reach Top Tech Talent?</h2>
-                <p className="leading-relaxed text-muted">
-                  Start a conversation about partnership. Every tier puts your brand in front of a highly engaged, technically skilled audience across two action-packed days.
-                </p>
-              </div>
+          {!showAll && ALBUM.length > INITIAL_VISIBLE && (
+            <div className="mt-4 text-center">
               <button
                 type="button"
-                onClick={() => goToRegister()}
-                className="border border-[#444444] px-8 py-3 font-mono text-sm tracking-widest text-white uppercase transition-colors hover:border-accent hover:text-accent"
+                onClick={() => setShowAll(true)}
+                className="rounded-full border border-summit-teal/60 px-8 py-3 text-sm font-semibold tracking-widest text-summit-teal uppercase transition-colors hover:bg-summit-teal hover:text-summit-ink"
               >
-                Contact Us
+                View all {ALBUM.length} photos
               </button>
             </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── What Happened ── */}
+      <section id="recap" className="scroll-mt-24 px-6 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHead eyebrow="What Happened" light="Two Days," bold="Recapped" />
+          <ScrollReveal threshold={0.05}>
+            <AgendaSlides />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── Partners ── */}
+      <section className="px-6 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHead eyebrow="Community Support" light="Thank you to our" bold="Partners" />
+          {/* Replace text with <img> tags once logo assets are supplied */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-7">
+            {PARTNERS.map((name, i) => (
+              <ScrollReveal key={name} variant="zoom" delay={Math.min(i, 4) * 80} className="h-full">
+                <div className="summit-card flex h-full items-center justify-center p-5 text-center sm:p-6">
+                  <span className="text-sm leading-tight font-semibold text-white/80">{name}</span>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <RegisterModal
-        open={isRegisterOpen}
-        form={form}
-        submitState={submitState}
-        buttonLabel={buttonLabel}
-        tiers={TIERS}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        onClose={() => setIsRegisterOpen(false)}
-      />
+      {/* ── Closing ── */}
+      <section className="relative mt-8">
+        <SummitWave flip />
+        <div className="flex flex-col items-center px-6 pt-10 pb-24 text-center sm:pb-32">
+          <ScrollReveal>
+            <p className="mb-8 text-4xl tracking-tight sm:text-6xl">
+              <span className="font-light">See you </span>
+              <span className="summit-gradient-text font-bold">next year.</span>
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className={BUTTON_FILLED}>
+                Follow @tmu.byte
+              </a>
+              <Link to="/events" className={BUTTON_OUTLINE}>More BYTE Events</Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
+      <PhotoLightbox
+        photos={visiblePhotos}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={setLightboxIndex}
+      />
     </div>
   )
 }
