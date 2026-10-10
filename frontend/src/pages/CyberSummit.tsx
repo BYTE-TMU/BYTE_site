@@ -25,14 +25,17 @@ const STATS = [
   { value: 14, label: 'Sessions & Workshops' },
 ]
 
-const PARTNERS = [
-  'Toronto Metropolitan University',
-  'Microsoft',
-  'TCS',
-  'BMO',
-  'IBM',
-  'Google',
-  'Wealthsimple',
+const SPONSOR_LOGOS = [
+  { name: '88', src: '/images/Partner%20Logos/88_logo.png', surface: 'white' },
+  { name: 'AWS', src: '/images/Partner%20Logos/AWS_logo.png' },
+  { name: 'ArmorCode', src: '/images/Partner%20Logos/ArmorCode_logo.png', tier: 'Bronze', halo: 'bronze' },
+  { name: 'Borikong', src: '/images/Partner%20Logos/Borikong_logo.png' },
+  { name: 'CrowdStrike', src: '/images/Partner%20Logos/CrowdStrike_logo.svg', surface: 'white' },
+  { name: 'ISC2', src: '/images/Partner%20Logos/ISC2_logo.png' },
+  { name: 'NEX', src: '/images/Partner%20Logos/Nex_logo.jpg' },
+  { name: 'RBC', src: '/images/Partner%20Logos/RBC_logo.png', tier: 'Silver', halo: 'silver' },
+  { name: 'Rogers Cybersecure Catalyst', src: '/images/Partner%20Logos/RCC_logo.png', surface: 'white', halo: 'teal' },
+  { name: 'SACR', src: '/images/Partner%20Logos/SACR_logo.png', tier: 'Silver', halo: 'silver' },
 ]
 
 // To swap or add photos: drop the full-size originals in frontend/photo-originals/, run
@@ -230,16 +233,25 @@ export default function CyberSummit() {
         </div>
       </section>
 
-      {/* ── Partners ── */}
+      {/* ── Sponsors & Partners ── */}
       <section className="px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <SectionHead eyebrow="Community Support" light="Thank you to our" bold="Partners" />
-          {/* Replace text with <img> tags once logo assets are supplied */}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-7">
-            {PARTNERS.map((name, i) => (
-              <ScrollReveal key={name} variant="zoom" delay={Math.min(i, 4) * 80} className="h-full">
-                <div className="summit-card flex h-full items-center justify-center p-5 text-center sm:p-6">
-                  <span className="text-sm leading-tight font-semibold text-white/80">{name}</span>
+          <SectionHead eyebrow="Our Sponsors" light="Sponsors &" bold="Partners" />
+          <div className="grid grid-cols-2 justify-items-center gap-x-5 gap-y-8 sm:grid-cols-3 md:grid-cols-5">
+            {SPONSOR_LOGOS.map(({ name, src, surface, tier, halo }, i) => (
+              <ScrollReveal key={name} variant="zoom" delay={(i % 5) * 80}>
+                <div data-surface={surface ?? 'dark'} data-halo={halo ?? 'green'} className="cyber-sponsor-card w-28 text-center sm:w-32">
+                  <div className="tech-week-partner-card mx-auto flex h-28 w-28 items-center justify-center p-2 sm:h-32 sm:w-32">
+                    <div className="tech-week-partner-logo-frame flex h-full w-full items-center justify-center p-2">
+                      <img src={src} alt={name} className="max-h-full max-w-full object-contain" loading="lazy" />
+                    </div>
+                  </div>
+                  <span className="mt-3 block min-h-10 text-sm leading-tight font-semibold text-muted">{name}</span>
+                  {tier && (
+                    <span data-tier={tier.toLowerCase()} className="cyber-sponsor-tier mt-1 block font-mono text-[10px] tracking-widest uppercase">
+                      {tier}
+                    </span>
+                  )}
                 </div>
               </ScrollReveal>
             ))}

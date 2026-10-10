@@ -75,6 +75,8 @@
   .tech-week-partner-card {
     --partner-sheen: var(--neon);
     --partner-sheen-strength: 70%;
+    --partner-accent: var(--neon);
+    --partner-halo: 102 255 71;
     position: relative;
     flex-shrink: 0;
     overflow: hidden;
@@ -82,17 +84,47 @@
     border-radius: 1rem;
     background:
       linear-gradient(#050505, #050505) padding-box,
-      linear-gradient(135deg, var(--neon) 0%, rgb(46 120 36) 38%, #111 72%, #000 100%) border-box;
+      linear-gradient(135deg, var(--partner-accent) 0%, color-mix(in srgb, var(--partner-accent) 55%, #2e7824) 38%, #111 72%, #000 100%) border-box;
     box-shadow:
-      0 0 9px rgb(102 255 71 / 14%),
-      0 0 20px rgb(102 255 71 / 6%);
+      0 0 9px rgb(var(--partner-halo) / 14%),
+      0 0 20px rgb(var(--partner-halo) / 6%);
     transition: box-shadow 220ms ease, filter 220ms ease;
+  }
+
+  .cyber-sponsor-card[data-halo='bronze'] .tech-week-partner-card {
+    --partner-accent: #cd7f32;
+    --partner-halo: 205 127 50;
+    --partner-sheen: #cd7f32;
+  }
+
+  .cyber-sponsor-card[data-halo='silver'] .tech-week-partner-card {
+    --partner-accent: #cbd3dc;
+    --partner-halo: 203 211 220;
+    --partner-sheen: #cbd3dc;
+  }
+
+  .cyber-sponsor-card[data-halo='teal'] .tech-week-partner-card {
+    --partner-accent: #35d6c3;
+    --partner-halo: 53 214 195;
+    --partner-sheen: #35d6c3;
+  }
+
+  .cyber-sponsor-tier[data-tier='bronze'] {
+    color: #cd7f32;
+  }
+
+  .cyber-sponsor-tier[data-tier='silver'] {
+    color: #cbd3dc;
   }
 
   .tech-week-partner-logo-frame {
     overflow: hidden;
     border-radius: 0.7rem;
     background: #000;
+  }
+
+  .cyber-sponsor-card[data-surface='white'] .tech-week-partner-logo-frame {
+    background: #fff;
   }
 
   .partner-logo-item[data-tier='gold'] .tech-week-partner-card,
@@ -124,8 +156,8 @@
 
   .tech-week-partner-card:hover {
     box-shadow:
-      0 0 12px rgb(102 255 71 / 65%),
-      0 0 32px rgb(102 255 71 / 30%);
+      0 0 12px rgb(var(--partner-halo) / 65%),
+      0 0 32px rgb(var(--partner-halo) / 30%);
     filter: brightness(1.35);
   }
 
