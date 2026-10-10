@@ -33,3 +33,6 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Full-size event photos (source for `npm run photos:recap`; too large for git)
+frontend/photo-originals/
