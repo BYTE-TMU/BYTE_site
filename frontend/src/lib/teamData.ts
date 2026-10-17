@@ -594,6 +594,18 @@ const allTeamMembers: Member[] = [
     connections: ['backend-eng-002'],
     email: 'xena.patel@torontomu.ca',
     linkedInUrl: 'https://www.linkedin.com/in/xena-patel-b13a0533b'
+  },
+  {
+    id: 'graphic-designer-002',
+    name: 'Arwen Phan',
+    position: 'Graphic Designer',
+    roleDescription: 'Designs the visual identity behind BYTE\'s events and campaigns, turning ideas into the posters, graphics, and brand assets our community sees first.',
+    profilePicUrl: '/images/BYTE Website - Member Photos/arwenphan-photo.jpg',
+    rank: 60,
+    categories: ['Strategic Team'],
+    connections: ['vp-marketing-001'],
+    email: 'phuong.phan@torontomu.ca',
+    linkedInUrl: 'https://www.linkedin.com/in/arwen-phan-69aa02334'
   }
 ]
 
